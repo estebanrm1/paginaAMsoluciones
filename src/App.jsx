@@ -8,9 +8,8 @@ function App() {
   return (
   
   <>
-  <div className='Black'>
-  <Presentacion></Presentacion>
-  </div>
+  <BarraDeNavegacion></BarraDeNavegacion>
+  {/* <Presentacion></Presentacion> */}
   </>
   )
 }

@@ -1,0 +1,36 @@
+.dropdown-toggle::after{
+    border: none;
+}
+
+a.nav-link {
+    text-decoration: none;
+    font-size: 15px;
+    border: none;
+    background: none;
+}
+
+a.nav-link:hover{
+        filter: drop-shadow(0 0 5px rgb(255, 255, 255))
+}
+
+a.nav-link::before {
+    margin-left: auto;
+}
+
+a.nav-link::after, a.nav-link::before {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: rgb(28, 167, 69);
+    display: block;
+    transition: 0.5s;
+}
+
+a.nav-link:hover::after, a.nav-link:hover::before {
+    width: 100%;
+}
+
+.sombra{
+        width: 50%;
+        filter: drop-shadow(0 0 10px rgb(85, 255, 99))
+    }

@@ -1,0 +1,75 @@
+.Black {
+    background: rgb(0, 0, 0);
+}
+
+.logo {
+    max-width: 120px;
+}
+
+
+.video-container {
+    overflow: hidden;
+    width: 100vw;
+    /* 100% del ancho de la ventana */
+    height: 100vh;
+    /* 100% de la altura de la ventana */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.full-screen-video {
+    max-width: 50vw;
+    /* Se asegura de que ocupe todo el ancho */
+    max-height: 80vh;
+    /* Se asegura de que ocupe toda la altura */
+    object-fit: cover;
+    /* Mantiene la proporción y recorta si es necesario */
+}
+
+
+
+.button {
+    margin: 0;
+    height: auto;
+    background: transparent;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+}
+
+.button {
+    --border-right: 6px;
+    --text-stroke-color: rgba(255, 255, 255, 0.6);
+    --animation-color: #37FF8B;
+    --fs-size: 2em;
+    letter-spacing: 3px;
+    text-decoration: none;
+    font-size: var(--fs-size);
+    font-family: "Arial";
+    position: relative;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--text-stroke-color);
+}
+
+.hover-text {
+    position: absolute;
+    box-sizing: border-box;
+    content: attr(data-text);
+    color: var(--animation-color);
+    width: 0%;
+    inset: 0;
+    border-right: var(--border-right) solid var(--animation-color);
+    overflow: hidden;
+    transition: 0.5s;
+    -webkit-text-stroke: 1px var(--animation-color);
+}
+
+.button:hover .hover-text {
+    width: 100%;
+    filter: drop-shadow(0 0 23px white)
+}
+
