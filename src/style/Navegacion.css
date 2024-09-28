@@ -21,7 +21,7 @@ a.nav-link::after, a.nav-link::before {
     content: '';
     width: 0%;
     height: 2px;
-    background: rgb(28, 167, 69);
+    background: #1ca745;
     display: block;
     transition: 0.5s;
 }

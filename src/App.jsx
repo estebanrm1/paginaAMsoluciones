@@ -2,6 +2,7 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BarraDeNavegacion from './components/BarraDeNavegacion';
 import Presentacion from './components/Presentacion';
+import Inicio from './components/Inicio';
 
 function App() {
 
@@ -9,6 +10,7 @@ function App() {
   
   <>
   <BarraDeNavegacion></BarraDeNavegacion>
+  <Inicio></Inicio>
   {/* <Presentacion></Presentacion> */}
   </>
   )

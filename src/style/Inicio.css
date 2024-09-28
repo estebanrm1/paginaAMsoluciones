@@ -1,0 +1,246 @@
+.fondo-negro {
+    background-color: black;
+    color: white;
+}
+
+.inicio-banner {
+    background-color: black;
+    background-image: url(../assets/Creamos\ tu\ web.png);
+    background-size: contain;
+    background-position: center;
+    height: 80vh;
+    position: relative;
+    width: 100%;
+    background-repeat: no-repeat;
+}
+
+/*      CARDS SERVICIOS  desarrollo web       */
+
+.card {
+    width: 220px;
+    height: 300px;
+    background: rgb(103, 225, 255);
+    transition: all 0.4s;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);
+    font-size: 25px;
+    font-weight: 900;
+    text-align: center;
+}
+
+.card:hover {
+    border-radius: 15px;
+    cursor: pointer;
+    transform: scale(1);
+    box-shadow: 0px 0px 10px 5px white;
+    background: rgb(103, 151, 255);
+}
+
+.first-content {
+    height: 100%;
+    width: 100%;
+    transition: all 0.4s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    border-radius: 15px;
+}
+
+.card:hover .first-content {
+    height: 0px;
+    opacity: 0;
+}
+
+.second-content {
+    height: 0%;
+    width: 100%;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    transition: all 0.4s;
+    font-size: 0px;
+    transform: rotate(90deg) scale(-1);
+}
+
+.card:hover .second-content {
+    opacity: 1;
+    height: 100%;
+    font-size: 1.3rem;
+    transform: rotate(0deg);
+}
+
+
+/*      CARD SERVICIOS responsivo             */
+
+
+.flip-card {
+    background-color: transparent;
+    width: 220px;
+    height: 300px;
+    perspective: 1000px;
+    font-family: sans-serif;
+}
+
+.title {
+    font-size: 1.5em;
+    font-weight: 900;
+    text-align: center;
+    margin: 0;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.2);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border: 1px solid coral;
+    border-radius: 1rem;
+}
+
+.flip-card-front {
+    background: linear-gradient(120deg, bisque 60%, rgb(255, 231, 222) 88%,
+            rgb(255, 211, 195) 40%, rgba(255, 127, 80, 0.603) 48%);
+    color: coral;
+}
+
+.flip-card-back {
+    background: linear-gradient(120deg, rgb(255, 174, 145) 30%, coral 88%,
+            bisque 40%, rgb(255, 185, 160) 78%);
+    color: white;
+    transform: rotateY(180deg);
+}
+
+/*          CARD SEO            */
+
+
+.card-SEO {
+    width: 220px;
+    height: 300px;
+    background: #07182E;
+    position: relative;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.card-SEO h2 {
+    z-index: 1;
+    color: white;
+    font-size: 1em;
+}
+
+.card-SEO::before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    background-image: linear-gradient(180deg, rgb(0, 183, 255), rgb(255, 48, 255));
+    height: 130%;
+    animation: rotBGimg 3s linear infinite;
+    transition: all 0.2s linear;
+}
+
+@keyframes rotBGimg {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.card-SEO::after {
+    content: '';
+    position: absolute;
+    background: #07182E;
+    ;
+    inset: 5px;
+    border-radius: 15px;
+}
+
+.card-SEO:hover:before {
+    background-image: linear-gradient(180deg, rgb(81, 255, 0), purple);
+    animation: rotBGimg 3.5s linear infinite;
+}
+
+/*        CARD MANTENIMIENTO          */
+
+
+/* From Uiverse.io by JoseIsra */
+.card-mantenimiento {
+    width: 220px;
+    height: 300px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.content {
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+    transition: all 2.25s;
+    background-color: rgb(127, 204, 240);
+    width: 220px;
+    height: 300px;
+    transform-style: preserve-3d;
+}
+
+.card-mantenimiento:hover .content {
+    border-radius: 20px;
+    transform: rotateY(0.5turn);
+}
+
+.front,
+.back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 2em;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+
+.title {
+    transform: translateZ(5rem);
+    font-size: 2rem;
+}
+
+.subtitle {
+    transform: translateZ(2rem);
+}
+
+.back {
+    border-radius: 20px;
+    transform: rotateY(0.5turn);
+    background-color: #009bff;
+}
+
+.description {
+    transform: translateZ(3rem);
+}

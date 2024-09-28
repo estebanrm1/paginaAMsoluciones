@@ -3,7 +3,7 @@ import '../style/Presentacion.css';
 
 const Presentacion = () => {
 return (
-    <section className="video-container">
+    <section className="video-container Black">
         <video className="full-screen-video" autoPlay muted loop>
             <source src={videoPresentacion} type="video/mp4"/>
         </video>
