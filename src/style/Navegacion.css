@@ -1,3 +1,10 @@
+.barra-fija{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
 .dropdown-toggle::after{
     border: none;
 }
@@ -21,7 +28,7 @@ a.nav-link::after, a.nav-link::before {
     content: '';
     width: 0%;
     height: 2px;
-    background: #1ca745;
+    background: rgb(235, 38, 3);
     display: block;
     transition: 0.5s;
 }
@@ -32,5 +39,5 @@ a.nav-link:hover::after, a.nav-link:hover::before {
 
 .sombra{
         width: 50%;
-        filter: drop-shadow(0 0 10px rgb(85, 255, 99))
+        filter: drop-shadow(0 0 10px rgb(235, 38, 3))
     }

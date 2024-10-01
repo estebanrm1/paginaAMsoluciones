@@ -1,20 +1,15 @@
-import imgBanner from "../assets/Creamos tu web.png";
+import imgBanner from "../assets/creamos tu web.png";
+import imgH1 from "../assets/tecladoh1.jpg"
 import "../style/Inicio.css";
-import { Container, Row } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 const Inicio = () => {
     return (
         <>
-            <div
-                className="inicio-banner"
-                style={{ backgroundImage: `url(${imgBanner})` }}
-            ></div>
-            <h1 className="text-center my-5">
-                Páginas web modernas, adaptadas a tus necesidades, diseñadas para
-                destacar.
-            </h1>
+        <img className="inicio-banner mt-5 d-none d-lg-block" src={imgBanner} alt="Banner de AM soluciones web" />
             <section>
                 <article className="fondo-negro p-5 text-center">
-                    <h3>Servicios destacados</h3>
+                    <h1 className="titulo-inicio">Páginas web modernas, adaptadas a tus necesidades</h1>
+                    <h3 className="my-5">Servicios destacados</h3>
                     <Row className="justify-content-between m-5">
                         <div class="card">
                             <div class="first-content">
@@ -24,7 +19,6 @@ const Inicio = () => {
                                 <span> Desde landing pages hasta sitios más complejos</span>
                             </div>
                         </div>
-
 
                         <div class="flip-card">
                             <div class="flip-card-inner">

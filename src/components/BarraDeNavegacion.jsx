@@ -6,7 +6,7 @@ const BarraDeNavegacion = () => {
 
     return (
         <>
-            <Navbar expand="lg" bg="dark" data-bs-theme="dark">
+            <Navbar className="barra-fija" expand="lg" bg="black" data-bs-theme="dark">
                 <Container>
                     <NavbarBrand className="text-light sombra">A.M Soluciones Web</NavbarBrand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" className="outline-light"/>
