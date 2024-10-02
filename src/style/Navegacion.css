@@ -5,6 +5,10 @@
     z-index: 1000;
 }
 
+.contenedor-navlink{
+    white-space: nowrap;
+}
+
 .dropdown-toggle::after{
     border: none;
 }

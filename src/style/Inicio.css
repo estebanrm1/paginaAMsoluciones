@@ -1,9 +1,10 @@
-:root{
-    --color-primario:rgb(0, 183, 255);
-    --color-secundario:rgb(255, 48, 255);
+:root {
+    --card-color-primario: rgb(0, 183, 255);
+    --card-color-secundario: rgb(255, 48, 255);
+    --color-primario:rgb(235, 38, 3);
 }
 
-.letra-orbitron{
+.letra-orbitron {
     font-family: var(--letra-orbitron);
 }
 
@@ -12,19 +13,23 @@
     color: white;
 }
 
+.borde-top-rojo{
+    border-top: 5px solid var(--color-primario);
+}
+
 .inicio-banner {
     background-color: #eb2603;
     background-size: contain;
     background-position: center;
-    border-top: 5px solid rgb(235, 38, 3);
-    border-bottom:5px solid rgb(235, 38, 3) ;
+    border-top: 5px solid var(--color-primario);
+    border-bottom: 5px solid var(--color-primario);
     position: relative;
     width: 100%;
     background-repeat: no-repeat;
 }
 
-.titulo-inicio{
-    border-bottom:2px solid rgb(235, 38, 3);
+.titulo-inicio {
+    border-bottom: 2px solid var(--color-primario);
     padding-bottom: 50px;
 }
 
@@ -36,10 +41,10 @@
 .card {
     width: 220px;
     height: 300px;
-    background: var(--color-primario);
+    background: var(--card-color-primario);
     transition: all 0.4s;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px 5px var(--color-secundario);
+    box-shadow: 0px 0px 10px 5px var(--card-color-secundario);
     font-size: 25px;
     font-weight: 900;
     text-align: center;
@@ -50,8 +55,8 @@
     border-radius: 15px;
     cursor: pointer;
     transform: scale(1);
-    box-shadow: 0px 0px 10px 5px var(--color-primario);
-    background: var(--color-secundario);
+    box-shadow: 0px 0px 10px 5px var(--card-color-primario);
+    background: var(--card-color-secundario);
 }
 
 .first-content {
@@ -132,19 +137,19 @@
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    border: 1px solid var(--color-secundario);
+    border: 1px solid var(--card-color-secundario);
     border-radius: 1rem;
 }
 
 .flip-card-front {
-    background: linear-gradient(120deg, var(--color-secundario) 30%, var(--color-primario) 88%,
-    var(--color-primario) 40%, var(--color-primario) 78%);
+    background: linear-gradient(120deg, var(--card-color-secundario) 30%, var(--card-color-primario) 88%,
+            var(--card-color-primario) 40%, var(--card-color-primario) 78%);
     color: white;
 }
 
 .flip-card-back {
-    background: linear-gradient(120deg, var(--color-primario) 30%,var(--color-secundario) 88%,
-            var(--color-secundario) 40%, var(--color-secundario) 78%);
+    background: linear-gradient(120deg, var(--card-color-primario) 30%, var(--card-color-secundario) 88%,
+            var(--card-color-secundario) 40%, var(--card-color-secundario) 78%);
     color: white;
     transform: rotateY(180deg);
 }
@@ -174,7 +179,7 @@
     content: '';
     position: absolute;
     width: 100px;
-    background-image: linear-gradient(180deg, var(--color-primario), var(--color-secundario));
+    background-image: linear-gradient(180deg, var(--card-color-primario), var(--card-color-secundario));
     height: 130%;
     animation: rotBGimg 3s linear infinite;
     transition: all 0.2s linear;
@@ -219,7 +224,7 @@
     text-align: center;
     position: relative;
     transition: all 2.25s;
-    background-color: var(--color-secundario);
+    background-color: var(--card-color-secundario);
     width: 220px;
     height: 300px;
     transform-style: preserve-3d;
@@ -257,9 +262,265 @@
 .back {
     border-radius: 20px;
     transform: rotateY(0.5turn);
-    background-color:var(--color-primario);
+    background-color: var(--card-color-primario);
 }
 
 .description {
     transform: translateZ(3rem);
+}
+
+
+/*       Herramientas         */
+
+.contenedor-herramientas {
+    display: flex;
+    justify-content: space-around;
+}
+
+.light-button button.bt {
+    position: relative;
+    height: 200px;
+    display: flex;
+    align-items: flex-end;
+    outline: none;
+    background: none;
+    border: none;
+    cursor: default;
+}
+
+.light-button button.bt .button-holder-html {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 100px;
+    background-color: #0a0a0a;
+    border-radius: 5px;
+    color: #615f5f;
+    font-weight: 700;
+    transition: 300ms;
+    outline: #615f5f 2px solid;
+    outline-offset: 20;
+}
+
+.light-button button.bt .button-holder-html svg {
+    height: 50px;
+    fill: #0f0f0f;
+    transition: 300ms;
+}
+
+.light-button button.bt .light-holder {
+    position: absolute;
+    height: 200px;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.light-button button.bt .light-holder .dot {
+    position: absolute;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 10px;
+    z-index: 2;
+}
+
+.light-button button.bt .light-holder .light {
+    position: absolute;
+    top: 0;
+    width: 200px;
+    height: 200px;
+    clip-path: polygon(50% 0%, 25% 100%, 75% 100%);
+    background: transparent;
+}
+
+.light-button button.bt:hover .button-holder-html {
+    color: white;
+    outline: #e34f26 2px solid;
+    outline-offset: 2px;
+}
+
+.light-button button.bt:hover .light-holder .light {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(180deg,
+        white 0%,
+            rgba(255, 255, 255, 0) 75%,
+            rgba(255, 255, 255, 0) 100%);
+}
+
+.light-button button.bt:hover .button-holder-html .svg-html > path:nth-child(1){
+    fill:#e34f26;
+}
+
+.light-button button.bt:hover .button-holder-html .svg-html > path:nth-child(2){
+    fill:#ef652a;
+}
+
+.light-button button.bt:hover .button-holder-html .svg-html > path:nth-child(3){
+    fill:#ecedee;
+}
+
+.light-button button.bt:hover .button-holder-html .svg-html > path:nth-child(4){
+    fill:#fff;
+}
+
+/*        Herramienta_CSS            */
+
+
+.light-button button.bt .button-holder-css {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 100px;
+    background-color: #0a0a0a;
+    border-radius: 5px;
+    color: #615f5f;
+    font-weight: 700;
+    transition: 300ms;
+    outline: #615f5f 2px solid;
+    outline-offset: 20;
+}
+
+.light-button button.bt:hover .button-holder-css {
+    color: white;
+    outline: #0c73b8 2px solid;
+    outline-offset: 2px;
+}
+
+.light-button button.bt .button-holder-css svg {
+    height: 50px;
+    fill: #0f0f0f;
+    transition: 300ms;
+}
+
+
+.light-button button.bt:hover .button-holder-css .svg-css > path:nth-child(1){
+    fill:#0c73b8;
+}
+
+.light-button button.bt:hover .button-holder-css .svg-css > path:nth-child(2){
+    fill:#30a9dc;
+}
+
+.light-button button.bt:hover .button-holder-css .svg-css > path:nth-child(3){
+    fill:#ecedee;
+}
+
+.light-button button.bt:hover .button-holder-css .svg-css > path:nth-child(4){
+    fill:#fff;
+}
+
+/*         Herramienta-bootstrap              */
+
+.light-button button.bt .button-holder-bootstrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 100px;
+    background-color: #0a0a0a;
+    border-radius: 5px;
+    color: #615f5f;
+    font-weight: 700;
+    transition: 300ms;
+    outline: #615f5f 2px solid;
+    outline-offset: 20;
+}
+
+.light-button button.bt:hover .button-holder-bootstrap {
+    color: white;
+    outline: #7E13F8 2px solid;
+    outline-offset: 2px;
+}
+
+.light-button button.bt .button-holder-bootstrap svg {
+    height: 50px;
+    fill: #0f0f0f;
+    transition: 300ms;
+}
+
+
+.light-button button.bt:hover .button-holder-bootstrap .svg-bootstrap{
+    fill:#7E13F8;
+}
+
+/*         Herramienta-JavaScript              */
+
+.light-button button.bt .button-holder-js {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 100px;
+    background-color: #0a0a0a;
+    border-radius: 5px;
+    color: #615f5f;
+    font-weight: 700;
+    transition: 300ms;
+    outline: #615f5f 2px solid;
+    outline-offset: 20;
+}
+
+.light-button button.bt:hover .button-holder-js {
+    color: white;
+    outline: #f0db4f 2px solid;
+    outline-offset: 2px;
+}
+
+.light-button button.bt .button-holder-js svg {
+    height: 50px;
+    fill: #0f0f0f;
+    transition: 300ms;
+}
+
+
+.light-button button.bt:hover .button-holder-js .svg-js > path:nth-child(1){
+    fill:#f0db4f;
+}
+
+.light-button button.bt:hover .button-holder-js .svg-js > path:nth-child(2){
+    fill:#252525;
+}
+
+/*         Herramienta-React              */
+
+.light-button button.bt .button-holder-react {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 100px;
+    background-color: #0a0a0a;
+    border-radius: 5px;
+    color: #615f5f;
+    font-weight: 700;
+    transition: 300ms;
+    outline: #615f5f 2px solid;
+    outline-offset: 20;
+}
+
+.light-button button.bt:hover .button-holder-react {
+    color: white;
+    outline: #00D8FF 2px solid;
+    outline-offset: 2px;
+}
+
+.light-button button.bt .button-holder-react svg {
+    height: 50px;
+    fill: #0f0f0f;
+    transition: 300ms;
+}
+
+
+.light-button button.bt:hover .button-holder-react .svg-react{
+    fill:#00D8FF;
 }
