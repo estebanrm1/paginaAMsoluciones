@@ -1,17 +1,16 @@
 import imgBanner from "../assets/creamos tu web.png";
-import imgH1 from "../assets/tecladoh1.jpg"
 import "../style/Inicio.css";
 import { Row } from "react-bootstrap";
 const Inicio = () => {
     return (
         <>
-            <img className="inicio-banner py-lg-5 mt-5 d-none d-lg-block" src={imgBanner} alt="Banner de AM soluciones web" />
+            <img className="inicio-banner py-lg-5 d-none d-lg-block" src={imgBanner} alt="Banner de AM soluciones web" />
             <section>
                 <article className="fondo-negro p-5 text-center">
                     <h1 className="titulo-inicio">Páginas web modernas, adaptadas a tus necesidades</h1>
                     <h3 className="my-5">Servicios destacados</h3>
-                    <Row className="justify-content-between m-5">
-                        <div class="card">
+                    <div className="contenedor-card-servicios justify-content-lg-around gap-5">
+                        <div class="card fs-5">
                             <div class="first-content">
                                 <span>Desarrollo web personalizado</span>
                             </div>
@@ -55,7 +54,7 @@ const Inicio = () => {
                             </div>
                         </div>
 
-                    </Row>
+                    </div>
 
                 </article>
 
@@ -63,7 +62,7 @@ const Inicio = () => {
                     <h3 className="titulo-inicio">Tecnologías que Impulsan Nuestro Trabajo</h3>
                     <p className="my-5">En A.M Soluciones Web, utilizamos las mejores herramientas del mercado para garantizar soluciones eficientes y de alta calidad. Estas tecnologías nos permiten desarrollar proyectos modernos, escalables y adaptados a las necesidades de cada cliente.</p>
                     <div className="contenedor-herramientas">
-                        <div class="light-button">
+                        <div class="light-button pt-3">
                             <button class="bt">
                                 <div class="light-holder">
                                     <div class="dot"></div>
@@ -81,7 +80,7 @@ const Inicio = () => {
                             </button>
                         </div>
 
-                        <div class="light-button">
+                        <div class="light-button pt-3">
                             <button class="bt">
                                 <div class="light-holder">
                                     <div class="dot"></div>
@@ -99,7 +98,7 @@ const Inicio = () => {
                             </button>
                         </div>
 
-                        <div class="light-button">
+                        <div class="light-button pt-3">
                             <button class="bt">
                                 <div class="light-holder">
                                     <div class="dot"></div>
@@ -113,7 +112,7 @@ const Inicio = () => {
                             </button>
                         </div>
 
-                        <div class="light-button">
+                        <div class="light-button pt-3">
                             <button class="bt">
                                 <div class="light-holder">
                                     <div class="dot"></div>
@@ -127,7 +126,7 @@ const Inicio = () => {
                             </button>
                         </div>
 
-                        <div class="light-button">
+                        <div class="light-button pt-3">
                             <button class="bt">
                                 <div class="light-holder">
                                     <div class="dot"></div>

@@ -33,6 +33,12 @@
     padding-bottom: 50px;
 }
 
+.contenedor-card-servicios{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
 
 /*      CARDS SERVICIOS  desarrollo web       */
 
@@ -45,7 +51,7 @@
     transition: all 0.4s;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 5px var(--card-color-secundario);
-    font-size: 25px;
+    font-size: clamp(2rem, 3vw, + 2rem, 4rem);
     font-weight: 900;
     text-align: center;
     color: white;
@@ -128,7 +134,7 @@
 
 .flip-card-front,
 .flip-card-back {
-    box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 14px 0 var(--card-color-secundario);
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -274,6 +280,7 @@
 
 .contenedor-herramientas {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
 }
 

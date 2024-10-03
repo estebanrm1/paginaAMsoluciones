@@ -1,0 +1,26 @@
+
+footer{
+    border-top: 3px solid rgb(235, 38, 3);
+    
+}
+
+ul > li > a{
+    text-decoration: none;
+    color: white;
+    filter: drop-shadow(0 0 10px rgb(235, 38, 3))
+}
+
+.img-logo{
+    max-width: 150px;
+}
+
+ul > li{
+    list-style: none;
+    margin: 20px 0;
+}
+
+
+.sombra-footer{
+    
+    filter: drop-shadow(0 0 10px rgb(235, 38, 3))
+}
