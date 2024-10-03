@@ -1,5 +1,6 @@
 import { Container, Navbar, NavbarBrand, NavDropdown, Nav} from "react-bootstrap"
 import '../style/Navegacion.css'
+import { Link } from "react-router-dom";
 
 
 const BarraDeNavegacion = () => {
@@ -22,8 +23,8 @@ const BarraDeNavegacion = () => {
                                     Pagina web
                                 </NavDropdown.Item>
                             </NavDropdown>
-                            <Nav.Link href="#link">Contacto</Nav.Link>
-                            <Nav.Link href="#link">Sobre Nosotros</Nav.Link>
+                            <Nav.Link as={Link} to={'/contacto'}>Contacto</Nav.Link>
+                            <Nav.Link as={Link} to={'/sobre_nosotros'}>Sobre Nosotros</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
