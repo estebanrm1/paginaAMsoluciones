@@ -4,50 +4,65 @@ import RedesSociales from './RedesSociales'
 
 const Formulario = () => {
   return (
-    <Container>
-    <Row className='py-5'>
+    <Container className='pb-5'>
+    <Row className='pt-5'>
       <Col lg={6} sm={11} className='mt-5'>
-        <div class="form-card1">
-          <div class="form-card2">
-            <form class="form">
-              <h4 class="form-heading">Envíanos tu consulta</h4>
+      <div className="form-card1">
+  <div className="form-card2">
+    <form className="form">
+      <h4 className="form-heading">Envíanos tu consulta</h4>
 
-              <div class="form-field">
-                <input required="" placeholder="Nombre" class="input-field" type="text" />
-              </div>
+      <div className="form-field">
+        <input
+          required
+          id="nombre"
+          name="nombre"
+          placeholder="Nombre"
+          className="input-field"
+          type="text"
+        />
+      </div>
 
-              <div class="form-field">
-                <input
-                  required=""
-                  placeholder="Email"
-                  class="input-field"
-                  type="email"
-                />
-              </div>
+      <div className="form-field">
+        <input
+          required
+          id="email"
+          name="email"
+          placeholder="Email"
+          className="input-field"
+          type="email"
+          autoComplete='email'
+        />
+      </div>
 
-              <div class="form-field">
-                <input
-                  required=""
-                  placeholder="Asunto"
-                  class="input-field"
-                  type="text"
-                />
-              </div>
+      <div className="form-field">
+        <input
+          required
+          id="asunto"
+          name="asunto"
+          placeholder="Asunto"
+          className="input-field"
+          type="text"
+        />
+      </div>
 
-              <div class="form-field">
-                <textarea
-                  required=""
-                  placeholder="Mensaje"
-                  cols="30"
-                  rows="3"
-                  class="input-field"
-                ></textarea>
-              </div>
+      <div className="form-field">
+        <textarea
+          required
+          id="mensaje"
+          name="mensaje"
+          placeholder="Mensaje"
+          cols="30"
+          rows="3"
+          className="input-field"
+        ></textarea>
+      </div>
 
-              <button class="sendMessage-btn">Enviar mensaje</button>
-            </form>
-          </div>
-        </div>
+      <button className="sendMessage-btn" type="submit">Enviar mensaje</button>
+    </form>
+  </div>
+</div>
+
 
       </Col>
       <Col className='mt-lg-5 pt-lg-5' lg={6}>

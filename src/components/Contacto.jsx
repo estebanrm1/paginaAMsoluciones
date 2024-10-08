@@ -4,12 +4,9 @@ import RedesSociales from "./RedesSociales"
 
 const Contacto = () => {
   return (
-    <>
     <div className="fondo-negro">
     <Formulario></Formulario>
-    {/* <RedesSociales></RedesSociales> */}
     </div>
-    </>
   )
 }
 
