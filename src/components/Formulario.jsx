@@ -53,7 +53,6 @@ const Formulario = () => {
           name="mensaje"
           placeholder="Mensaje"
           cols="30"
-          rows="3"
           className="input-field"
         ></textarea>
       </div>

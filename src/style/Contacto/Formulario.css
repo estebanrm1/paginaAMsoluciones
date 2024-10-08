@@ -34,6 +34,11 @@
   box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
 }
 
+.form-field > textarea{
+  field-sizing: content;
+  min-height:3lh;
+}
+
 .input-field {
   background: none;
   border: none;

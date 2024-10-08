@@ -1,5 +1,4 @@
 import { Col, Container, Row } from "react-bootstrap"
-import '../style/Contacto/RedesSociales.css'
 import styled from "styled-components"
 
 const RedesSociales = () => {
@@ -91,7 +90,7 @@ const StyledWrapper = styled.div`
   height: 90px;
   outline: none;
   border: solid 2px #eb2603;
-  background: white;
+  background: #303030;
   border-radius: 90px 5px 5px 5px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   transition: .2s ease-in-out;
@@ -108,7 +107,7 @@ const StyledWrapper = styled.div`
   height: 90px;
   outline: none;
   border: solid 2px #eb2603;
-  background: white;
+  background: #303030;
   border-radius: 5px 90px 5px 5px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   transition: .2s ease-in-out;
@@ -125,7 +124,7 @@ const StyledWrapper = styled.div`
   height: 90px;
   outline: none;
   border: solid 2px #eb2603;
-  background: white;
+  background: #303030;
   border-radius: 5px 5px 5px 90px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   transition: .2s ease-in-out;
@@ -142,7 +141,7 @@ const StyledWrapper = styled.div`
   height: 90px;
   outline: none;
   border: solid 2px #eb2603;
-  background: white;
+  background: #303030;
   border-radius: 5px 5px 90px 5px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   transition: .2s ease-in-out;
