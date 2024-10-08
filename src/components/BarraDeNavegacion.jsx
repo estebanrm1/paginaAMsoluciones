@@ -9,11 +9,11 @@ const BarraDeNavegacion = () => {
         <>
             <Navbar className="barra-fija" expand="lg" bg="black" data-bs-theme="dark">
                 <Container>
-                    <NavbarBrand className="text-light sombra">A.M Soluciones Web</NavbarBrand>
+                    <NavbarBrand as={Link} to={'/inicio'} className="text-light sombra">A.M Soluciones Web</NavbarBrand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" className="outline-light"/>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto gap-lg-5 text-center contenedor-navlink">
-                            <Nav.Link href="#home">Inicio</Nav.Link>
+                            <Nav.Link as={Link} to={'/inicio'}>Inicio</Nav.Link>
                             <NavDropdown title="Servicios" id="basic-nav-dropdown">
                                 <NavDropdown.Item className="text-center" href="#action/3.1">Cv On-line basico</NavDropdown.Item>
                                 <NavDropdown.Item className="text-center" href="#action/3.2">
