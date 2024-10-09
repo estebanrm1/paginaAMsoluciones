@@ -1,61 +1,102 @@
-import { Col, Container, Row } from 'react-bootstrap'
-import '../style/Contacto/Formulario.css'
-import RedesSociales from './RedesSociales'
+import { Col, Container, Row } from 'react-bootstrap';
+import '../style/Contacto/Formulario.css';
+import RedesSociales from './RedesSociales';
+import { useRef } from 'react';
+import emailjs from '@emailjs/browser';
+import Swal from 'sweetalert2'
+import { useForm } from 'react-hook-form';
 
 const Formulario = () => {
+
+  const {register, handleSubmit, formState: { errors }, reset} = useForm();
+
+  const form = useRef();
+  const sendEmail = (data) => {
+    emailjs
+      .sendForm('service_jud1lzf', 'template_zbaeqx1', form.current, {
+        publicKey: 'VRpn3E_3VKSTYBneL',
+      })
+      .then(
+        () => {
+          Swal.fire({
+            customClass:{popup:"alert-enviado"},
+            icon: "success",
+            title: "Mensaje enviado",
+            color: "#eb2603",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          console.log('SUCCESS!');
+          reset();
+        },
+        (error) => {
+          Swal.fire({
+            customClass:{popup:"alert-no-enviado"},
+            icon: "error",
+            color: "#eb2603",
+            title: "Error",
+            text: "Mensaje NO enviadol!"
+          });
+          console.log('FAILED...', error.text);
+        },
+      );
+  };
+
   return (
     <Container className='pb-5'>
     <Row className='pt-5'>
       <Col lg={6} sm={11} className='mt-5'>
       <div className="form-card1">
   <div className="form-card2">
-    <form className="form">
+    <form ref={form} onSubmit={handleSubmit(sendEmail)} className="form">
       <h4 className="form-heading">Envíanos tu consulta</h4>
 
       <div className="form-field">
         <input
-          required
-          id="nombre"
-          name="nombre"
+        {...register("to_name", { required: "El nombre es obligatorio" })}
           placeholder="Nombre"
           className="input-field"
           type="text"
         />
       </div>
+        {errors.to_name && <p className="error-message">{errors.to_name.message}</p>}
 
       <div className="form-field">
         <input
-          required
-          id="email"
-          name="email"
+          {...register("email", {
+            required: "El email es obligatorio",
+            pattern: {
+              value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+              message: "El formato del email no es válido",
+            },
+          })}
           placeholder="Email"
           className="input-field"
           type="email"
           autoComplete='email'
         />
       </div>
+        {errors.email && <p className="error-message">{errors.email.message}</p>}
 
       <div className="form-field">
         <input
-          required
-          id="asunto"
-          name="asunto"
+          {...register("asunto", { required: "El asunto es obligatorio" })}
           placeholder="Asunto"
           className="input-field"
           type="text"
         />
       </div>
+        {errors.asunto && <p className="error-message">{errors.asunto.message}</p>}
 
       <div className="form-field">
         <textarea
-          required
-          id="mensaje"
-          name="mensaje"
+          {...register("message", { required: "El mensaje es obligatorio" })}
           placeholder="Mensaje"
           cols="30"
           className="input-field"
         ></textarea>
       </div>
+        {errors.message && <p className="error-message">{errors.message.message}</p>}
 
       <button className="sendMessage-btn" type="submit">Enviar mensaje</button>
     </form>

@@ -7,7 +7,6 @@
   padding-inline: 2em;
   padding-bottom: 0.4em;
   background-color: #171717;
-  background-color: rgb(31, 31, 31);
   border-radius: 20px;
 }
 
@@ -88,4 +87,22 @@
 .form-card2:hover {
   transform: scale(0.98);
   border-radius: 20px;
+}
+
+.alert-enviado{
+  border: 5px solid #eb2603;
+  background-color: #0e0e0e;
+}
+
+.alert-no-enviado{
+  border: 5px solid #eb2603;
+  background-color: #0e0e0e;
+  border-radius: 15px;
+}
+
+.error-message{
+  text-align: center;
+  background-color: #eb2603;
+  border-radius: 10px;
+  box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
 }
