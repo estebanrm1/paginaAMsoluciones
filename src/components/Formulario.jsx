@@ -53,7 +53,21 @@ const Formulario = () => {
 
       <div className="form-field">
         <input
-        {...register("to_name", { required: "El nombre es obligatorio" })}
+        {...register("to_name", {
+          required: "El nombre es obligatorio",
+          minLength:{
+            value:3,
+            message:"El nombre debe contener al menos 3 caracteres"
+          },
+          maxLength:{
+            value:20,
+            message:"El nombre debe contener como maximo 20 caracteres"
+          },
+          pattern: {
+            value: /^[A-Za-z\s]+$/,
+            message: "El nombre solo puede contener letras y espacios",
+          },
+        })}
           placeholder="Nombre"
           className="input-field"
           type="text"
@@ -80,7 +94,21 @@ const Formulario = () => {
 
       <div className="form-field">
         <input
-          {...register("asunto", { required: "El asunto es obligatorio" })}
+          {...register("asunto", {
+            required: "El asunto es obligatorio",
+            minLength: {
+              value: 10,
+              message: "El asunto debe tener al menos 10 caracteres",
+            },
+            maxLength:{
+              value:40,
+              message: "El asunto debe tener como maximo 40 caracteres"
+            },
+            pattern: {
+              value: /^[A-Za-z0-9\s]+$/,
+              message: "El asunto solo puede contener letras, números y espacios",
+            },
+          })}
           placeholder="Asunto"
           className="input-field"
           type="text"
@@ -90,7 +118,13 @@ const Formulario = () => {
 
       <div className="form-field">
         <textarea
-          {...register("message", { required: "El mensaje es obligatorio" })}
+          {...register("message", {
+            required: "El mensaje es obligatorio",
+            minLength: {
+              value: 10,
+              message: "El mensaje debe tener al menos 10 caracteres",
+            },
+          })}
           placeholder="Mensaje"
           cols="30"
           className="input-field"
