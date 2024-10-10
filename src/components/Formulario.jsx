@@ -97,8 +97,8 @@ const Formulario = () => {
           {...register("asunto", {
             required: "El asunto es obligatorio",
             minLength: {
-              value: 10,
-              message: "El asunto debe tener al menos 10 caracteres",
+              value: 4,
+              message: "El asunto debe tener al menos 4 caracteres",
             },
             maxLength:{
               value:40,

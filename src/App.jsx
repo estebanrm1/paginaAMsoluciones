@@ -5,6 +5,7 @@ import Inicio from './components/Inicio';
 import Contacto from './components/Contacto';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainLayout from './components/MainLayout';
+import SobreNosotros from './components/SobreNosotros';
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
         <Route exact path='/servicios/sitio_personal' element={<MainLayout><Inicio></Inicio></MainLayout>}></Route>
         <Route exact path='/servicios/pagina_info' element={<MainLayout><Inicio></Inicio></MainLayout>}></Route>
         <Route exact path='/contacto' element={<MainLayout><Contacto></Contacto></MainLayout>}></Route>
-        <Route exact path='/sobre_nosotros' element={<MainLayout></MainLayout>}></Route>
+        <Route exact path='/sobre_nosotros' element={<MainLayout><SobreNosotros></SobreNosotros></MainLayout>}></Route>
       </Routes>
     </BrowserRouter>
   )
