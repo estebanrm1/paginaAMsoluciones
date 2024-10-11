@@ -15,7 +15,7 @@
     border-radius: 30px;
     overflow: hidden;
     transition: all 1s ease-in-out;
-    border: 2px solid rgb(255, 255, 255);
+    border: 2px solid #eb2603;
 }
 
 .background {
@@ -67,8 +67,8 @@
     padding: 10px;
     text-align: right;
     background: rgba(255, 255, 255, 0.389);
-    border-top: 2px solid rgb(255, 255, 255);
-    border-right: 1px solid white;
+    border-top: 2px solid #eb2603;
+    border-right: 1px solid #eb2603;
     border-radius: 10% 13% 42% 0%/10% 12% 75% 0%;
     box-shadow: rgba(100, 100, 111, 0.364) -7px 7px 29px 0px;
     transform-origin: bottom left;
@@ -95,8 +95,12 @@
     left: -70%;
 }
 
-.box1::before {
-    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #ff53d4 60%);
+.box-linkedin::before {
+    background: radial-gradient(circle at 30% 107%, #2ae6ff 10%, #20a7f5 20%, #3274ee 30%);
+}
+
+.box-instagram::before {
+    background: radial-gradient(circle at 30% 107%, #ffbc2a 10%, #f57520 20%, #ee3832 30%);
 }
 
 .box1:hover::before {
@@ -115,8 +119,8 @@
     transition-delay: 0.2s;
 }
 
-.box2::before {
-    background: radial-gradient(circle at 30% 107%, #91e9ff 0%, #00ACEE 90%);
+.box-git::before {
+    background: radial-gradient(circle at 30% 107%, #e5e5e6 0%, #000000 90%);
 }
 
 .box2:hover::before {
@@ -135,8 +139,12 @@
     transition-delay: 0.4s;
 }
 
-.box3::before {
+.box-discord::before {
     background: radial-gradient(circle at 30% 107%, #969fff 0%, #b349ff 90%);
+}
+
+.box-instagram::before {
+    background: radial-gradient(circle at 30% 107%, #eb7425 0%, #f33f3f 90%);
 }
 
 .box3:hover::before {
