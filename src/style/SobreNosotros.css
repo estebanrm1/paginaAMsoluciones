@@ -6,6 +6,12 @@
 
 /*    Card - Sobre Nosotros    */
 
+.contenedor-card-sobre-nosotros{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .card-sobre-nosotros {
     position: relative;
@@ -18,7 +24,7 @@
     border: 2px solid #eb2603;
 }
 
-.background {
+.card-sobre-nosotros-background {
     width: 250px;
     height: 250px;
     background-image: url('../assets/download.png'); /* Cambia por la ruta de tu imagen */
@@ -30,24 +36,6 @@
     height: 250px;
     background-image: url('../assets/aron.jpg'); /* Cambia por la ruta de tu imagen */
     background-size: cover; /* Ajusta la imagen para cubrir toda el área */
-}
-
-.logo {
-    position: absolute;
-    right: 50%;
-    bottom: 50%;
-    transform: translate(50%, 50%);
-    transition: all 0.6s ease-in-out;
-    font-size: 1.3em;
-    font-weight: 600;
-    color: #ffffff;
-    letter-spacing: 3px;
-}
-
-.logo .logo-svg {
-    fill: white;
-    width: 30px;
-    height: 30px;
 }
 
 .icon {
