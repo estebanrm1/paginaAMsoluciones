@@ -15,13 +15,9 @@ const BarraDeNavegacion = () => {
                         <Nav className="ms-auto gap-lg-5 text-center contenedor-navlink">
                             <Nav.Link as={Link} to={'/inicio'}>Inicio</Nav.Link>
                             <NavDropdown title="Servicios" id="basic-nav-dropdown">
-                                <NavDropdown.Item className="text-center" href="#action/3.1">Cv On-line basico</NavDropdown.Item>
-                                <NavDropdown.Item className="text-center" href="#action/3.2">
-                                    Sitio web Personal
-                                </NavDropdown.Item>
-                                <NavDropdown.Item className="text-center" href="#action/3.3">
-                                    Pagina web
-                                </NavDropdown.Item>
+                                <NavDropdown.Item className="text-center" as={Link} to={'/servicios/cv_basico'}>Cv On-line basico</NavDropdown.Item>
+                                <NavDropdown.Item className="text-center" href="#action/3.2">Sitio web Personal</NavDropdown.Item>
+                                <NavDropdown.Item className="text-center" href="#action/3.3">Pagina web</NavDropdown.Item>
                             </NavDropdown>
                             <Nav.Link as={Link} to={'/contacto'}>Contacto</Nav.Link>
                             <Nav.Link as={Link} to={'/sobre_nosotros'}>Sobre Nosotros</Nav.Link>
