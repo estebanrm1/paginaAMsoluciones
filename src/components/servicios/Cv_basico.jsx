@@ -46,7 +46,7 @@ const Cv_basico = () => {
             <hr />
             <Row className="py-5">
                 <Col xs={{ order: 2 }} lg={{ order: 1, span: 7}}>
-                    <img className="img-fluid img_servicios" src={basicoLg} alt="" />
+                    <img className="img-fluid img_servicios" src={basicoLg2} alt="" />
                 </Col>
                 <Col xs={{ order: 1 }} className="text-start py-3" lg={5}>
                     <h5>Características principales:</h5>
