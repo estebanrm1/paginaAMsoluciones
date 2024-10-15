@@ -1,12 +1,18 @@
 import { Container } from "react-bootstrap";
 import "../style/SobreNosotros.css";
+import { motion } from "framer-motion";
 
 const SobreNosotros = () => {
     return (
         <Container className="p-5 text-center sobreNosotros-container">
             <h3>Sobre nosotros</h3>
             <div className="py-5 d-flex flex-column gap-5 flex-lg-row justify-content-lg-around">
-                <div className="contenedor-card-sobre-nosotros">
+                <motion.div className="contenedor-card-sobre-nosotros"
+                initial={{ opacity: 0, x: -100 }}  
+                whileInView={{ opacity: 1, x: 0 }} 
+                transition={{ duration: 2 }}     
+                viewport={{ once: true }}
+                >
                     <h4 className="py-3">Esteban</h4>
                     <div className="card-sobre-nosotros">
                         <div className="card-sobre-nosotros-background"></div>
@@ -67,8 +73,13 @@ const SobreNosotros = () => {
                             </div>
                         </a>
                     </div>
-                </div>
-                <div className="contenedor-card-sobre-nosotros">
+                </motion.div>
+                <motion.div className="contenedor-card-sobre-nosotros"
+                initial={{ opacity: 0, x: 100 }}  
+                whileInView={{ opacity: 1, x: 0 }} 
+                transition={{ duration: 2 }}     
+                viewport={{ once: true }}
+                >
                     <h4 className="py-3">Aron</h4>
                     <div className="card-sobre-nosotros">
                         <div className="background-aron"></div>
@@ -128,17 +139,27 @@ const SobreNosotros = () => {
                             </div>
                         </a>
                     </div>
-                </div>
+                </motion.div>
             </div>
             <hr />
-            <p>
+            <motion.p
+            initial={{ opacity: 0, x: -100 }}  
+            whileInView={{ opacity: 1, x: 0 }} 
+            transition={{ duration: 3 }}     
+            viewport={{ once: true }}
+            >
                 En A.M Soluciones Web, somos más que solo desarrolladores: somos
                 apasionados por transformar ideas en experiencias digitales que impulsan
                 negocios. Lo que comenzó como un sueño entre amigos se ha convertido en
                 un emprendimiento comprometido en brindar soluciones web innovadoras,
                 eficientes y personalizadas.
-            </p>
-            <p>
+            </motion.p>
+            <motion.p
+            initial={{ opacity: 0, x: 100 }}  
+            whileInView={{ opacity: 1, x: 0 }} 
+            transition={{ duration: 4 }}     
+            viewport={{ once: true }}
+            >
                 Con nuestra experiencia como programadores web full stack, estamos aquí
                 para llevar tu proyecto al siguiente nivel. Sabemos que una presencia
                 online sólida es clave para destacar en el mercado actual, y es por eso
@@ -146,13 +167,18 @@ const SobreNosotros = () => {
                 sobresalga. Desde sitios web dinámicos hasta plataformas de e-commerce,
                 creamos herramientas digitales diseñadas para alcanzar y conectar con
                 una audiencia global.
-            </p>
-            <p>
+            </motion.p>
+            <motion.p
+            initial={{ opacity: 0, x: -100 }}  
+            whileInView={{ opacity: 1, x: 0 }} 
+            transition={{ duration: 5 }}     
+            viewport={{ once: true }}
+            >
                 Nuestro compromiso es simple: convertir tus ideas en resultados
                 visibles, optimizando cada detalle para ofrecer una experiencia
                 atractiva, funcional y alineada con tus objetivos de negocio. Juntos,
                 podemos llevar tu visión a nuevos horizontes.
-            </p>
+            </motion.p>
         </Container>
     );
 };

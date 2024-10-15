@@ -2,6 +2,8 @@ import { Col, Container, Row } from "react-bootstrap";
 import "../../style/Servicios.css";
 import basicoLg from "../../assets/servicios/captura_cv_basico_lg.png";
 import basicoLg2 from "../../assets/servicios/captura_cv_basico_lg2.png";
+import { motion } from "framer-motion";
+
 
 const Cv_basico = () => {
     return (
@@ -9,7 +11,12 @@ const Cv_basico = () => {
             <h3 className="pb-lg-5">Cv On-line básico</h3>
             <Row className="py-lg-5">
                 <Col lg={5}>
-                    <p className="py-5 text-start">
+                    <motion.p className="py-5 text-start"
+                    initial={{ opacity: 0, y: 100 }}  
+                    whileInView={{ opacity: 1, y: 0 }} 
+                    transition={{ duration: 2 }}     
+                    viewport={{ once: true }}
+                    >
                         En A.M Soluciones Web, te ayudamos a dar el salto al entorno digital
                         con un CV On-line Básico, ideal para quienes buscan una presencia
                         profesional en la web de manera accesible y efectiva. Este servicio
@@ -17,9 +24,9 @@ const Cv_basico = () => {
                         moderno que destaca tus habilidades, experiencia y logros,
                         permitiendo que los reclutadores y empleadores accedan a tu perfil
                         en cualquier momento y desde cualquier dispositivo.
-                    </p>
+                    </motion.p>
                     <button className="cta pb-5">
-                <span class="hover-underline-animation"> VER DEMO </span>
+                <span className="hover-underline-animation"> VER DEMO </span>
                 <svg
                     id="arrow-horizontal"
                     xmlns="http://www.w3.org/2000/svg"
@@ -27,18 +34,23 @@ const Cv_basico = () => {
                     height="10"
                     viewBox="0 0 46 16"
                     fill="white"
-                >
+                    >
                     <path
                         id="Path_10"
                         data-name="Path 10"
                         d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
                         transform="translate(30)"
-                    ></path>
+                        ></path>
                 </svg>
             </button>
                 </Col>
                 <Col lg={7}>
-                    <img className="img-fluid img_servicios" src={basicoLg} alt="" />
+                    <motion.img className="img-fluid img_servicios" src={basicoLg} alt="" 
+                    initial={{ opacity: 0, x: 100 }}  // Estado inicial (invisible y fuera de pantalla)
+                    whileInView={{ opacity: 1, x: 0 }} // Estado al estar en el viewport
+                    transition={{ duration: 1 }}     // Duración de la animación
+                    viewport={{ once: true }}
+                    />
                 </Col>
             </Row>
             
@@ -46,11 +58,21 @@ const Cv_basico = () => {
             <hr />
             <Row className="py-5">
                 <Col xs={{ order: 2 }} lg={{ order: 1, span: 7}}>
-                    <img className="img-fluid img_servicios" src={basicoLg2} alt="" />
+                    <motion.img className="img-fluid img_servicios" src={basicoLg2} alt="" 
+                    initial={{ opacity: 0, y: 100 }}  // Estado inicial (invisible y fuera de pantalla)
+                    whileInView={{ opacity: 1, y: 0 }} // Estado al estar en el viewport
+                    transition={{ duration: 2 }}     // Duración de la animación
+                    viewport={{ once: true }}          // Solo animar una vez
+                    />
                 </Col>
                 <Col xs={{ order: 1 }} className="text-start py-3" lg={5}>
                     <h5>Características principales:</h5>
-                    <ul className="p-0 m-0">
+                    <motion.ul  className="p-0 m-0"
+                    initial={{ opacity: 0, x: 100 }}  // Estado inicial (invisible y fuera de pantalla)
+                    whileInView={{ opacity: 1, x: 0 }} // Estado al estar en el viewport
+                    transition={{ duration: 3 }}     // Duración de la animación
+                    viewport={{ once: true }}          // Solo animar una vez
+                    >
                         <li>
                             Diseño limpio y profesional: Tu CV estará optimizado para la
                             lectura, con una estructura clara y organizada.
@@ -64,7 +86,7 @@ const Cv_basico = () => {
                             contacto directo con tus potenciales empleadores.
                         </li>
                         <li>Rápida entrega: Tu CV estará listo en pocos días.</li>
-                    </ul>
+                    </motion.ul>
                 </Col>
             </Row>
             <p className="fs-4">
