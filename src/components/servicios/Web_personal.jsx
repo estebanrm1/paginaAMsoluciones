@@ -30,6 +30,8 @@ const Web_personal = () => {
             presencia online que refleje su identidad y trabajo.
           </motion.p>
           <button className="cta pb-5">
+            <a className="text-decoration-none" href="https://am-solucionesweb.github.io/portfoliocv/" target="blank">
+
             <span className="hover-underline-animation"> VER DEMO </span>
             <svg
               id="arrow-horizontal"
@@ -38,14 +40,15 @@ const Web_personal = () => {
               height="10"
               viewBox="0 0 46 16"
               fill="white"
-            >
+              >
               <path
                 id="Path_10"
                 data-name="Path 10"
                 d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
                 transform="translate(30)"
-              ></path>
+                ></path>
             </svg>
+                </a>
           </button>
         </Col>
         <Col lg={7}>
