@@ -46,9 +46,9 @@ const Cv_basico = () => {
                 </Col>
                 <Col lg={7}>
                     <motion.img className="img-fluid img_servicios" src={basicoLg} alt="" 
-                    initial={{ opacity: 0, x: 100 }}  // Estado inicial (invisible y fuera de pantalla)
-                    whileInView={{ opacity: 1, x: 0 }} // Estado al estar en el viewport
-                    transition={{ duration: 1 }}     // Duración de la animación
+                    initial={{ opacity: 0, x: 100 }}  
+                    whileInView={{ opacity: 1, x: 0 }} 
+                    transition={{ duration: 1 }}     
                     viewport={{ once: true }}
                     />
                 </Col>
@@ -59,19 +59,19 @@ const Cv_basico = () => {
             <Row className="py-5">
                 <Col xs={{ order: 2 }} lg={{ order: 1, span: 7}}>
                     <motion.img className="img-fluid img_servicios" src={basicoLg2} alt="" 
-                    initial={{ opacity: 0, y: 100 }}  // Estado inicial (invisible y fuera de pantalla)
-                    whileInView={{ opacity: 1, y: 0 }} // Estado al estar en el viewport
-                    transition={{ duration: 2 }}     // Duración de la animación
-                    viewport={{ once: true }}          // Solo animar una vez
+                    initial={{ opacity: 0, y: 100 }}  
+                    whileInView={{ opacity: 1, y: 0 }} 
+                    transition={{ duration: 2 }}     
+                    viewport={{ once: true }}         
                     />
                 </Col>
                 <Col xs={{ order: 1 }} className="text-start py-3" lg={5}>
                     <h5>Características principales:</h5>
                     <motion.ul  className="p-0 m-0"
-                    initial={{ opacity: 0, x: 100 }}  // Estado inicial (invisible y fuera de pantalla)
-                    whileInView={{ opacity: 1, x: 0 }} // Estado al estar en el viewport
-                    transition={{ duration: 3 }}     // Duración de la animación
-                    viewport={{ once: true }}          // Solo animar una vez
+                    initial={{ opacity: 0, x: 100 }}  
+                    whileInView={{ opacity: 1, x: 0 }} 
+                    transition={{ duration: 3 }}     
+                    viewport={{ once: true }}         
                     >
                         <li>
                             Diseño limpio y profesional: Tu CV estará optimizado para la
