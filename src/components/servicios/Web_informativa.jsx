@@ -76,7 +76,7 @@ const Web_informativa = () => {
         <Col xs={{ order: 1 }} className="text-start py-3" lg={5}>
           <h5>Características principales:</h5>
           <motion.ul
-            className="p-0 m-0"
+            className="p-0 m-0 fuente-play"
             initial={{ opacity: 0, x: 100 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 3 }}
@@ -102,7 +102,7 @@ const Web_informativa = () => {
       <Row className="py-lg-5">
         <Col lg={5}>
           <motion.ul
-            className="py-5 text-start"
+            className="py-5 text-start fuente-play"
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
@@ -151,7 +151,7 @@ const Web_informativa = () => {
         <Col xs={{ order: 1 }} className="text-start py-3" lg={5}>
           <h5>Características principales:</h5>
           <motion.ul
-            className="p-0 m-0"
+            className="p-0 m-0 fuente-play"
             initial={{ opacity: 0, x: 100 }} // Estado inicial (invisible y fuera de pantalla)
             whileInView={{ opacity: 1, x: 0 }} // Estado al estar en el viewport
             transition={{ duration: 3 }} // Duración de la animación

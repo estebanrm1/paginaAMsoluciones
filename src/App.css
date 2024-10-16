@@ -24,3 +24,10 @@
   .content-wrap {
     flex: 1; /* El contenido ocupa todo el espacio disponible */
   }
+
+  p{
+    font-family: "Play", sans-serif;
+    font-weight: 400;
+    font-size: 1.3rem;
+    font-style: normal;
+  }

@@ -23,7 +23,9 @@ const Footer = () => {
 
           <Col className="order-1 order-md-2" lg={6} md={6}>
             <img className="img-logo" src={logo} alt="" />
-            <p className="text-light sombra-footer">&copy;A.M Soluciones Web</p>
+            <div>
+            <span className="text-light sombra-footer">&copy;A.M Soluciones Web</span>
+            </div>
           </Col>
 
           <Col className="order-3" md={3}>

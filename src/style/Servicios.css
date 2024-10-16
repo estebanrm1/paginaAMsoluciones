@@ -59,3 +59,10 @@
     transform: scaleX(1);
     transform-origin: bottom left;
 }
+
+.fuente-play > li{
+    font-family: "Play", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.2rem;
+}

@@ -67,7 +67,7 @@ const Cv_basico = () => {
                 </Col>
                 <Col xs={{ order: 1 }} className="text-start py-3" lg={5}>
                     <h5>Características principales:</h5>
-                    <motion.ul  className="p-0 m-0"
+                    <motion.ul  className="p-0 m-0 fuente-play"
                     initial={{ opacity: 0, x: 100 }}  
                     whileInView={{ opacity: 1, x: 0 }} 
                     transition={{ duration: 3 }}     

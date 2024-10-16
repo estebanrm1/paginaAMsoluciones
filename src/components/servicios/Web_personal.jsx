@@ -81,7 +81,7 @@ const Web_personal = () => {
         <Col xs={{ order: 1 }} className="text-start py-3" lg={5}>
           <h5>Características principales:</h5>
           <motion.ul
-            className="p-0 m-0"
+            className="p-0 m-0 fuente-play"
             initial={{ opacity: 0, x: 100 }} // Estado inicial (invisible y fuera de pantalla)
             whileInView={{ opacity: 1, x: 0 }} // Estado al estar en el viewport
             transition={{ duration: 3 }} // Duración de la animación
@@ -106,7 +106,7 @@ const Web_personal = () => {
       <Row className="py-lg-5">
         <Col lg={5}>
           <motion.ul
-            className="p-0 m-0 text-start"
+            className="p-0 m-0 text-start fuente-play"
     
             initial={{ opacity: 0, y: 100 }} // Estado inicial (invisible y fuera de pantalla)
             whileInView={{ opacity: 1, y: 0 }} // Estado al estar en el viewport
@@ -154,7 +154,7 @@ const Web_personal = () => {
         <Col xs={{ order: 1 }} className="text-start py-3" lg={5}>
           
           <motion.ul
-            className="p-0 m-0"
+            className="p-0 m-0 fuente-play"
             initial={{ opacity: 0, x: 100 }} // Estado inicial (invisible y fuera de pantalla)
             whileInView={{ opacity: 1, x: 0 }} // Estado al estar en el viewport
             transition={{ duration: 3 }} // Duración de la animación
