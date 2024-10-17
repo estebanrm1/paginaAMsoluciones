@@ -33,7 +33,7 @@ const Footer = () => {
           <Col className="order-3" md={3}>
             <ul className="p-0 m-0">
               <li>
-                <a href="https://www.linkedin.com/in/am-soluciones-web/" target="blank">
+                <a href="https://www.linkedin.com/company/am-soluciones-w" target="blank">
                   Linkedin{" "}
                   <svg
                     width="16"
