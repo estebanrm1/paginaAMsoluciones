@@ -1,6 +1,8 @@
 import { Col, Container, Row } from "react-bootstrap";
 import logo from "../assets/A.M.jpg";
 import "../style/Footer.css";
+import { Link } from "react-router-dom";
+
 
 const Footer = () => {
   return (
@@ -10,13 +12,13 @@ const Footer = () => {
           <Col className="order-2" sm={12} md={3}>
             <ul className="p-0 m-0">
               <li>
-                <a href="/inicio">Inicio</a>
+                <Link as={Link} to={'/inicio'}>Inicio</Link>
               </li>
               <li>
-                <a href="/contacto">Contacto</a>
+                <Link as={Link} to={'/contacto'}>Contacto</Link>
               </li>
               <li>
-                <a href="sobre_nosotros">Sobre Nosotros</a>
+                <Link as={Link} to={'/sobre_nosotros'}>Sobre Nosotros</Link>
               </li>
             </ul>
           </Col>
