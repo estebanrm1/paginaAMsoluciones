@@ -45,7 +45,7 @@ const Formulario = () => {
   return (
     <Container className='pb-5'>
     <Row className='pt-5'>
-      <Col lg={6} sm={11} className='mt-5'>
+      <Col lg={6} sm={12} className='mt-5'>
       <div className="form-card1">
   <div className="form-card2">
     <form ref={form} onSubmit={handleSubmit(sendEmail)} className="form">

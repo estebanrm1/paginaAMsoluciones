@@ -25,6 +25,7 @@ const Cv_basico = () => {
                         permitiendo que los reclutadores y empleadores accedan a tu perfil
                         en cualquier momento y desde cualquier dispositivo.
                     </motion.p>
+                    <a href="https://demo-cv-basico.netlify.app/" target="blank">
                     <button className="cta pb-5">
                 <span className="hover-underline-animation"> VER DEMO </span>
                 <svg
@@ -43,6 +44,7 @@ const Cv_basico = () => {
                         ></path>
                 </svg>
             </button>
+                </a>
                 </Col>
                 <Col lg={7}>
                     <motion.img className="img-fluid img_servicios" src={basicoLg} alt="" 

@@ -42,7 +42,7 @@ const SobreNosotros = () => {
                                 {" "}
                                 <span className="icon">
                                     <svg
-                                        class="svg"
+                                        className="svg"
                                         viewBox="0 0 256 250"
                                         width="20"
                                         height="20"
@@ -108,7 +108,7 @@ const SobreNosotros = () => {
                                 {" "}
                                 <span className="icon">
                                     <svg
-                                        class="svg"
+                                        className="svg"
                                         viewBox="0 0 256 250"
                                         width="20"
                                         height="20"

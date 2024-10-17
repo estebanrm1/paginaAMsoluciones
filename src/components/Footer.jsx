@@ -31,7 +31,7 @@ const Footer = () => {
           <Col className="order-3" md={3}>
             <ul className="p-0 m-0">
               <li>
-                <a href="">
+                <a href="https://www.linkedin.com/in/am-soluciones-web/" target="blank">
                   Linkedin{" "}
                   <svg
                     width="16"
@@ -67,7 +67,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="">
+                <a href="https://wa.me/543813198483" target="blank">
                   Whatsapp{" "}
                   <svg
                     viewBox="0 0 256 259"

@@ -27,6 +27,7 @@ const Web_informativa = () => {
             empresas que buscan destacar con un sitio web profesional, moderno y
             funcional.
           </motion.p>
+          <a href="https://demo-pagina-web.netlify.app/" target="blank">
           <button className="cta pb-5">
             <span className="hover-underline-animation"> VER DEMO </span>
             <svg
@@ -36,15 +37,16 @@ const Web_informativa = () => {
               height="10"
               viewBox="0 0 46 16"
               fill="white"
-            >
+              >
               <path
                 id="Path_10"
                 data-name="Path 10"
                 d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
                 transform="translate(30)"
-              ></path>
+                ></path>
             </svg>
           </button>
+          </a>
         </Col>
         <Col lg={7}>
           <motion.img
