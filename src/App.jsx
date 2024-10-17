@@ -9,11 +9,13 @@ import SobreNosotros from './components/SobreNosotros';
 import Cv_basico from './components/servicios/Cv_basico';
 import Web_personal from './components/servicios/Web_personal';
 import Web_informativa from './components/servicios/Web_informativa';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
 
   return (
     <BrowserRouter>
+        <ScrollToTop/>
       <Routes>
         <Route exact path='/' element={<Presentacion></Presentacion>}></Route>
         <Route exact path='/inicio' element={<MainLayout><Inicio></Inicio></MainLayout>}></Route>
