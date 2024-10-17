@@ -1,4 +1,4 @@
-import imgBanner from "../assets/creamos tu web.png";
+import imgBanner from "../assets/creamos tu web.webp";
 import "../style/Inicio.css";
 const Inicio = () => {
     return (

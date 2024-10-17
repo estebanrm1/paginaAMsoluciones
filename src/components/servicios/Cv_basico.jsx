@@ -1,7 +1,7 @@
 import { Col, Container, Row } from "react-bootstrap";
 import "../../style/Servicios.css";
-import basicoLg from "../../assets/servicios/captura_cv_basico_lg.png";
-import basicoLg2 from "../../assets/servicios/captura_cv_basico_lg2.png";
+import basicoLg from "../../assets/servicios/captura_cv_basico_lg.webp";
+import basicoLg2 from "../../assets/servicios/captura_cv_basico_lg2.webp";
 import { motion } from "framer-motion";
 
 
@@ -10,7 +10,7 @@ const Cv_basico = () => {
         <Container className="py-5 text-center text-light">
             <h3 className="pb-lg-5">Cv On-line básico</h3>
             <Row className="py-lg-5">
-                <Col lg={5}>
+                <Col className="animacion-container" lg={5}>
                     <motion.p className="py-5 text-start"
                     initial={{ opacity: 0, y: 100 }}  
                     whileInView={{ opacity: 1, y: 0 }} 
@@ -46,7 +46,7 @@ const Cv_basico = () => {
             </button>
                 </a>
                 </Col>
-                <Col lg={7}>
+                <Col className="animacion-container" lg={7}>
                     <motion.img className="img-fluid img_servicios" src={basicoLg} alt="" 
                     initial={{ opacity: 0, x: 100 }}  
                     whileInView={{ opacity: 1, x: 0 }} 
@@ -59,7 +59,7 @@ const Cv_basico = () => {
 
             <hr />
             <Row className="py-5">
-                <Col xs={{ order: 2 }} lg={{ order: 1, span: 7}}>
+                <Col className="animacion-container" xs={{ order: 2 }} lg={{ order: 1, span: 7}}>
                     <motion.img className="img-fluid img_servicios" src={basicoLg2} alt="" 
                     initial={{ opacity: 0, y: 100 }}  
                     whileInView={{ opacity: 1, y: 0 }} 
@@ -67,7 +67,7 @@ const Cv_basico = () => {
                     viewport={{ once: true }}         
                     />
                 </Col>
-                <Col xs={{ order: 1 }} className="text-start py-3" lg={5}>
+                <Col xs={{ order: 1 }} className="animacion-container text-start py-3" lg={5}>
                     <h5>Características principales:</h5>
                     <motion.ul  className="p-0 m-0 fuente-play"
                     initial={{ opacity: 0, x: 100 }}  

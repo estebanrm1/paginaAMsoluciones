@@ -1,9 +1,9 @@
 import { Col, Container, Row } from "react-bootstrap";
 import "../../style/Servicios.css";
-import personal1 from "../../assets/servicios/web_personal1.png";
-import personal2 from "../../assets/servicios/web_personal2.png";
-import personal3 from "../../assets/servicios/web_personal3.png";
-import personal4 from "../../assets/servicios/web_personal4.png";
+import personal1 from "../../assets/servicios/web_personal1.webp";
+import personal2 from "../../assets/servicios/web_personal2.webp";
+import personal3 from "../../assets/servicios/web_personal3.webp";
+import personal4 from "../../assets/servicios/web_personal4.webp";
 
 import { motion } from "framer-motion";
 
@@ -15,7 +15,7 @@ const Web_personal = () => {
         línea
       </h3>
       <Row className="py-lg-5">
-        <Col lg={5}>
+        <Col className="animacion-container" lg={5}>
           <motion.p
             className="py-5 text-start"
             initial={{ opacity: 0, y: 100 }}
@@ -51,7 +51,7 @@ const Web_personal = () => {
                 </a>
           </button>
         </Col>
-        <Col lg={7}>
+        <Col className="animacion-container" lg={7}>
           <motion.img
             className="img-fluid img_servicios"
             src={personal1}
@@ -67,7 +67,7 @@ const Web_personal = () => {
       <hr />
       <h5>¿Qué incluye?</h5>
       <Row className="py-5">
-        <Col xs={{ order: 2 }} lg={{ order: 1, span: 7 }}>
+        <Col className="animacion-container" xs={{ order: 2 }} lg={{ order: 1, span: 7 }}>
           <motion.img
             className="img-fluid img_servicios"
             src={personal2}
@@ -78,7 +78,7 @@ const Web_personal = () => {
             viewport={{ once: true }} // Solo animar una vez
           />
         </Col>
-        <Col xs={{ order: 1 }} className="text-start py-3" lg={5}>
+        <Col xs={{ order: 1 }} className="animacion-container text-start py-3" lg={5}>
           <h5>Características principales:</h5>
           <motion.ul
             className="p-0 m-0 fuente-play"
@@ -104,7 +104,7 @@ const Web_personal = () => {
       <hr />
 
       <Row className="py-lg-5">
-        <Col lg={5}>
+        <Col className="animacion-container" lg={5}>
           <motion.ul
             className="p-0 m-0 text-start fuente-play"
     
@@ -125,7 +125,7 @@ const Web_personal = () => {
           </motion.ul>
         
         </Col>
-        <Col lg={7}>
+        <Col className="animacion-container" lg={7}>
           <motion.img
             className="img-fluid img_servicios"
             src={personal3}
@@ -140,7 +140,7 @@ const Web_personal = () => {
 
       <hr />
       <Row className="py-5">
-        <Col xs={{ order: 2 }} lg={{ order: 1, span: 7 }}>
+        <Col className="animacion-container" xs={{ order: 2 }} lg={{ order: 1, span: 7 }}>
           <motion.img
             className="img-fluid img_servicios"
             src={personal4}
@@ -151,7 +151,7 @@ const Web_personal = () => {
             viewport={{ once: true }} // Solo animar una vez
           />
         </Col>
-        <Col xs={{ order: 1 }} className="text-start py-3" lg={5}>
+        <Col xs={{ order: 1 }} className="animacion-container text-start py-3" lg={5}>
           
           <motion.ul
             className="p-0 m-0 fuente-play"

@@ -6,7 +6,7 @@ const SobreNosotros = () => {
     return (
         <Container className="p-5 text-center sobreNosotros-container">
             <h3>Sobre nosotros</h3>
-            <div className="py-5 d-flex flex-column gap-5 flex-lg-row justify-content-lg-around">
+            <div className="animacion-container py-5 d-flex flex-column gap-5 flex-lg-row justify-content-lg-around">
                 <motion.div className="contenedor-card-sobre-nosotros"
                 initial={{ opacity: 0, x: -100 }}  
                 whileInView={{ opacity: 1, x: 0 }} 
@@ -142,6 +142,7 @@ const SobreNosotros = () => {
                 </motion.div>
             </div>
             <hr />
+            <div className="animacion-container">
             <motion.p
             initial={{ opacity: 0, x: -100 }}  
             whileInView={{ opacity: 1, x: 0 }} 
@@ -179,6 +180,7 @@ const SobreNosotros = () => {
                 atractiva, funcional y alineada con tus objetivos de negocio. Juntos,
                 podemos llevar tu visión a nuevos horizontes.
             </motion.p>
+            </div>
         </Container>
     );
 };

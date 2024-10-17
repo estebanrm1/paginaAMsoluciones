@@ -27,14 +27,14 @@
 .card-sobre-nosotros-background {
     width: 250px;
     height: 250px;
-    background-image: url('../assets/download.png'); /* Cambia por la ruta de tu imagen */
+    background-image: url('../assets/download.webp'); /* Cambia por la ruta de tu imagen */
     background-size: cover; /* Ajusta la imagen para cubrir toda el área */
 }
 
 .background-aron {
     width: 250px;
     height: 250px;
-    background-image: url('../assets/Aron_Work.jpg'); /* Cambia por la ruta de tu imagen */
+    background-image: url('../assets/Aron_Work.webp'); /* Cambia por la ruta de tu imagen */
     background-size: cover; /* Ajusta la imagen para cubrir toda el área */
 }
 
