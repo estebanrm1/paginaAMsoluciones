@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 const Web_informativa = () => {
   return (
     <Container className="py-5 text-center text-light">
-      <h3 className="pb-lg-5">
+      <h3 className="pb-lg-5 titulo-inicio">
         Páginas Web Completas: Lleva tu negocio al siguiente nivel
       </h3>
       <Row className="py-lg-5">
@@ -98,9 +98,6 @@ const Web_informativa = () => {
           </motion.ul>
         </Col>
       </Row>
-
-      <hr />
-
       <Row className="py-lg-5">
         <Col className="animacion-container" lg={5}>
           <motion.ul
@@ -122,7 +119,6 @@ const Web_informativa = () => {
               tus clientes.
             </li>
           </motion.ul>
-         
         </Col>
         <Col className="animacion-container" lg={7}>
           <motion.img
@@ -136,8 +132,6 @@ const Web_informativa = () => {
           />
         </Col>
       </Row>
-
-      <hr />
       <Row className="py-5">
         <Col className="animacion-container" xs={{ order: 2 }} lg={{ order: 1, span: 7 }}>
           <motion.img
@@ -151,7 +145,6 @@ const Web_informativa = () => {
           />
         </Col>
         <Col xs={{ order: 1 }} className="animacion-container text-start py-3" lg={5}>
-          <h5>Características principales:</h5>
           <motion.ul
             className="p-0 m-0 fuente-play"
             initial={{ opacity: 0, x: 100 }} // Estado inicial (invisible y fuera de pantalla)

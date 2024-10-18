@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 const Web_personal = () => {
   return (
     <Container className="py-5 text-center text-light">
-      <h3 className="pb-lg-5">
+      <h3 className="pb-lg-5 titulo-inicio">
         Páginas Web Personal - Portafolio Profesional: Destaca tu talento en
         línea
       </h3>
@@ -100,9 +100,6 @@ const Web_personal = () => {
           </motion.ul>
         </Col>
       </Row>
-
-      <hr />
-
       <Row className="py-lg-5">
         <Col className="animacion-container" lg={5}>
           <motion.ul
@@ -137,8 +134,6 @@ const Web_personal = () => {
           />
         </Col>
       </Row>
-
-      <hr />
       <Row className="py-5">
         <Col className="animacion-container" xs={{ order: 2 }} lg={{ order: 1, span: 7 }}>
           <motion.img
