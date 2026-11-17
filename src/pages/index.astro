@@ -1,11 +1,10 @@
 ---
-import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import SystemGraph from '../components/SystemGraph.astro';
 import Faq from '../components/Faq.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { site, problems, solutions, consulting, aiUses, audiences, method, differentiators, works, faq } from '../data/site';
+import { site, problems, solutions, consulting, aiUses, audiences, method, differentiators, faq } from '../data/site';
 
 const faqSchema = {
   '@type': 'FAQPage',
@@ -305,45 +304,6 @@ const faqSchema = {
             ))
           }
         </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ TRABAJOS ============ -->
-  <section id="trabajos" class="section tone-white" aria-labelledby="trabajos-title">
-    <div class="wrap">
-      <div class="head works-head">
-        <div>
-          <p class="kicker" data-reveal>Trabajos</p>
-          <h2 id="trabajos-title" class="title" data-reveal style="--d:1">Proyectos de muestra que podés recorrer.</h2>
-        </div>
-        <p class="lede" data-reveal style="--d:2">Sitios desarrollados por nuestro equipo como demostración de lo que construimos para negocios y profesionales.</p>
-      </div>
-      <div class="works">
-        {
-          works.map((w, i) => (
-            <article class:list={['work', { 'work--lead': i === 0 }]} data-reveal style={`--d:${i}`}>
-              <a class="work-shot" href={w.url} target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
-                <span class="work-bar">
-                  <i />
-                  <i />
-                  <i />
-                  <span class="mono">{new URL(w.url).hostname}</span>
-                </span>
-                <Image src={w.image} alt="" widths={[480, 760, 1100]} sizes={i === 0 ? '(max-width: 860px) 100vw, 720px' : '(max-width: 860px) 100vw, 460px'} loading="lazy" />
-              </a>
-              <div class="work-body">
-                <p class="mono work-kind">{w.kind} · demo</p>
-                <h3 class="work-title">{w.title}</h3>
-                <p class="work-desc">{w.description}</p>
-                <a class="link-arrow" href={w.url} target="_blank" rel="noopener noreferrer">
-                  Visitar el sitio <Icon name="arrow-up-right" />
-                  <span class="sr-only"> {w.title} (abre en una pestaña nueva)</span>
-                </a>
-              </div>
-            </article>
-          ))
-        }
       </div>
     </div>
   </section>
@@ -904,110 +864,6 @@ const faqSchema = {
     font-size: 0.95rem;
   }
 
-  /* ---------- Trabajos ---------- */
-  .works-head {
-    max-width: none;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: end;
-  }
-  .works {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
-  }
-  .work {
-    display: flex;
-    flex-direction: column;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--line);
-    background: var(--surface);
-    overflow: hidden;
-  }
-  .work--lead {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
-  }
-  .work--lead .work-shot {
-    border-bottom: 0;
-    border-right: 1px solid var(--line);
-  }
-  .work--lead .work-body {
-    justify-content: center;
-    padding: clamp(1.5rem, 1rem + 2vw, 3rem);
-  }
-  .work--lead .work-title {
-    font-size: var(--step-3);
-  }
-  .work--lead .work-desc {
-    flex: 0;
-  }
-  .work-shot {
-    display: block;
-    background: var(--mist);
-    overflow: hidden;
-    border-bottom: 1px solid var(--line);
-  }
-  .work-bar {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    padding: 0.55rem 0.8rem;
-    background: var(--white);
-    border-bottom: 1px solid var(--line);
-  }
-  .work-bar i {
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
-    background: var(--mist);
-  }
-  .work-bar span {
-    margin-left: 0.5rem;
-    font-size: 0.7rem;
-    color: var(--fg-3);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .work-shot :global(img) {
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
-    object-position: top;
-    transition: transform 0.8s var(--ease);
-  }
-  .work:hover .work-shot :global(img) {
-    transform: scale(1.03);
-  }
-  .work-body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    padding: 1.4rem 1.5rem 1.6rem;
-    flex: 1;
-  }
-  .work-kind {
-    font-size: 0.74rem;
-    color: var(--fg-3);
-  }
-  .work-title {
-    font-size: var(--step-2);
-  }
-  .work-desc {
-    color: var(--fg-2);
-    font-size: 0.97rem;
-    flex: 1;
-  }
-  .work .link-arrow {
-    margin-top: 0.6rem;
-  }
-  .work:not(.work--lead) .work-shot :global(img) {
-    aspect-ratio: 16 / 8;
-  }
-
   .faq-more {
     margin-top: 1.25rem;
   }
@@ -1047,8 +903,7 @@ const faqSchema = {
     .hero-grid,
     .split,
     .ia,
-    .aud,
-    .works-head {
+    .aud {
       grid-template-columns: 1fr;
     }
     .hero-visual {
@@ -1060,19 +915,6 @@ const faqSchema = {
     }
     .eco {
       grid-template-columns: 1fr;
-    }
-    .works {
-      grid-template-columns: 1fr;
-    }
-    .work--lead {
-      grid-column: auto;
-    }
-    .work--lead {
-      grid-template-columns: 1fr;
-    }
-    .work--lead .work-shot {
-      border-right: 0;
-      border-bottom: 1px solid var(--line);
     }
   }
   @media (max-width: 640px) {

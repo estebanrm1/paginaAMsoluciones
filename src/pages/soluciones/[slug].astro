@@ -1,10 +1,9 @@
 ---
-import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import Faq from '../../components/Faq.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import { site, solutions, works, type Solution } from '../../data/site';
+import { site, solutions, type Solution } from '../../data/site';
 
 export function getStaticPaths() {
   return solutions.map((s) => ({ params: { slug: s.slug }, props: { s } }));
@@ -139,27 +138,6 @@ const schema = [
       </ul>
     </div>
 
-    {
-      s.slug === 'desarrollo-web' && (
-        <div class="wrap mini-works">
-          <p class="kicker" data-reveal>Proyectos de muestra</p>
-          <ul role="list">
-            {works.map((w, i) => (
-              <li data-reveal style={`--d:${i}`}>
-                <a href={w.url} target="_blank" rel="noopener noreferrer">
-                  <Image src={w.image} alt="" widths={[400, 640]} sizes="(max-width: 860px) 100vw, 380px" loading="lazy" />
-                  <span class="mw-t">
-                    {w.title} <Icon name="arrow-up-right" />
-                  </span>
-                  <span class="mw-k mono">{w.kind} · demo</span>
-                  <span class="sr-only"> (abre en una pestaña nueva)</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )
-    }
   </section>
 
   <section class="section tone-white" aria-labelledby="faq-title">
@@ -344,48 +322,6 @@ const schema = [
     gap: 1.1rem;
   }
 
-  .mini-works {
-    margin-top: clamp(4rem, 3rem + 4vw, 6rem);
-  }
-  .mini-works ul {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-    margin-top: 1.5rem;
-  }
-  .mini-works a {
-    display: grid;
-    gap: 0.3rem;
-    text-decoration: none;
-  }
-  .mini-works :global(img) {
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
-    object-position: top;
-    border-radius: var(--radius);
-    border: 1px solid var(--line);
-    margin-bottom: 0.6rem;
-  }
-  .mw-t {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-weight: 600;
-  }
-  .mw-t :global(svg) {
-    width: 1rem;
-    height: 1rem;
-  }
-  .mini-works a:hover .mw-t {
-    color: var(--accent-text);
-    text-decoration: underline;
-  }
-  .mw-k {
-    font-size: 0.74rem;
-    color: var(--fg-3);
-  }
-
   .others {
     display: grid;
     gap: 0.6rem;
@@ -407,15 +343,13 @@ const schema = [
       grid-template-columns: 1fr;
     }
     .offer,
-    .ex,
-    .mini-works ul {
+    .ex {
       grid-template-columns: 1fr 1fr;
     }
   }
   @media (max-width: 640px) {
     .offer,
-    .ex,
-    .mini-works ul {
+    .ex {
       grid-template-columns: 1fr;
     }
     .actions .btn {

@@ -1,9 +1,5 @@
 // Fuente única de contenido del sitio. Todo el copy vive acá para mantener coherencia de marca.
 // Regla: no inventar clientes, resultados, cifras ni testimonios.
-import type { ImageMetadata } from 'astro';
-import rinconShot from '../assets/work/rincon-gourmet.png';
-import chefShot from '../assets/work/portfolio-chef.png';
-import cvShot from '../assets/work/cv-online.png';
 
 export const site = {
   name: 'Enlace AR',
@@ -26,13 +22,6 @@ export const site = {
 };
 
 export const waLink = (text: string = site.whatsappMessage) => `${site.whatsapp}?text=${encodeURIComponent(text)}`;
-
-export const nav = [
-  { href: '/#soluciones', label: 'Soluciones' },
-  { href: '/#metodo', label: 'Cómo trabajamos' },
-  { href: '/#trabajos', label: 'Trabajos' },
-  { href: '/nosotros', label: 'Nosotros' },
-];
 
 /** Situaciones reales que vive un negocio, contadas en su idioma (sin tecnicismos). */
 export const problems = [
@@ -325,47 +314,6 @@ export const differentiators = [
   { title: 'Lenguaje claro', text: 'Te explicamos cada decisión sin tecnicismos. Si algo no aporta valor, te lo decimos.' },
   { title: 'Soluciones a medida', text: 'No vendemos paquetes cerrados: diseñamos a partir de cómo trabaja tu negocio.' },
   { title: 'Trato directo', text: 'Hablás con las personas que diseñan y construyen tu solución, de principio a fin.' },
-];
-
-export interface Work {
-  slug: string;
-  title: string;
-  kind: string;
-  description: string;
-  url: string;
-  image: ImageMetadata;
-  alt: string;
-}
-
-/** Proyectos de muestra publicados por el equipo (son demos, no casos de clientes). */
-export const works: Work[] = [
-  {
-    slug: 'rincon-gourmet',
-    title: 'Rincón Gourmet',
-    kind: 'Sitio para restaurante',
-    description: 'Carta, reservas y contacto, horarios y búsqueda de personal, con una estética cálida y elegante.',
-    url: 'https://demo-pagina-web.netlify.app/',
-    image: rinconShot,
-    alt: 'Portada del sitio de muestra Rincón Gourmet: menú de navegación sobre la fotografía de un salón con mesas servidas.',
-  },
-  {
-    slug: 'portfolio-chef',
-    title: 'Portfolio de chef',
-    kind: 'Sitio personal',
-    description: 'Sitio profesional para un chef, con secciones de experiencia y habilidades y formulario de contacto.',
-    url: 'https://am-solucionesweb.github.io/portfoliocv/',
-    image: chefShot,
-    alt: 'Portada del portfolio de muestra para un chef: un plato de sushi y el botón «Contáctame».',
-  },
-  {
-    slug: 'cv-online',
-    title: 'CV online',
-    kind: 'Currículum digital',
-    description: 'Modelo de CV online de una página: presentación, descarga del currículum y enlaces a redes.',
-    url: 'https://demo-cv-basico.netlify.app/',
-    image: cvShot,
-    alt: 'Portada del CV online de muestra: presentación de una desarrolladora front-end con su fotografía.',
-  },
 ];
 
 export const faq = [

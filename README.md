@@ -35,7 +35,6 @@ scripts/
   qa.mjs     ← QA end-to-end (rutas × 4 anchos, axe, formulario, navegación, anclas, enlaces, SEO)
   brand.mjs  ← genera las piezas de marca y los iconos (favicon, apple-touch-icon, logo.png) desde el logo oficial
   og.mjs     ← genera public/og.png
-  shots.mjs  ← vuelve a capturar los proyectos de muestra
 ```
 
 **Para cambiar textos, teléfonos o redes, editá solo `src/data/site.ts`.** El nombre de la marca también está ahí (`site.name`).
@@ -49,7 +48,6 @@ npm run build        # build de producción en dist/
 npm run qa           # QA completa sobre el build (requiere Chrome instalado)
 npm run assets:brand # regenerar logo color/invertido e iconos (si cambia el logo oficial)
 npm run assets:og    # regenerar la imagen social
-npm run assets:shots # regenerar las capturas de los proyectos de muestra
 ```
 
 Requiere Node ≥ 22.23.4 (ver `.nvmrc`; Netlify lo toma de `netlify.toml`).

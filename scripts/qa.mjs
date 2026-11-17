@@ -165,7 +165,7 @@ try {
       const c = await newContext({ viewport: vp });
       const p = await c.newPage();
       const bad = [];
-      for (const id of ['soluciones', 'metodo', 'trabajos', 'preguntas']) {
+      for (const id of ['soluciones', 'metodo', 'preguntas']) {
         await p.goto(BASE + '/nosotros', { waitUntil: 'networkidle' });
         await p.goto(`${BASE}/#${id}`, { waitUntil: 'networkidle' });
         await p.waitForTimeout(900);
