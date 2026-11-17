@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { solutions } from '../data/site';
+---
+
+<Base title="Página no encontrada" description="La página que buscás no existe o cambió de dirección." noindex>
+  <section class="tone-dark section">
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="wrap box">
+      <p class="kicker">Error 404</p>
+      <h1 class="title">Este enlace no lleva a ningún lado.</h1>
+      <p class="lede">La página que buscás no existe o cambió de dirección. Estos caminos sí funcionan:</p>
+      <ul class="paths" role="list">
+        <li><a class="link-arrow" href="/">Inicio <Icon name="arrow" /></a></li>
+        {solutions.map((s) => <li><a class="link-arrow" href={`/soluciones/${s.slug}`}>{s.name} <Icon name="arrow" /></a></li>)}
+        <li><a class="link-arrow" href="/contacto">Contacto <Icon name="arrow" /></a></li>
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .box { position: relative; min-height: 55vh; display: grid; align-content: center; }
+  .paths { display: grid; gap: 0.6rem; margin-top: 2rem; }
+  .paths a { min-height: 2.25rem; }
+</style>

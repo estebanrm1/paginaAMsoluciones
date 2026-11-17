@@ -1,0 +1,425 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { site, solutions, works, type Solution } from '../../data/site';
+
+export function getStaticPaths() {
+  return solutions.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+}
+interface Props {
+  s: Solution;
+}
+const { s } = Astro.props;
+const others = solutions.filter((o) => o.slug !== s.slug);
+const needBySlug = { 'desarrollo-web': 'presencia-web', 'inteligencia-artificial': 'ia', 'automatizacion-e-integraciones': 'automatizacion' } as const;
+const url = `${site.url}/soluciones/${s.slug}`;
+const schema = [
+  {
+    '@type': 'Service',
+    name: s.name,
+    description: s.seoDescription,
+    url,
+    provider: { '@id': `${site.url}/#org` },
+    areaServed: { '@type': 'Country', name: 'Argentina' },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: s.name,
+      itemListElement: s.offerings.map((o) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: o.title, description: o.text } })),
+    },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: site.url },
+      { '@type': 'ListItem', position: 2, name: 'Soluciones', item: `${site.url}/#soluciones` },
+      { '@type': 'ListItem', position: 3, name: s.short, item: url },
+    ],
+  },
+  { '@type': 'FAQPage', mainEntity: s.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+
+<Base title={s.seoTitle} description={s.seoDescription} schema={schema}>
+  <section class="hero tone-dark" aria-labelledby="sol-title">
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="wrap hero-in">
+      <nav aria-label="Ruta de navegación" class="crumbs mono">
+        <ol role="list">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/#soluciones">Soluciones</a></li>
+          <li aria-current="page">{s.short}</li>
+        </ol>
+      </nav>
+      <p class="kicker">{s.index} · {s.name}</p>
+      <h1 id="sol-title" class="h1">{s.h1}</h1>
+      <p class="lede">{s.lead}</p>
+      <div class="actions">
+        <a class="btn" href={`/contacto?necesidad=${needBySlug[s.slug]}`}>Contanos tu caso <Icon name="arrow" /></a>
+        <a class="btn btn--ghost" href="#que-hacemos">Qué podemos hacer</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tone-light" aria-labelledby="resuelve-title">
+    <div class="wrap two">
+      <div>
+        <p class="kicker" data-reveal>Qué resuelve</p>
+        <h2 id="resuelve-title" class="title-sm" data-reveal style="--d:1">Pensado para situaciones como estas.</h2>
+      </div>
+      <ul class="solves" role="list">
+        {
+          s.solves.map((t, i) => (
+            <li data-reveal style={`--d:${i}`}>
+              <span class="mono">{String(i + 1).padStart(2, '0')}</span>
+              <p>{t}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section id="que-hacemos" class="section tone-white" aria-labelledby="hacemos-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="kicker" data-reveal>Qué podemos hacer</p>
+        <h2 id="hacemos-title" class="title" data-reveal style="--d:1">Soluciones concretas, adaptadas a tu forma de trabajar.</h2>
+      </div>
+      <ul class="offer" role="list">
+        {
+          s.offerings.map((o, i) => (
+            <li data-reveal style={`--d:${i % 3}`}>
+              <h3>{o.title}</h3>
+              <p>{o.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section tone-slate" aria-labelledby="ejemplos-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="kicker" data-reveal>Ejemplos de aplicación</p>
+        <h2 id="ejemplos-title" class="title" data-reveal style="--d:1">Cómo se ve en la práctica.</h2>
+        <p class="lede" data-reveal style="--d:2">Situaciones habituales y cómo cambian. Son ejemplos ilustrativos: cada solución se diseña a partir de tu caso.</p>
+      </div>
+      <div class="ex">
+        {
+          s.examples.map((e, i) => (
+            <article class="ex-card" data-glow data-reveal style={`--d:${i}`}>
+              <h3>{e.title}</h3>
+              <div class="ex-row">
+                <p class="ex-k mono">Antes</p>
+                <p class="ex-v">{e.before}</p>
+              </div>
+              <div class="ex-row after">
+                <p class="ex-k mono">Después</p>
+                <p class="ex-v">{e.after}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section tone-light" aria-labelledby="incluye-title">
+    <div class="wrap two">
+      <div>
+        <p class="kicker" data-reveal>Siempre incluido</p>
+        <h2 id="incluye-title" class="title-sm" data-reveal style="--d:1">Criterios que aplicamos en cada proyecto.</h2>
+      </div>
+      <ul class="checks big" data-reveal style="--d:2">
+        {s.includes.map((t) => <li>{t}</li>)}
+      </ul>
+    </div>
+
+    {
+      s.slug === 'desarrollo-web' && (
+        <div class="wrap mini-works">
+          <p class="kicker" data-reveal>Proyectos de muestra</p>
+          <ul role="list">
+            {works.map((w, i) => (
+              <li data-reveal style={`--d:${i}`}>
+                <a href={w.url} target="_blank" rel="noopener noreferrer">
+                  <Image src={w.image} alt="" widths={[400, 640]} sizes="(max-width: 860px) 100vw, 380px" loading="lazy" />
+                  <span class="mw-t">
+                    {w.title} <Icon name="arrow-up-right" />
+                  </span>
+                  <span class="mw-k mono">{w.kind} · demo</span>
+                  <span class="sr-only"> (abre en una pestaña nueva)</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+  </section>
+
+  <section class="section tone-white" aria-labelledby="faq-title">
+    <div class="wrap two">
+      <div>
+        <p class="kicker" data-reveal>Preguntas frecuentes</p>
+        <h2 id="faq-title" class="title-sm" data-reveal style="--d:1">Antes de empezar.</h2>
+        <div class="others" data-reveal style="--d:2">
+          <p class="mono others-k">Otras soluciones</p>
+          {
+            others.map((o) => (
+              <a class="link-arrow" href={`/soluciones/${o.slug}`}>
+                {o.name} <Icon name="arrow" />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+      <Faq items={s.faq} />
+    </div>
+  </section>
+
+  <CtaBand
+    title="¿Querés ver cómo se aplica a tu negocio?"
+    text="Contanos tu situación y te respondemos con una propuesta concreta y en un lenguaje claro."
+    waText={`Hola Enlace, quiero consultar por ${s.name.toLowerCase()}.`}
+    formHref={`/contacto?necesidad=${needBySlug[s.slug]}`}
+  />
+</Base>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(2.5rem, 2rem + 3vw, 4.5rem) clamp(4rem, 3rem + 5vw, 7rem);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: -30% -10% auto 45%;
+    height: 90%;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--blue) 16%, transparent), transparent);
+    pointer-events: none;
+  }
+  .hero-in {
+    position: relative;
+    z-index: 1;
+  }
+  .crumbs ol {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--fg-3);
+    margin-bottom: clamp(2.5rem, 2rem + 3vw, 4rem);
+  }
+  .crumbs li + li::before {
+    content: '/';
+    margin-right: 0.5rem;
+    color: var(--line-strong);
+  }
+  .crumbs a {
+    display: inline-block;
+    padding-block: 0.3rem;
+    text-decoration: none;
+  }
+  .crumbs a:hover {
+    color: var(--fg);
+    text-decoration: underline;
+  }
+  .h1 {
+    font-size: var(--step-5);
+    margin-top: 1.2rem;
+    max-width: 18ch;
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2.25rem;
+  }
+
+  .two {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(2rem, 1rem + 5vw, 6rem);
+    align-items: start;
+  }
+  .solves {
+    border-top: 1px solid var(--line-strong);
+  }
+  .solves li {
+    display: grid;
+    grid-template-columns: 2.75rem 1fr;
+    gap: 1rem;
+    padding-block: 1.4rem;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .solves .mono {
+    font-size: 0.8rem;
+    color: var(--fg-3);
+    padding-top: 0.3rem;
+  }
+  .solves p {
+    font-size: var(--step-1);
+    font-weight: 550;
+    letter-spacing: -0.02em;
+    line-height: 1.35;
+  }
+
+  .offer {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid var(--line-strong);
+    border-left: 1px solid var(--line-strong);
+  }
+  .offer li {
+    padding: clamp(1.4rem, 1rem + 1.2vw, 2rem);
+    border-right: 1px solid var(--line-strong);
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .offer h3 {
+    font-size: var(--step-1);
+    letter-spacing: -0.02em;
+  }
+  .offer p {
+    margin-top: 0.6rem;
+    color: var(--fg-2);
+    font-size: 0.97rem;
+  }
+
+  .ex {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .ex-card {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+    padding: 1.6rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .ex-card h3 {
+    font-size: var(--step-1);
+  }
+  .ex-row {
+    padding-left: 1rem;
+    border-left: 1px dashed var(--line-strong);
+  }
+  .ex-row.after {
+    border-left: 1px solid var(--blue);
+  }
+  .ex-k {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--fg-3);
+  }
+  .after .ex-k {
+    color: var(--blue-soft);
+  }
+  .ex-v {
+    margin-top: 0.25rem;
+    color: var(--fg-2);
+    font-size: 0.96rem;
+  }
+  .after .ex-v {
+    color: var(--fg);
+  }
+
+  .checks.big li {
+    font-size: var(--step-1);
+    color: var(--fg);
+  }
+  .checks.big {
+    gap: 1.1rem;
+  }
+
+  .mini-works {
+    margin-top: clamp(4rem, 3rem + 4vw, 6rem);
+  }
+  .mini-works ul {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .mini-works a {
+    display: grid;
+    gap: 0.3rem;
+    text-decoration: none;
+  }
+  .mini-works :global(img) {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    margin-bottom: 0.6rem;
+  }
+  .mw-t {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 600;
+  }
+  .mw-t :global(svg) {
+    width: 1rem;
+    height: 1rem;
+  }
+  .mini-works a:hover .mw-t {
+    color: var(--accent-text);
+    text-decoration: underline;
+  }
+  .mw-k {
+    font-size: 0.74rem;
+    color: var(--fg-3);
+  }
+
+  .others {
+    display: grid;
+    gap: 0.6rem;
+    justify-items: start;
+    margin-top: 2rem;
+  }
+  .others-k {
+    font-size: 0.74rem;
+    color: var(--fg-3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .others .link-arrow {
+    min-height: 2rem;
+  }
+
+  @media (max-width: 960px) {
+    .two {
+      grid-template-columns: 1fr;
+    }
+    .offer,
+    .ex,
+    .mini-works ul {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 640px) {
+    .offer,
+    .ex,
+    .mini-works ul {
+      grid-template-columns: 1fr;
+    }
+    .actions .btn {
+      width: 100%;
+    }
+  }
+</style>

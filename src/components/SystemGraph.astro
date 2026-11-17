@@ -1,0 +1,232 @@
+---
+// Visual del hero: el negocio como un sistema conectado. Las herramientas habituales
+// (sitio, WhatsApp, tienda, gestión, planillas, reportes, IA) se enlazan con el centro y
+// la información viaja entre ellas. SVG + SMIL: liviano, sin librerías, pausable.
+const W = 560;
+const H = 520;
+const C = { x: 280, y: 262 };
+const nodes = [
+  { id: 'web', label: 'Sitio web', x: 96, y: 96, dir: 1 },
+  { id: 'wa', label: 'WhatsApp', x: 300, y: 44, dir: -1 },
+  { id: 'shop', label: 'Tienda online', x: 478, y: 112, dir: 1 },
+  { id: 'erp', label: 'Sistema de gestión', x: 500, y: 304, dir: -1 },
+  { id: 'sheet', label: 'Planillas', x: 404, y: 468, dir: 1 },
+  { id: 'rep', label: 'Reportes', x: 148, y: 462, dir: -1 },
+  { id: 'ai', label: 'Asistente IA', x: 60, y: 292, dir: 1, ai: true },
+];
+const curve = (n: (typeof nodes)[number]) => {
+  const mx = (n.x + C.x) / 2;
+  const my = (n.y + C.y) / 2;
+  const dx = C.x - n.x;
+  const dy = C.y - n.y;
+  const k = 0.2 * n.dir;
+  return `M${n.x} ${n.y} Q${(mx - dy * k).toFixed(1)} ${(my + dx * k).toFixed(1)} ${C.x} ${C.y}`;
+};
+const pct = (v: number, t: number) => `${((v / t) * 100).toFixed(2)}%`;
+---
+
+<figure class="graph" data-graph aria-labelledby="graph-cap">
+  <div class="stage">
+    <svg viewBox={`0 0 ${W} ${H}`} class="svg" aria-hidden="true">
+      <defs>
+        <radialGradient id="g-core" cx="50%" cy="50%" r="50%">
+          <stop offset="0" stop-color="#477FF5" stop-opacity="0.35" />
+          <stop offset="1" stop-color="#477FF5" stop-opacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx={C.x} cy={C.y} r="150" fill="url(#g-core)" />
+      <circle cx={C.x} cy={C.y} r="118" class="orbit" />
+      <circle cx={C.x} cy={C.y} r="196" class="orbit faint" />
+      {nodes.map((n) => <path id={`p-${n.id}`} d={curve(n)} class="link" />)}
+      {
+        nodes.map((n, i) => (
+          <circle r="3.2" class="pulse">
+            <animateMotion dur={`${3.2 + (i % 3) * 0.7}s`} begin={`${(i * 0.55).toFixed(2)}s`} repeatCount="indefinite" keyPoints={i % 2 ? '1;0' : '0;1'} keyTimes="0;1" calcMode="linear">
+              <mpath href={`#p-${n.id}`} />
+            </animateMotion>
+          </circle>
+        ))
+      }
+      {nodes.map((n) => <circle cx={n.x} cy={n.y} r="5" class:list={['dot', { ai: n.ai }]} />)}
+    </svg>
+
+    {
+      nodes.map((n) => (
+        <span class:list={['chip', { 'chip--ai': n.ai }]} style={`left:${pct(n.x, W)};top:${pct(n.y, H)}`}>
+          {n.label}
+        </span>
+      ))
+    }
+    <div class="core" style={`left:${pct(C.x, W)};top:${pct(C.y, H)}`}>
+      <span class="core-k">tu</span>
+      <span class="core-v">negocio</span>
+    </div>
+  </div>
+  <figcaption id="graph-cap" class="cap">
+    <span class="live" aria-hidden="true"></span> Ilustración: un negocio con sus herramientas conectadas
+  </figcaption>
+</figure>
+
+<style>
+  .graph {
+    margin: 0;
+    container-type: inline-size;
+  }
+  .stage {
+    position: relative;
+    aspect-ratio: 560 / 520;
+  }
+  .svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  .orbit {
+    fill: none;
+    stroke: var(--line-strong);
+    stroke-dasharray: 2 6;
+  }
+  .orbit.faint {
+    stroke: var(--line);
+  }
+  .link {
+    fill: none;
+    stroke: color-mix(in srgb, var(--silver) 45%, transparent);
+    stroke-width: 1;
+  }
+  .pulse {
+    fill: #8db0ff;
+    filter: drop-shadow(0 0 6px #477ff5);
+  }
+  .dot {
+    fill: var(--graphite);
+    stroke: var(--silver);
+    stroke-width: 1.5;
+  }
+  .dot.ai {
+    stroke: #477ff5;
+  }
+  .chip {
+    position: absolute;
+    translate: -50% calc(-100% - 0.7rem);
+    padding: 0.32em 0.7em;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: color-mix(in srgb, var(--graphite-2) 88%, transparent);
+    font-family: var(--font-mono);
+    font-size: clamp(0.62rem, 2.15cqi, 0.8rem);
+    color: var(--fg-2);
+    white-space: nowrap;
+  }
+  .chip--ai {
+    color: var(--blue-soft);
+    border-color: color-mix(in srgb, var(--blue) 55%, transparent);
+  }
+  .core {
+    position: absolute;
+    translate: -50% -50%;
+    display: grid;
+    place-items: center;
+    width: 25cqi;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, var(--slate-2), var(--graphite-2));
+    border: 1px solid color-mix(in srgb, var(--blue) 60%, transparent);
+    box-shadow:
+      0 0 0 8px color-mix(in srgb, var(--blue) 8%, transparent),
+      0 20px 50px -10px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    line-height: 1.05;
+  }
+  .core::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 50%;
+    border: 1px solid #477ff5;
+    opacity: 0;
+  }
+  .core-k {
+    font-family: var(--font-mono);
+    font-size: clamp(0.6rem, 2.1cqi, 0.78rem);
+    color: var(--fg-3);
+    align-self: end;
+  }
+  .core-v {
+    font-size: clamp(0.95rem, 4.2cqi, 1.45rem);
+    font-weight: 650;
+    letter-spacing: -0.04em;
+    align-self: start;
+  }
+  .cap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--fg-3);
+  }
+  .live {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--signal);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .core::before {
+      animation: ring 3.2s var(--ease) infinite;
+    }
+    .live {
+      animation: blink 2.4s ease-in-out infinite;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pulse {
+      display: none;
+    }
+  }
+  @keyframes ring {
+    0% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+    100% {
+      transform: scale(1.55);
+      opacity: 0;
+    }
+  }
+  @keyframes blink {
+    50% {
+      opacity: 0.35;
+    }
+  }
+</style>
+
+<script>
+  // Pausa las animaciones SMIL fuera de pantalla, con la pestaña oculta o con reduced-motion.
+  document.querySelectorAll<HTMLElement>('[data-graph]').forEach((fig) => {
+    const svg = fig.querySelector('svg')!;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+    let visible = true;
+    let ready = false; // las animaciones arrancan recién con la página cargada y ociosa
+    const sync = () => (ready && visible && !document.hidden && !reduce.matches ? svg.unpauseAnimations() : svg.pauseAnimations());
+    const start = () => {
+      ready = true;
+      sync();
+    };
+    const idle = () => ('requestIdleCallback' in window ? requestIdleCallback(start, { timeout: 2500 }) : setTimeout(start, 1200));
+    if (document.readyState === 'complete') idle();
+    else addEventListener('load', idle, { once: true });
+    new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting;
+      sync();
+    }).observe(fig);
+    document.addEventListener('visibilitychange', sync);
+    reduce.addEventListener('change', sync);
+    sync();
+  });
+</script>

@@ -1,0 +1,682 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { site, needs, waLink } from '../data/site';
+---
+
+<Base
+  title="Contacto"
+  description="Contanos qué necesitás mejorar en tu negocio. Respondemos personalmente con una propuesta clara. Formulario, WhatsApp, Instagram y LinkedIn."
+>
+  <section class="hero tone-dark" aria-labelledby="contacto-title">
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="wrap rel">
+      <p class="kicker">Contacto</p>
+      <h1 id="contacto-title" class="h1">Contanos qué necesitás mejorar.</h1>
+      <p class="lede">
+        Respondemos personalmente. Si todavía no tenés claro qué necesitás, no hay problema: para eso está la primera conversación.
+      </p>
+    </div>
+  </section>
+
+  <section class="section tone-light body" aria-label="Formulario y canales de contacto">
+    <div class="wrap layout">
+      <div class="form-wrap">
+        <form
+          name="contacto"
+          method="POST"
+          action="/gracias"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="form"
+          data-form
+          novalidate
+          aria-describedby="form-req"
+        >
+          <input type="hidden" name="form-name" value="contacto" />
+          <p class="hp" aria-hidden="true">
+            <label>No completar este campo <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+          </p>
+
+          <div class="form-head">
+            <h2 class="form-title">Formulario de consulta</h2>
+            <p id="form-req" class="req-note">Los campos marcados con <span aria-hidden="true">*</span><span class="sr-only">asterisco</span> son obligatorios.</p>
+          </div>
+
+          <div class="err-summary" role="alert" tabindex="-1" data-err-summary hidden></div>
+
+          <fieldset class="field">
+            <legend>¿Para quién es la consulta? <span class="star" aria-hidden="true">*</span></legend>
+            <div class="seg">
+              <label class="seg-opt">
+                <input type="radio" name="perfil" value="empresa" required aria-describedby="err-perfil" />
+                <span><strong>Empresa o pyme</strong><small>Optimizar operaciones, procesos y sistemas</small></span>
+              </label>
+              <label class="seg-opt">
+                <input type="radio" name="perfil" value="profesional" required aria-describedby="err-perfil" />
+                <span><strong>Profesional o emprendimiento</strong><small>Profesionalizar y potenciar mi actividad</small></span>
+              </label>
+            </div>
+            <p class="err" id="err-perfil" data-err-for="perfil"></p>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend>¿Qué te gustaría mejorar? <span class="star" aria-hidden="true">*</span> <span class="hint">Podés elegir más de una opción.</span></legend>
+            <div class="needs">
+              {
+                needs.map((n) => (
+                  <label class="chip">
+                    <input type="checkbox" name="necesidad" value={n.value} aria-describedby="err-necesidad" />
+                    <span>{n.label}</span>
+                  </label>
+                ))
+              }
+            </div>
+            <p class="err" id="err-necesidad" data-err-for="necesidad"></p>
+          </fieldset>
+
+          <div class="row">
+            <div class="field">
+              <label for="f-nombre">Nombre y apellido <span class="star" aria-hidden="true">*</span></label>
+              <input id="f-nombre" name="nombre" type="text" autocomplete="name" required minlength="2" maxlength="80" aria-describedby="err-nombre" />
+              <p class="err" id="err-nombre" data-err-for="nombre"></p>
+            </div>
+            <div class="field">
+              <label for="f-empresa">Empresa o proyecto <span class="opt">(opcional)</span></label>
+              <input id="f-empresa" name="empresa" type="text" autocomplete="organization" maxlength="100" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="f-email">Email <span class="star" aria-hidden="true">*</span></label>
+              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="120" aria-describedby="err-email" />
+              <p class="err" id="err-email" data-err-for="email"></p>
+            </div>
+            <div class="field">
+              <label for="f-tel">Teléfono o WhatsApp <span class="opt">(opcional)</span></label>
+              <input id="f-tel" name="telefono" type="tel" autocomplete="tel" inputmode="tel" maxlength="30" pattern="[0-9+()\s\-]{6,30}" aria-describedby="err-telefono" />
+              <p class="err" id="err-telefono" data-err-for="telefono"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-mensaje">Contanos tu situación <span class="star" aria-hidden="true">*</span></label>
+            <p class="hint" id="hint-mensaje">¿Qué te quita tiempo hoy? ¿Qué herramientas usás? ¿Qué te gustaría lograr?</p>
+            <textarea id="f-mensaje" name="mensaje" rows="6" required minlength="20" maxlength="2000" aria-describedby="hint-mensaje err-mensaje"></textarea>
+            <p class="err" id="err-mensaje" data-err-for="mensaje"></p>
+          </div>
+
+          <div class="submit-row">
+            <button class="btn" type="submit" data-submit>
+              <span data-submit-label>Enviar consulta</span>
+              <Icon name="arrow" />
+            </button>
+            <p class="privacy">Usamos tus datos solo para responder esta consulta.</p>
+          </div>
+        </form>
+
+        <div class="result ok tone-dark" data-result-ok tabindex="-1" hidden>
+          <span class="result-icon"><Icon name="check" /></span>
+          <h2>¡Gracias! Recibimos tu consulta.</h2>
+          <p>La vamos a leer con atención y te vamos a escribir a la brevedad. Si preferís adelantar la conversación, escribinos por WhatsApp.</p>
+          <a class="btn btn--ghost" href={waLink()} target="_blank" rel="noopener noreferrer">
+            <Icon name="whatsapp" /> Escribir por WhatsApp<span class="sr-only"> (abre en una pestaña nueva)</span>
+          </a>
+        </div>
+
+        <div class="result fail" data-result-fail tabindex="-1" role="alert" hidden>
+          <h2>No pudimos enviar el formulario.</h2>
+          <p>Puede ser un problema de conexión. Tu consulta no se perdió: podés enviarla por WhatsApp con un clic, ya está redactada.</p>
+          <div class="fail-actions">
+            <a class="btn" href={waLink()} target="_blank" rel="noopener noreferrer" data-wa-fallback>
+              <Icon name="whatsapp" /> Enviar por WhatsApp<span class="sr-only"> (abre en una pestaña nueva)</span>
+            </a>
+            <button class="btn btn--ghost" type="button" data-retry>Volver al formulario</button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="aside" aria-label="Otros canales">
+        <div class="wa tone-dark" data-glow>
+          <p class="kicker">Respuesta directa</p>
+          <p class="wa-t">¿Preferís escribirnos?</p>
+          <p class="wa-n mono">{site.phoneDisplay}</p>
+          <a class="btn" href={waLink()} target="_blank" rel="noopener noreferrer">
+            <Icon name="whatsapp" /> Abrir WhatsApp<span class="sr-only"> (abre en una pestaña nueva)</span>
+          </a>
+        </div>
+
+        <ul class="ch" role="list">
+          <li>
+            <a href={site.instagram} target="_blank" rel="noopener noreferrer">
+              <Icon name="instagram" />
+              <span><strong>Instagram</strong><small>{site.instagramHandle}</small></span>
+              <span class="sr-only"> (abre en una pestaña nueva)</span>
+            </a>
+          </li>
+          <li>
+            <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
+              <Icon name="linkedin" />
+              <span><strong>LinkedIn</strong><small>Página de la empresa</small></span>
+              <span class="sr-only"> (abre en una pestaña nueva)</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="next">
+          <p class="kicker">Qué pasa después</p>
+          <ol role="list">
+            <li><span class="mono">01</span> Leemos tu consulta con atención.</li>
+            <li><span class="mono">02</span> Te contactamos para conversar sobre tu negocio.</li>
+            <li><span class="mono">03</span> Te enviamos una propuesta clara, con alcance, plazos y costo.</li>
+          </ol>
+          <p class="loc mono">{site.location} · {site.modality.toLowerCase()}</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(3rem, 2rem + 4vw, 6rem) clamp(3rem, 2rem + 4vw, 5.5rem);
+  }
+  .rel {
+    position: relative;
+  }
+  .h1 {
+    font-size: var(--step-5);
+    margin-top: 1.2rem;
+    max-width: 16ch;
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+  }
+  .body {
+    padding-top: clamp(3rem, 2rem + 3vw, 5rem);
+  }
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 1rem + 3vw, 4rem);
+    align-items: start;
+  }
+  .form,
+  .result {
+    padding: clamp(1.5rem, 1rem + 2.5vw, 3rem);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    background: var(--white);
+    box-shadow: 0 30px 60px -45px rgba(14, 18, 23, 0.4);
+  }
+  .form {
+    display: grid;
+    gap: 1.6rem;
+  }
+  .form-title {
+    font-size: var(--step-2);
+  }
+  .req-note {
+    margin-top: 0.4rem;
+    color: var(--fg-3);
+    font-size: 0.88rem;
+  }
+  .hp {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .field {
+    display: grid;
+    gap: 0.45rem;
+    border: 0;
+    padding: 0;
+    min-width: 0;
+  }
+  label,
+  legend {
+    font-weight: 550;
+    font-size: 0.95rem;
+  }
+  legend {
+    padding: 0;
+    margin-bottom: 0.6rem;
+  }
+  .star {
+    color: var(--blue-strong);
+  }
+  .opt,
+  .hint {
+    font-weight: 400;
+    color: var(--fg-3);
+    font-size: 0.88rem;
+  }
+  legend .hint {
+    display: block;
+    margin-top: 0.15rem;
+  }
+  input[type='text'],
+  input[type='email'],
+  input[type='tel'],
+  textarea {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.75rem 0.95rem;
+    border-radius: 12px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    font-size: 1rem;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s,
+      background-color 0.2s;
+  }
+  textarea {
+    resize: vertical;
+    line-height: 1.55;
+  }
+  input:hover,
+  textarea:hover {
+    border-color: var(--fg-3);
+  }
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: none;
+    border-color: var(--blue-strong);
+    background: var(--white);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--blue) 22%, transparent);
+  }
+  [aria-invalid='true'] {
+    border-color: #c4322f !important;
+  }
+  .err {
+    color: #b42a27;
+    font-size: 0.88rem;
+    font-weight: 500;
+  }
+  .err:empty {
+    display: none;
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+  .seg {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .seg-opt {
+    position: relative;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    padding: 1rem;
+    border-radius: 14px;
+    border: 1px solid var(--line-strong);
+    cursor: pointer;
+    font-weight: 400;
+    transition:
+      border-color 0.2s,
+      background-color 0.2s;
+  }
+  .seg-opt:hover {
+    border-color: var(--fg-3);
+  }
+  .seg-opt:has(:checked) {
+    border-color: var(--blue-strong);
+    background: color-mix(in srgb, var(--blue) 7%, var(--white));
+  }
+  .seg-opt input {
+    margin-top: 0.25rem;
+    accent-color: var(--blue-strong);
+    width: 1.1rem;
+    height: 1.1rem;
+    flex: none;
+  }
+  .seg-opt strong {
+    display: block;
+    font-weight: 600;
+  }
+  .seg-opt small {
+    display: block;
+    color: var(--fg-3);
+    font-size: 0.86rem;
+    margin-top: 0.15rem;
+  }
+  .needs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-height: 2.75rem;
+    padding: 0.5rem 0.95rem;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    font-weight: 450;
+    font-size: 0.93rem;
+    cursor: pointer;
+    transition:
+      border-color 0.2s,
+      background-color 0.2s;
+  }
+  .chip:hover {
+    border-color: var(--fg-3);
+  }
+  .chip:has(:checked) {
+    border-color: var(--blue-strong);
+    background: color-mix(in srgb, var(--blue) 9%, var(--white));
+  }
+  .chip input {
+    accent-color: var(--blue-strong);
+    width: 1rem;
+    height: 1rem;
+  }
+  .chip:has(:focus-visible),
+  .seg-opt:has(:focus-visible) {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+  }
+  .submit-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+    padding-top: 0.5rem;
+  }
+  .privacy {
+    color: var(--fg-3);
+    font-size: 0.86rem;
+  }
+  [data-submit][aria-busy='true'] {
+    opacity: 0.7;
+    cursor: progress;
+  }
+  .err-summary {
+    padding: 1rem 1.2rem;
+    border-radius: 12px;
+    border: 1px solid #e4b4b2;
+    background: #fdf1f1;
+    color: #8f1f1d;
+    font-size: 0.95rem;
+  }
+  .err-summary ul {
+    margin-top: 0.4rem;
+    padding-left: 1.2rem;
+  }
+  .err-summary a {
+    color: inherit;
+  }
+
+  .result {
+    display: grid;
+    gap: 1rem;
+    justify-items: start;
+  }
+  .result.ok {
+    background: var(--graphite);
+  }
+  .result h2 {
+    font-size: var(--step-3);
+  }
+  .result p {
+    color: var(--fg-2);
+    max-width: 36rem;
+  }
+  .result-icon {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--signal) 18%, transparent);
+    color: var(--signal);
+  }
+  .result-icon :global(svg) {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .fail-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .aside {
+    display: grid;
+    gap: 1rem;
+  }
+  .wa {
+    display: grid;
+    gap: 0.6rem;
+    justify-items: start;
+    padding: 1.75rem;
+    border-radius: var(--radius-lg);
+  }
+  .wa-t {
+    font-size: var(--step-2);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    margin-top: 0.5rem;
+  }
+  .wa-n {
+    color: var(--fg-2);
+    margin-bottom: 0.5rem;
+  }
+  .ch {
+    display: grid;
+    gap: 0.5rem;
+  }
+  .ch a {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 1rem 1.2rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: var(--white);
+    text-decoration: none;
+    transition: border-color 0.2s;
+  }
+  .ch a:hover {
+    border-color: var(--line-strong);
+  }
+  .ch :global(svg) {
+    width: 1.4rem;
+    height: 1.4rem;
+    color: var(--blue-strong);
+  }
+  .ch strong {
+    display: block;
+    font-weight: 600;
+  }
+  .ch small {
+    color: var(--fg-3);
+    font-size: 0.86rem;
+  }
+  .next {
+    padding: 1.5rem 0.25rem 0;
+  }
+  .next ol {
+    display: grid;
+    gap: 0.9rem;
+    margin-top: 1.1rem;
+  }
+  .next li {
+    display: grid;
+    grid-template-columns: 2.2rem 1fr;
+    color: var(--fg-2);
+    font-size: 0.96rem;
+  }
+  .next .mono {
+    font-size: 0.78rem;
+    color: var(--accent-text);
+    padding-top: 0.2rem;
+  }
+  .loc {
+    margin-top: 1.5rem;
+    font-size: 0.76rem;
+    color: var(--fg-3);
+  }
+
+  @media (max-width: 960px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 600px) {
+    .row,
+    .seg {
+      grid-template-columns: 1fr;
+    }
+    .submit-row .btn,
+    .fail-actions .btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  import { needs, site } from '../data/site';
+  const WA = site.whatsapp;
+
+  const form = document.querySelector<HTMLFormElement>('[data-form]')!;
+  const summary = form.querySelector<HTMLElement>('[data-err-summary]')!;
+  const submitBtn = form.querySelector<HTMLButtonElement>('[data-submit]')!;
+  const submitLabel = form.querySelector<HTMLElement>('[data-submit-label]')!;
+  const okBox = document.querySelector<HTMLElement>('[data-result-ok]')!;
+  const failBox = document.querySelector<HTMLElement>('[data-result-fail]')!;
+  const waFallback = failBox.querySelector<HTMLAnchorElement>('[data-wa-fallback]')!;
+
+  // Preselección desde enlaces contextuales (?perfil=empresa, ?necesidad=ia)
+  const qs = new URLSearchParams(location.search);
+  const perfil = qs.get('perfil');
+  if (perfil) form.querySelector<HTMLInputElement>(`input[name="perfil"][value="${CSS.escape(perfil)}"]`)?.click();
+  const need = qs.get('necesidad');
+  if (need) {
+    const box = form.querySelector<HTMLInputElement>(`input[name="necesidad"][value="${CSS.escape(need)}"]`);
+    if (box) box.checked = true;
+  }
+
+  const labels: Record<string, string> = {
+    perfil: 'Para quién es la consulta',
+    necesidad: 'Qué te gustaría mejorar',
+    nombre: 'Nombre y apellido',
+    email: 'Email',
+    telefono: 'Teléfono o WhatsApp',
+    mensaje: 'Contanos tu situación',
+  };
+
+  function validate(): { name: string; msg: string }[] {
+    const data = new FormData(form);
+    const errs: { name: string; msg: string }[] = [];
+    const nombre = String(data.get('nombre') || '').trim();
+    const email = String(data.get('email') || '').trim();
+    const tel = String(data.get('telefono') || '').trim();
+    const mensaje = String(data.get('mensaje') || '').trim();
+    if (!data.get('perfil')) errs.push({ name: 'perfil', msg: 'Elegí si la consulta es para una empresa o para un profesional o emprendimiento.' });
+    if (!data.getAll('necesidad').length) errs.push({ name: 'necesidad', msg: 'Elegí al menos una opción. Si no estás seguro, marcá «necesito asesoramiento».' });
+    if (nombre.length < 2) errs.push({ name: 'nombre', msg: 'Escribí tu nombre (al menos 2 caracteres).' });
+    if (!email) errs.push({ name: 'email', msg: 'Escribí tu email para poder responderte.' });
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) errs.push({ name: 'email', msg: 'Revisá el email: debe tener el formato nombre@dominio.com.' });
+    if (tel && !/^[0-9+()\s-]{6,30}$/.test(tel)) errs.push({ name: 'telefono', msg: 'Revisá el teléfono: usá solo números, espacios, +, guiones o paréntesis.' });
+    if (mensaje.length < 20) errs.push({ name: 'mensaje', msg: `Contanos un poco más (mínimo 20 caracteres; llevás ${mensaje.length}).` });
+    return errs;
+  }
+
+  function paint(errs: { name: string; msg: string }[]) {
+    form.querySelectorAll<HTMLElement>('[data-err-for]').forEach((p) => {
+      const e = errs.find((x) => x.name === p.dataset.errFor);
+      p.textContent = e ? e.msg : '';
+      form.querySelectorAll<HTMLInputElement>(`[name="${p.dataset.errFor}"]`).forEach((input) => {
+        if (e) input.setAttribute('aria-invalid', 'true');
+        else input.removeAttribute('aria-invalid');
+      });
+    });
+  }
+
+  const firstId = (name: string) => form.querySelector<HTMLInputElement>(`[name="${name}"]`)!.id || '';
+
+  // Revalida en vivo los campos que ya marcaron error
+  form.addEventListener('input', (e) => {
+    const t = e.target as HTMLInputElement;
+    if (!form.querySelector(`[name="${t.name}"][aria-invalid="true"]`)) return;
+    const flagged = new Set([...form.querySelectorAll<HTMLInputElement>('[aria-invalid="true"]')].map((el) => el.name));
+    paint(validate().filter((x) => flagged.has(x.name)));
+  });
+
+  function waSummary(data: FormData) {
+    const neededLabels = data.getAll('necesidad').map((v) => needs.find((n) => n.value === v)?.label ?? String(v));
+    const lines = [
+      'Hola Enlace, les escribo desde la web.',
+      `Nombre: ${data.get('nombre')}`,
+      data.get('empresa') ? `Empresa o proyecto: ${data.get('empresa')}` : '',
+      `Perfil: ${data.get('perfil') === 'empresa' ? 'Empresa o pyme' : 'Profesional o emprendimiento'}`,
+      neededLabels.length ? `Me interesa: ${neededLabels.join(', ')}` : '',
+      `Consulta: ${data.get('mensaje')}`,
+    ].filter(Boolean);
+    return `${WA}?text=${encodeURIComponent(lines.join('\n'))}`;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const errs = validate();
+    paint(errs);
+    if (errs.length) {
+      summary.hidden = false;
+      summary.innerHTML = `<strong>Revisá ${errs.length === 1 ? 'un campo' : `${errs.length} campos`} antes de enviar:</strong><ul>${errs
+        .map((x) => `<li><a href="#${firstId(x.name)}">${labels[x.name]}</a></li>`)
+        .join('')}</ul>`;
+      summary.querySelectorAll('a').forEach((a, i) =>
+        a.addEventListener('click', (ev) => {
+          ev.preventDefault();
+          form.querySelector<HTMLInputElement>(`[name="${errs[i].name}"]`)!.focus();
+        }),
+      );
+      summary.focus();
+      return;
+    }
+    summary.hidden = true;
+
+    const data = new FormData(form);
+    submitBtn.setAttribute('aria-busy', 'true');
+    submitBtn.disabled = true;
+    submitLabel.textContent = 'Enviando…';
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      form.hidden = true;
+      okBox.hidden = false;
+      okBox.focus();
+      form.reset();
+    } catch {
+      waFallback.href = waSummary(data);
+      form.hidden = true;
+      failBox.hidden = false;
+      failBox.focus();
+    } finally {
+      submitBtn.removeAttribute('aria-busy');
+      submitBtn.disabled = false;
+      submitLabel.textContent = 'Enviar consulta';
+    }
+  });
+
+  failBox.querySelector('[data-retry]')!.addEventListener('click', () => {
+    failBox.hidden = true;
+    form.hidden = false;
+    submitBtn.focus();
+  });
+</script>

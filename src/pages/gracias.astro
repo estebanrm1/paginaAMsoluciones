@@ -1,0 +1,25 @@
+---
+// Destino del formulario cuando se envía sin JavaScript (Netlify redirige acá).
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { waLink } from '../data/site';
+---
+
+<Base title="Consulta recibida" description="Recibimos tu consulta. Te vamos a responder a la brevedad." noindex>
+  <section class="tone-dark section">
+    <div class="wrap box">
+      <p class="kicker">Consulta recibida</p>
+      <h1 class="title">¡Gracias! Ya tenemos tu mensaje.</h1>
+      <p class="lede">Lo vamos a leer con atención y te vamos a escribir a la brevedad.</p>
+      <div class="actions">
+        <a class="btn" href="/">Volver al inicio <Icon name="arrow" /></a>
+        <a class="btn btn--ghost" href={waLink()} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" /> WhatsApp<span class="sr-only"> (abre en una pestaña nueva)</span></a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .box { min-height: 50vh; display: grid; align-content: center; }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+</style>

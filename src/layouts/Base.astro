@@ -1,0 +1,144 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site, team } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  /** JSON-LD adicional específico de la página (FAQPage, Service, BreadcrumbList…). */
+  schema?: Record<string, unknown>[];
+  noindex?: boolean;
+}
+const { title, description, schema = [], noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/', site.url).href;
+const fullTitle = Astro.url.pathname === '/' ? `${site.name} · ${title}` : `${title} · ${site.name}`;
+const og = new URL('/og.png', site.url).href;
+
+const org = {
+  '@type': 'ProfessionalService',
+  '@id': `${site.url}/#org`,
+  name: site.name,
+  alternateName: 'Enlace',
+  slogan: site.tagline,
+  description: site.description,
+  url: site.url,
+  logo: `${site.url}/favicon.svg`,
+  image: og,
+  telephone: site.phoneE164,
+  address: { '@type': 'PostalAddress', addressRegion: 'Tucumán', addressCountry: 'AR' },
+  areaServed: { '@type': 'Country', name: 'Argentina' },
+  sameAs: [site.instagram, site.linkedin],
+  founder: team.map((m) => ({ '@type': 'Person', name: m.name, jobTitle: m.role })),
+  knowsAbout: ['Desarrollo web', 'Inteligencia artificial', 'Automatización de procesos', 'Integración de sistemas', 'Consultoría tecnológica'],
+};
+const ld = { '@context': 'https://schema.org', '@graph': [org, { '@type': 'WebSite', '@id': `${site.url}/#web`, url: site.url, name: site.name, inLanguage: 'es-AR', publisher: { '@id': `${site.url}/#org` } }, ...schema] };
+---
+
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta name="theme-color" content="#0e1217" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={og} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${site.name}: ${site.tagline}.`} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <Header />
+    <main id="contenido" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      // Navegación a anclas compatible con content-visibility: renderiza todo y recién ahí desplaza.
+      const root = document.documentElement;
+      const targetOf = (hash: string) => (hash.length > 1 ? document.getElementById(decodeURIComponent(hash.slice(1))) : null);
+      const goTo = (el: HTMLElement, smooth: boolean) => {
+        root.classList.add('cv-off');
+        requestAnimationFrame(() =>
+          requestAnimationFrame(() => {
+            const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+            el.scrollIntoView({ block: 'start', behavior: smooth && !reduce ? 'smooth' : 'instant' });
+          }),
+        );
+      };
+      const initial = targetOf(location.hash);
+      if (initial && initial.id !== 'contenido') goTo(initial, false);
+      document.addEventListener('click', (e) => {
+        if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+        const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href*="#"]');
+        if (!a || a.origin !== location.origin || a.pathname !== location.pathname) return;
+        const el = targetOf(a.hash);
+        if (!el || el.id === 'contenido') return;
+        e.preventDefault();
+        history.pushState(null, '', a.hash);
+        goTo(el, true);
+      });
+
+      // Aparición progresiva al entrar en pantalla
+      const els = document.querySelectorAll<HTMLElement>('[data-reveal]');
+      if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const io = new IntersectionObserver(
+          (entries) =>
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add('is-visible');
+                io.unobserve(e.target);
+              }
+            }),
+          { rootMargin: '0px 0px -8% 0px' },
+        );
+        els.forEach((el) => io.observe(el));
+      } else {
+        els.forEach((el) => el.classList.add('is-visible'));
+      }
+
+      // Borde luminoso que sigue al cursor en paneles [data-glow]
+      if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        document.addEventListener(
+          'pointermove',
+          (e) => {
+            const t = (e.target as HTMLElement).closest<HTMLElement>('[data-glow]');
+            if (!t) return;
+            const r = t.getBoundingClientRect();
+            t.style.setProperty('--gx', `${e.clientX - r.left}px`);
+            t.style.setProperty('--gy', `${e.clientY - r.top}px`);
+          },
+          { passive: true },
+        );
+      }
+    </script>
+  </body>
+</html>
+
+<style>
+  main:focus {
+    outline: none;
+  }
+</style>

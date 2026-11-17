@@ -1,0 +1,1112 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import SystemGraph from '../components/SystemGraph.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site, problems, solutions, consulting, aiUses, audiences, method, differentiators, works, faq } from '../data/site';
+
+const faqSchema = {
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<Base title="Soluciones tecnológicas para negocios" description={site.description} schema={[faqSchema]}>
+  <!-- ============ HERO ============ -->
+  <section class="hero tone-dark" aria-labelledby="hero-title">
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="kicker">{site.tagline}</p>
+        <h1 id="hero-title" class="hero-title">
+          Primero entendemos tu negocio. <span class="dim">Después elegimos la tecnología.</span>
+        </h1>
+        <p class="lede">
+          Desarrollo web, automatización e inteligencia artificial para empresas, pymes y profesionales que quieren trabajar con menos tareas
+          manuales, información ordenada y una presencia digital que genere confianza.
+        </p>
+        <div class="hero-actions">
+          <a class="btn" href="/contacto">Contanos qué necesitás mejorar <Icon name="arrow" /></a>
+          <a class="btn btn--ghost" href="#metodo">Ver cómo trabajamos</a>
+        </div>
+        <p class="hero-note">Hablás directamente con quienes diseñan y construyen tu solución.</p>
+      </div>
+      <div class="hero-visual">
+        <SystemGraph />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROBLEMAS ============ -->
+  <section class="section tone-light" aria-labelledby="problemas-title">
+    <div class="wrap split">
+      <div class="split-head">
+        <div class="sticky">
+          <p class="kicker" data-reveal>El punto de partida</p>
+          <h2 id="problemas-title" class="title" data-reveal style="--d:1">Si algo de esto te suena, podemos ayudarte.</h2>
+          <p class="lede" data-reveal style="--d:2">
+            No empezamos por la tecnología. Empezamos por lo que hoy te quita tiempo, te genera errores o te impide crecer.
+          </p>
+        </div>
+      </div>
+      <ol class="problems" role="list">
+        {
+          problems.map((p, i) => (
+            <li data-reveal style={`--d:${i % 3}`}>
+              <span class="p-n mono">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <p class="p-pain">{p.pain}</p>
+                <p class="p-answer">
+                  <Icon name="arrow" class="p-arrow" />
+                  {p.answer}
+                </p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ SOLUCIONES ============ -->
+  <section id="soluciones" class="section tone-dark" aria-labelledby="soluciones-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="kicker" data-reveal>Soluciones</p>
+        <h2 id="soluciones-title" class="title" data-reveal style="--d:1">Un ecosistema de soluciones. Una sola mirada de negocio.</h2>
+        <p class="lede" data-reveal style="--d:2">
+          No ofrecemos paquetes cerrados: combinamos estas capacidades según lo que tu negocio necesita resolver.
+        </p>
+      </div>
+      <div class="eco">
+        {
+          solutions.map((s, i) => (
+            <a class="pillar" href={`/soluciones/${s.slug}`} data-glow data-reveal style={`--d:${i}`}>
+              <span class="pillar-top">
+                <span class="mono pillar-i">{s.index}</span>
+                <svg class="glyph" viewBox="0 0 120 64" aria-hidden="true">
+                  {s.slug === 'desarrollo-web' && (
+                    <g>
+                      <rect x="6" y="6" width="108" height="52" rx="7" />
+                      <path d="M6 18h108" />
+                      <circle cx="14" cy="12" r="1.6" class="f" />
+                      <circle cx="20" cy="12" r="1.6" class="f" />
+                      <rect x="16" y="27" width="40" height="5" rx="2.5" class="f" />
+                      <rect x="16" y="37" width="28" height="4" rx="2" class="f dim" />
+                      <rect x="70" y="26" width="34" height="22" rx="4" class="b" />
+                    </g>
+                  )}
+                  {s.slug === 'inteligencia-artificial' && (
+                    <g>
+                      <path d="M14 32h22M84 32h22M36 32c8-14 40-14 48 0M36 32c8 14 40 14 48 0" />
+                      <circle cx="60" cy="32" r="10" class="b" />
+                      <circle cx="14" cy="32" r="3.5" class="f" />
+                      <circle cx="106" cy="32" r="3.5" class="f" />
+                      <path d="M56 32h8M60 28v8" class="w" />
+                    </g>
+                  )}
+                  {s.slug === 'automatizacion-e-integraciones' && (
+                    <g>
+                      <rect x="6" y="22" width="22" height="20" rx="5" />
+                      <rect x="49" y="22" width="22" height="20" rx="5" />
+                      <rect x="92" y="22" width="22" height="20" rx="5" class="b" />
+                      <path d="M28 32h21M71 32h21" />
+                      <path d="M44 28l5 4-5 4M87 28l5 4-5 4" />
+                    </g>
+                  )}
+                </svg>
+              </span>
+              <span class="pillar-name">{s.name}</span>
+              <span class="pillar-text">{s.summary}</span>
+              <span class="link-arrow">
+                Conocer más <Icon name="arrow" />
+              </span>
+            </a>
+          ))
+        }
+        <div class="base" data-reveal style="--d:3">
+          <span class="mono base-k">La base de todo</span>
+          <div>
+            <p class="base-name">{consulting.name}</p>
+            <p class="base-text">{consulting.text}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ IA APLICADA ============ -->
+  <section class="section tone-white" aria-labelledby="ia-title">
+    <div class="wrap ia">
+      <div>
+        <p class="kicker" data-reveal>Inteligencia artificial aplicada</p>
+        <h2 id="ia-title" class="title" data-reveal style="--d:1">IA donde ahorra tiempo de verdad. No donde suena bien.</h2>
+        <p class="lede" data-reveal style="--d:2">
+          La inteligencia artificial es una herramienta poderosa cuando resuelve una tarea concreta. Te ayudamos a encontrar esas tareas y a
+          implementarla de forma segura, con supervisión humana donde importa.
+        </p>
+        <dl class="uses">
+          {
+            aiUses.map(([k, v], i) => (
+              <div data-reveal style={`--d:${i % 3}`}>
+                <dt class="mono">{k}</dt>
+                <dd>{v}</dd>
+              </div>
+            ))
+          }
+        </dl>
+        <a class="link-arrow ia-link" href="/soluciones/inteligencia-artificial" data-reveal>
+          Ver inteligencia artificial aplicada <Icon name="arrow" />
+        </a>
+      </div>
+
+      <figure class="chat tone-dark" data-reveal style="--d:2" aria-labelledby="chat-cap">
+        <div class="chat-bar">
+          <span class="mono">asistente · consultas</span>
+          <span class="chat-live"><i aria-hidden="true"></i> activo</span>
+        </div>
+        <ol class="chat-flow" role="list">
+          <li class="msg in">
+            <span class="who mono">Cliente</span>
+            <p>Hola, ¿hacen envíos al interior? ¿Cuánto tarda?</p>
+          </li>
+          <li class="step">
+            <span class="tag mono">detecta</span> Consulta sobre envíos
+          </li>
+          <li class="step">
+            <span class="tag mono">consulta</span> Políticas de envío del negocio
+          </li>
+          <li class="msg out">
+            <span class="who mono">Asistente</span>
+            <p>¡Hola! Sí, enviamos a todo el país. El plazo y el costo dependen de tu localidad: ¿me pasás tu código postal?</p>
+          </li>
+          <li class="step human">
+            <span class="tag mono">deriva</span> Si pide algo fuera de lo habitual, lo atiende una persona
+          </li>
+        </ol>
+        <figcaption id="chat-cap" class="chat-cap mono">Ejemplo ilustrativo</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ AUTOMATIZACIÓN E INTEGRACIONES ============ -->
+  <section class="section tone-slate auto" aria-labelledby="auto-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="kicker" data-reveal>Automatización e integraciones</p>
+        <h2 id="auto-title" class="title" data-reveal style="--d:1">Que tus herramientas trabajen en equipo.</h2>
+        <p class="lede" data-reveal style="--d:2">
+          Conectamos sistemas, planillas, tienda online y canales de comunicación para que la información fluya sola y tu equipo deje de copiar y
+          pegar.
+        </p>
+      </div>
+
+      <figure class="flow" aria-labelledby="flow-cap">
+        <div class="flow-row before" data-reveal>
+          <p class="flow-k mono">Antes</p>
+          <ol role="list">
+            <li>Llega un pedido por WhatsApp</li>
+            <li>Se copia a una planilla</li>
+            <li>Se descuenta el stock a mano</li>
+            <li>Se avisa al cliente por mensaje</li>
+          </ol>
+          <p class="flow-sum">4 pasos manuales · riesgo de error en cada uno</p>
+        </div>
+        <div class="flow-row after" data-reveal style="--d:1">
+          <p class="flow-k mono">Después</p>
+          <ol role="list">
+            <li>Llega un pedido</li>
+            <li>Se registra solo</li>
+            <li>El stock se actualiza</li>
+            <li>El cliente recibe la confirmación</li>
+          </ol>
+          <p class="flow-sum">Automático · tu equipo solo revisa lo que necesita atención</p>
+        </div>
+        <figcaption id="flow-cap" class="flow-cap mono">Ejemplo ilustrativo de un proceso de pedidos</figcaption>
+      </figure>
+
+      <ul class="benefits" role="list">
+        {
+          ['Menos errores de carga', 'Información actualizada en todos lados', 'Tiempo libre para tareas de valor', 'Procesos que no dependen de la memoria'].map(
+            (b, i) => (
+              <li data-reveal style={`--d:${i}`}>
+                <Icon name="check" /> {b}
+              </li>
+            ),
+          )
+        }
+      </ul>
+      <a class="link-arrow auto-link" href="/soluciones/automatizacion-e-integraciones" data-reveal>
+        Ver automatización e integraciones <Icon name="arrow" />
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ PARA QUIÉN ============ -->
+  <section class="section tone-light" aria-labelledby="audiencias-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="kicker" data-reveal>Para quién trabajamos</p>
+        <h2 id="audiencias-title" class="title" data-reveal style="--d:1">Para negocios que quieren crecer con orden.</h2>
+      </div>
+      <div class="aud">
+        {
+          audiences.map((a, i) => (
+            <article class:list={['aud-card', i === 0 ? 'tone-dark' : 'tone-white']} data-reveal style={`--d:${i}`}>
+              <p class="kicker">{a.label}</p>
+              <h3 class="aud-title">{a.title}</h3>
+              <ul class="checks">
+                {a.points.map((p) => (
+                  <li>{p}</li>
+                ))}
+              </ul>
+              <a class="btn aud-btn" href={`/contacto?perfil=${a.id}`}>
+                {a.cta} <Icon name="arrow" />
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MÉTODO ============ -->
+  <section id="metodo" class="section tone-dark" aria-labelledby="metodo-title">
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="wrap rel">
+      <div class="head">
+        <p class="kicker" data-reveal>Cómo trabajamos</p>
+        <h2 id="metodo-title" class="title" data-reveal style="--d:1">Un método simple, para que cada paso tenga sentido.</h2>
+      </div>
+      <ol class="steps" role="list">
+        {
+          method.map((m, i) => (
+            <li data-reveal style={`--d:${i}`}>
+              <span class="step-node" aria-hidden="true" />
+              <span class="mono step-n">Paso {String(i + 1).padStart(2, '0')}</span>
+              <h3 class="step-t">{m.title}</h3>
+              <p class="step-p">{m.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+
+      <div class="diff">
+        <h3 class="diff-h" data-reveal>Por qué Enlace</h3>
+        <ul role="list" class="diff-list">
+          {
+            differentiators.map((d, i) => (
+              <li data-reveal style={`--d:${i}`}>
+                <p class="diff-t">{d.title}</p>
+                <p class="diff-p">{d.text}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRABAJOS ============ -->
+  <section id="trabajos" class="section tone-white" aria-labelledby="trabajos-title">
+    <div class="wrap">
+      <div class="head works-head">
+        <div>
+          <p class="kicker" data-reveal>Trabajos</p>
+          <h2 id="trabajos-title" class="title" data-reveal style="--d:1">Proyectos de muestra que podés recorrer.</h2>
+        </div>
+        <p class="lede" data-reveal style="--d:2">Sitios desarrollados por nuestro equipo como demostración de lo que construimos para negocios y profesionales.</p>
+      </div>
+      <div class="works">
+        {
+          works.map((w, i) => (
+            <article class:list={['work', { 'work--lead': i === 0 }]} data-reveal style={`--d:${i}`}>
+              <a class="work-shot" href={w.url} target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                <span class="work-bar">
+                  <i />
+                  <i />
+                  <i />
+                  <span class="mono">{new URL(w.url).hostname}</span>
+                </span>
+                <Image src={w.image} alt="" widths={[480, 760, 1100]} sizes={i === 0 ? '(max-width: 860px) 100vw, 720px' : '(max-width: 860px) 100vw, 460px'} loading="lazy" />
+              </a>
+              <div class="work-body">
+                <p class="mono work-kind">{w.kind} · demo</p>
+                <h3 class="work-title">{w.title}</h3>
+                <p class="work-desc">{w.description}</p>
+                <a class="link-arrow" href={w.url} target="_blank" rel="noopener noreferrer">
+                  Visitar el sitio <Icon name="arrow-up-right" />
+                  <span class="sr-only"> {w.title} (abre en una pestaña nueva)</span>
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="preguntas" class="section tone-light" aria-labelledby="faq-title">
+    <div class="wrap split">
+      <div class="split-head">
+        <div class="sticky">
+          <p class="kicker" data-reveal>Preguntas frecuentes</p>
+          <h2 id="faq-title" class="title-sm" data-reveal style="--d:1">Lo que suelen preguntarnos antes de empezar.</h2>
+          <p class="muted faq-more" data-reveal style="--d:2">
+            ¿Tenés otra duda? <a href="/contacto">Escribinos</a> y te respondemos personalmente.
+          </p>
+        </div>
+      </div>
+      <Faq items={faq} />
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(3rem, 2rem + 5vw, 6.5rem) clamp(4rem, 3rem + 5vw, 7rem);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: auto -20% -40% 30%;
+    height: 80%;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--blue) 18%, transparent), transparent);
+    pointer-events: none;
+  }
+  .hero-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: clamp(2rem, 1rem + 3vw, 4rem);
+    align-items: center;
+  }
+  .hero-title {
+    font-size: clamp(2.5rem, 1.5rem + 3.6vw, 4.6rem);
+    margin-top: 1.4rem;
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+  }
+  .hero-title .dim {
+    color: var(--silver-2);
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2.25rem;
+  }
+  .hero-note {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--fg-3);
+  }
+  .hero-visual {
+    width: min(100%, 560px);
+    justify-self: end;
+  }
+
+  /* ---------- Split (cabecera fija + contenido) ---------- */
+  .split {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(2.5rem, 1rem + 5vw, 6rem);
+    align-items: start;
+  }
+  .sticky {
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+  }
+
+  /* ---------- Problemas ---------- */
+  .problems {
+    border-top: 1px solid var(--line-strong);
+  }
+  .problems li {
+    display: grid;
+    grid-template-columns: 2.75rem 1fr;
+    gap: 1rem;
+    padding-block: 1.6rem;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .p-n {
+    font-size: 0.8rem;
+    color: var(--fg-3);
+    padding-top: 0.35rem;
+  }
+  .p-pain {
+    font-size: var(--step-2);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+  }
+  .p-answer {
+    display: grid;
+    grid-template-columns: 1.1rem 1fr;
+    gap: 0.6rem;
+    margin-top: 0.7rem;
+    color: var(--fg-2);
+  }
+  .p-answer :global(.p-arrow) {
+    width: 1.05rem;
+    height: 1.05rem;
+    margin-top: 0.3rem;
+    color: var(--blue-strong);
+  }
+
+  /* ---------- Ecosistema ---------- */
+  .eco {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .pillar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: clamp(1.5rem, 1rem + 1.5vw, 2.1rem);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, var(--graphite-2), var(--graphite));
+    text-decoration: none;
+    transition:
+      border-color 0.3s,
+      transform 0.4s var(--ease);
+  }
+  .pillar:hover {
+    border-color: var(--line-strong);
+    transform: translateY(-3px);
+  }
+  .pillar-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+  .pillar-i {
+    font-size: 0.8rem;
+    color: var(--blue-soft);
+  }
+  .glyph {
+    width: 7.5rem;
+    height: 4rem;
+    fill: none;
+    stroke: var(--silver-2);
+    stroke-width: 1.3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .glyph .f {
+    fill: var(--silver-2);
+    stroke: none;
+  }
+  .glyph .dim {
+    opacity: 0.5;
+  }
+  .glyph .b {
+    stroke: var(--blue);
+    fill: color-mix(in srgb, var(--blue) 18%, transparent);
+  }
+  .glyph .w {
+    stroke: var(--paper);
+  }
+  .pillar-name {
+    font-size: var(--step-2);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+  .pillar-text {
+    color: var(--fg-2);
+    flex: 1;
+  }
+  .pillar .link-arrow {
+    margin-top: 0.5rem;
+  }
+  .base {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.5rem clamp(1.5rem, 1rem + 1.5vw, 2.1rem);
+    border-radius: var(--radius-lg);
+    border: 1px dashed var(--line-strong);
+  }
+  .base-k {
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--fg-3);
+  }
+  .base-name {
+    font-size: var(--step-1);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .base-text {
+    color: var(--fg-2);
+    margin-top: 0.25rem;
+  }
+
+  /* ---------- IA ---------- */
+  .ia {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: clamp(2.5rem, 1rem + 5vw, 6rem);
+    align-items: center;
+  }
+  .uses {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 2rem;
+    margin-top: 2.5rem;
+    border-top: 1px solid var(--line-strong);
+  }
+  .uses div {
+    padding-block: 1rem;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .uses dt {
+    font-size: 0.78rem;
+    color: var(--accent-text);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .uses dd {
+    margin: 0.3rem 0 0;
+    color: var(--fg-2);
+    font-size: 0.97rem;
+  }
+  .ia-link {
+    margin-top: 2rem;
+  }
+  .chat {
+    margin: 0;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    overflow: hidden;
+    box-shadow: 0 40px 80px -40px rgba(14, 18, 23, 0.55);
+  }
+  .chat-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 1.2rem;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.76rem;
+    color: var(--fg-3);
+  }
+  .chat-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    color: var(--fg-2);
+  }
+  .chat-live i {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--signal);
+  }
+  .chat-flow {
+    display: grid;
+    gap: 0.75rem;
+    padding: 1.3rem 1.2rem;
+  }
+  .msg {
+    max-width: 88%;
+    padding: 0.8rem 1rem;
+    border-radius: 14px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .msg .who {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--fg-3);
+    margin-bottom: 0.25rem;
+  }
+  .msg.in {
+    background: var(--slate);
+    border-top-left-radius: 4px;
+  }
+  .msg.out .who {
+    color: var(--fg-2);
+  }
+  .msg.out {
+    justify-self: end;
+    background: color-mix(in srgb, var(--blue) 22%, var(--graphite-2));
+    border: 1px solid color-mix(in srgb, var(--blue) 45%, transparent);
+    border-top-right-radius: 4px;
+  }
+  .step {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    padding-left: 0.9rem;
+    border-left: 1px dashed var(--line-strong);
+    font-size: 0.86rem;
+    color: var(--fg-2);
+  }
+  .tag {
+    font-size: 0.7rem;
+    padding: 0.1rem 0.45rem;
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--blue) 16%, transparent);
+    color: var(--blue-soft);
+  }
+  .step.human .tag {
+    background: color-mix(in srgb, var(--signal) 16%, transparent);
+    color: #7fe0b3;
+  }
+  .chat-cap {
+    padding: 0 1.2rem 1rem;
+    font-size: 0.72rem;
+    color: var(--fg-3);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .chat.is-visible .chat-flow > li {
+      animation: pop 0.6s var(--ease) both;
+    }
+    .chat.is-visible .chat-flow > li:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+    .chat.is-visible .chat-flow > li:nth-child(3) {
+      animation-delay: 0.9s;
+    }
+    .chat.is-visible .chat-flow > li:nth-child(4) {
+      animation-delay: 1.4s;
+    }
+    .chat.is-visible .chat-flow > li:nth-child(5) {
+      animation-delay: 2s;
+    }
+  }
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+
+  /* ---------- Automatización ---------- */
+  .flow {
+    margin-inline: 0;
+    margin-bottom: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  .flow-row {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    grid-template-areas: 'k list' '. sum';
+    gap: 0.75rem 1.5rem;
+    padding: 1.5rem clamp(1.25rem, 1rem + 1vw, 2rem);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    background: color-mix(in srgb, var(--graphite) 35%, transparent);
+  }
+  .flow-k {
+    grid-area: k;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--fg-3);
+    padding-top: 0.7rem;
+  }
+  .flow-row ol {
+    grid-area: list;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.75rem;
+    counter-reset: f;
+  }
+  .flow-row li {
+    position: relative;
+    padding: 0.75rem 0.9rem;
+    border-radius: 12px;
+    border: 1px dashed var(--line-strong);
+    font-size: 0.93rem;
+    color: var(--fg-2);
+    counter-increment: f;
+  }
+  .flow-row li::before {
+    content: counter(f, decimal-leading-zero);
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--fg-3);
+    margin-bottom: 0.2rem;
+  }
+  .flow-row li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -0.75rem;
+    width: 0.75rem;
+    border-top: 1px dashed var(--line-strong);
+  }
+  .flow-sum {
+    grid-area: sum;
+    font-size: 0.86rem;
+    color: var(--fg-3);
+  }
+  .after {
+    border-color: color-mix(in srgb, var(--blue) 40%, transparent);
+    background: color-mix(in srgb, var(--blue) 7%, var(--graphite));
+  }
+  .after .flow-k {
+    color: var(--blue-soft);
+  }
+  .after li {
+    border-style: solid;
+    border-color: color-mix(in srgb, var(--blue) 35%, transparent);
+    color: var(--fg);
+    background: var(--graphite-2);
+  }
+  .after li::before {
+    color: var(--blue-soft);
+  }
+  .after li:not(:last-child)::after {
+    border-top: 1px solid var(--blue);
+  }
+  .after .flow-sum {
+    color: var(--fg-2);
+  }
+  .flow-cap {
+    font-size: 0.72rem;
+    color: var(--fg-3);
+  }
+  .benefits {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+  .benefits li {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    font-weight: 500;
+  }
+  .benefits :global(svg) {
+    flex: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--blue-soft);
+    margin-top: 0.15rem;
+  }
+  .auto-link {
+    margin-top: 2.5rem;
+  }
+
+  /* ---------- Audiencias ---------- */
+  .aud {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .aud-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: clamp(1.75rem, 1rem + 2.5vw, 3rem);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+  }
+  .aud-title {
+    font-size: var(--step-3);
+    max-width: 20ch;
+  }
+  .aud-card .checks {
+    flex: 1;
+  }
+  .aud-btn {
+    align-self: flex-start;
+    margin-top: 0.5rem;
+  }
+
+  /* ---------- Método ---------- */
+  .rel {
+    position: relative;
+  }
+  .steps {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 0.55rem;
+    left: 0.55rem;
+    right: 0;
+    border-top: 1px solid var(--line-strong);
+  }
+  .steps li {
+    position: relative;
+  }
+  .step-node {
+    display: block;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 50%;
+    border: 1px solid var(--blue);
+    background: radial-gradient(circle, var(--blue) 0 3px, var(--graphite) 3.5px);
+    margin-bottom: 1.5rem;
+  }
+  .step-n {
+    font-size: 0.74rem;
+    color: var(--fg-3);
+  }
+  .step-t {
+    font-size: var(--step-2);
+    margin-top: 0.35rem;
+  }
+  .step-p {
+    margin-top: 0.6rem;
+    color: var(--fg-2);
+    font-size: 0.97rem;
+  }
+  .diff {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    gap: 2rem;
+    margin-top: clamp(4rem, 3rem + 4vw, 6.5rem);
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .diff-h {
+    font-size: var(--step-1);
+  }
+  .diff-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem 2rem;
+  }
+  .diff-t {
+    font-weight: 600;
+  }
+  .diff-p {
+    margin-top: 0.4rem;
+    color: var(--fg-2);
+    font-size: 0.95rem;
+  }
+
+  /* ---------- Trabajos ---------- */
+  .works-head {
+    max-width: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: end;
+  }
+  .works {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+  .work {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .work--lead {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  }
+  .work--lead .work-shot {
+    border-bottom: 0;
+    border-right: 1px solid var(--line);
+  }
+  .work--lead .work-body {
+    justify-content: center;
+    padding: clamp(1.5rem, 1rem + 2vw, 3rem);
+  }
+  .work--lead .work-title {
+    font-size: var(--step-3);
+  }
+  .work--lead .work-desc {
+    flex: 0;
+  }
+  .work-shot {
+    display: block;
+    background: var(--mist);
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+  }
+  .work-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.55rem 0.8rem;
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+  }
+  .work-bar i {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--mist);
+  }
+  .work-bar span {
+    margin-left: 0.5rem;
+    font-size: 0.7rem;
+    color: var(--fg-3);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .work-shot :global(img) {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.8s var(--ease);
+  }
+  .work:hover .work-shot :global(img) {
+    transform: scale(1.03);
+  }
+  .work-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1.4rem 1.5rem 1.6rem;
+    flex: 1;
+  }
+  .work-kind {
+    font-size: 0.74rem;
+    color: var(--fg-3);
+  }
+  .work-title {
+    font-size: var(--step-2);
+  }
+  .work-desc {
+    color: var(--fg-2);
+    font-size: 0.97rem;
+    flex: 1;
+  }
+  .work .link-arrow {
+    margin-top: 0.6rem;
+  }
+  .work:not(.work--lead) .work-shot :global(img) {
+    aspect-ratio: 16 / 8;
+  }
+
+  .faq-more {
+    margin-top: 1.25rem;
+  }
+  .faq-more a {
+    color: var(--accent-text);
+    font-weight: 550;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1080px) {
+    .steps {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      row-gap: 2.5rem;
+    }
+    .steps::before {
+      display: none;
+    }
+    .diff,
+    .base {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .diff-list {
+      grid-template-columns: 1fr 1fr;
+    }
+    .flow-row ol {
+      grid-template-columns: 1fr 1fr;
+    }
+    .flow-row li::after {
+      display: none;
+    }
+    .benefits {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 960px) {
+    .hero-grid,
+    .split,
+    .ia,
+    .aud,
+    .works-head {
+      grid-template-columns: 1fr;
+    }
+    .hero-visual {
+      justify-self: center;
+      width: min(100%, 520px);
+    }
+    .sticky {
+      position: static;
+    }
+    .eco {
+      grid-template-columns: 1fr;
+    }
+    .works {
+      grid-template-columns: 1fr;
+    }
+    .work--lead {
+      grid-column: auto;
+    }
+    .work--lead {
+      grid-template-columns: 1fr;
+    }
+    .work--lead .work-shot {
+      border-right: 0;
+      border-bottom: 1px solid var(--line);
+    }
+  }
+  @media (max-width: 640px) {
+    .uses,
+    .diff-list,
+    .benefits,
+    .steps {
+      grid-template-columns: 1fr;
+    }
+    .flow-row {
+      grid-template-columns: 1fr;
+      grid-template-areas: 'k' 'list' 'sum';
+    }
+    .flow-row ol {
+      grid-template-columns: 1fr;
+    }
+    .flow-k {
+      padding-top: 0;
+    }
+    .hero-actions .btn,
+    .aud-btn {
+      width: 100%;
+    }
+    .steps li {
+      display: grid;
+      grid-template-columns: 1.1rem 1fr;
+      column-gap: 1rem;
+    }
+    .step-node {
+      grid-row: span 3;
+      margin: 0.25rem 0 0;
+    }
+    .glyph {
+      width: 6rem;
+    }
+  }
+</style>

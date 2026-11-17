@@ -1,0 +1,302 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { team, principles, method } from '../data/site';
+const initials = (n: string) =>
+  n
+    .split(' ')
+    .map((p) => p[0])
+    .join('');
+---
+
+<Base
+  title="Nosotros"
+  description="Enlace AR es un equipo de Tucumán que combina conocimiento de negocio, desarrollo de software e inteligencia artificial para que los negocios funcionen mejor."
+>
+  <section class="hero tone-dark" aria-labelledby="nos-title">
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="wrap rel">
+      <p class="kicker">Nosotros</p>
+      <h1 id="nos-title" class="h1">Un equipo que primero escucha.</h1>
+      <p class="lede">
+        Enlace AR nació como un proyecto entre amigos que programaban sitios web. Hoy es un equipo de soluciones tecnológicas que combina
+        conocimiento de negocio, desarrollo de software e inteligencia artificial.
+      </p>
+    </div>
+  </section>
+
+  <section class="section tone-light" aria-labelledby="historia-title">
+    <div class="wrap story">
+      <div>
+        <p class="kicker" data-reveal>Nuestra mirada</p>
+        <h2 id="historia-title" class="title-sm" data-reveal style="--d:1">No vendemos tecnología por tecnología.</h2>
+      </div>
+      <div class="story-text">
+        <p data-reveal>
+          Empezamos desarrollando sitios web para profesionales y pequeños negocios. En cada proyecto aparecía la misma conversación: el sitio era
+          importante, pero los problemas de fondo estaban en otro lado. Tareas que se repetían, información dispersa, herramientas que no se
+          hablaban entre sí.
+        </p>
+        <p data-reveal style="--d:1">
+          Por eso ampliamos lo que hacemos. Hoy sumamos automatización, integración de sistemas e inteligencia artificial, siempre con el mismo
+          criterio: entender primero cómo funciona el negocio y después elegir la tecnología que lo hace avanzar.
+        </p>
+        <p class="quote" data-reveal style="--d:2">
+          Ayudamos a que los negocios funcionen mejor. La tecnología es el medio, no el fin.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tone-dark" aria-labelledby="principios-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="kicker" data-reveal>Cómo pensamos</p>
+        <h2 id="principios-title" class="title" data-reveal style="--d:1">Cuatro principios que guían cada proyecto.</h2>
+      </div>
+      <ol class="princ" role="list">
+        {
+          principles.map((p, i) => (
+            <li data-glow data-reveal style={`--d:${i}`}>
+              <span class="mono">{String(i + 1).padStart(2, '0')}</span>
+              <h3>{p.title}</h3>
+              <p>{p.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section tone-white" aria-labelledby="equipo-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="kicker" data-reveal>Equipo</p>
+        <h2 id="equipo-title" class="title" data-reveal style="--d:1">Las personas detrás de cada solución.</h2>
+        <p class="lede" data-reveal style="--d:2">Un equipo chico a propósito: hablás directamente con quienes diseñan y construyen tu solución.</p>
+      </div>
+      <div class="team">
+        {
+          team.map((m, i) => (
+            <article class="member" data-reveal style={`--d:${i}`}>
+              <span class="mono ini" aria-hidden="true">
+                {initials(m.name)}
+              </span>
+              <div>
+                <h3>{m.name}</h3>
+                <p class="role mono">{m.role}</p>
+                <p class="bio">{m.bio}</p>
+                <ul class="links" role="list">
+                  {m.links.map((l) => (
+                    <li>
+                      <a href={l.href} target="_blank" rel="noopener noreferrer">
+                        {l.label} <Icon name="arrow-up-right" />
+                        <span class="sr-only"> de {m.name} (abre en una pestaña nueva)</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section tone-light" aria-labelledby="metodo-title">
+    <div class="wrap story">
+      <div>
+        <p class="kicker" data-reveal>Cómo trabajamos</p>
+        <h2 id="metodo-title" class="title-sm" data-reveal style="--d:1">De la primera conversación a la mejora continua.</h2>
+        <a class="link-arrow more" href="/#metodo" data-reveal style="--d:2">Ver el método completo <Icon name="arrow" /></a>
+      </div>
+      <ol class="mini-steps" role="list">
+        {
+          method.map((m, i) => (
+            <li data-reveal style={`--d:${i}`}>
+              <span class="mono">{String(i + 1).padStart(2, '0')}</span>
+              <strong>{m.title}</strong>
+              <span class="ms-t">{m.text}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <CtaBand title="¿Hablamos de tu negocio?" />
+</Base>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(3.5rem, 2rem + 5vw, 7rem);
+  }
+  .rel {
+    position: relative;
+  }
+  .h1 {
+    font-size: var(--step-5);
+    margin-top: 1.2rem;
+    max-width: 14ch;
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+  }
+  .story {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(2rem, 1rem + 5vw, 6rem);
+    align-items: start;
+  }
+  .story-text {
+    display: grid;
+    gap: 1.25rem;
+    font-size: var(--step-1);
+    color: var(--fg-2);
+    line-height: 1.6;
+  }
+  .quote {
+    margin-top: 0.75rem;
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--blue);
+    color: var(--fg);
+    font-size: var(--step-2);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.25;
+  }
+  .princ {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .princ li {
+    padding: 1.6rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .princ .mono {
+    font-size: 0.78rem;
+    color: var(--blue-soft);
+  }
+  .princ h3 {
+    font-size: var(--step-1);
+    margin-top: 2.5rem;
+  }
+  .princ p {
+    margin-top: 0.5rem;
+    color: var(--fg-2);
+    font-size: 0.96rem;
+  }
+  .team {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .member {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .ini {
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 14px;
+    background: var(--graphite);
+    color: var(--paper);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    box-shadow: inset 0 -3px 0 var(--blue);
+  }
+  .member h3 {
+    font-size: var(--step-2);
+  }
+  .role {
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    color: var(--accent-text);
+  }
+  .bio {
+    margin-top: 1rem;
+    color: var(--fg-2);
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+  }
+  .links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    min-height: 2.25rem;
+    padding: 0.3rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    font-size: 0.88rem;
+    text-decoration: none;
+  }
+  .links a:hover {
+    border-color: var(--fg-3);
+  }
+  .links :global(svg) {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+  .more {
+    margin-top: 1.5rem;
+  }
+  .mini-steps {
+    border-top: 1px solid var(--line-strong);
+  }
+  .mini-steps li {
+    display: grid;
+    grid-template-columns: 2.75rem 9rem 1fr;
+    gap: 1rem;
+    align-items: baseline;
+    padding-block: 1.1rem;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .mini-steps .mono {
+    font-size: 0.78rem;
+    color: var(--fg-3);
+  }
+  .ms-t {
+    color: var(--fg-2);
+  }
+  @media (max-width: 960px) {
+    .story,
+    .team {
+      grid-template-columns: 1fr;
+    }
+    .princ {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 560px) {
+    .princ {
+      grid-template-columns: 1fr;
+    }
+    .member {
+      grid-template-columns: 1fr;
+    }
+    .mini-steps li {
+      grid-template-columns: 2.5rem 1fr;
+    }
+    .ms-t {
+      grid-column: 2;
+    }
+  }
+</style>

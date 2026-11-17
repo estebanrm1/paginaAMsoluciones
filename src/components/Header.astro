@@ -1,0 +1,340 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { solutions } from '../data/site';
+
+const path = Astro.url.pathname.replace(/\.html$/, '');
+const isSolutions = path.startsWith('/soluciones');
+---
+
+<header class="header tone-dark" data-header>
+  <div class="wrap bar">
+    <a href="/" class="brand" aria-label="Enlace AR, ir al inicio"><Logo /></a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
+      <Icon name="menu" class="i-open" /><Icon name="close" class="i-close" />
+      <span class="sr-only">Menú</span>
+    </button>
+
+    <nav id="site-nav" class="nav" aria-label="Principal" data-nav>
+      <ul class="links" role="list">
+        <li class="has-sub">
+          <button
+            class:list={['link', 'sub-toggle', { current: isSolutions }]}
+            type="button"
+            aria-expanded="false"
+            aria-controls="sub-soluciones"
+            data-sub-toggle
+          >
+            Soluciones <Icon name="chevron" class="chev" />
+          </button>
+          <div id="sub-soluciones" class="sub" data-sub>
+            <ul role="list">
+              {
+                solutions.map((s) => (
+                  <li>
+                    <a href={`/soluciones/${s.slug}`} aria-current={path === `/soluciones/${s.slug}` ? 'page' : undefined}>
+                      <span class="sub-i mono">{s.index}</span>
+                      <span>
+                        <strong>{s.name}</strong>
+                        <small>{s.summary}</small>
+                      </span>
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </li>
+        <li><a class="link" href="/#metodo">Cómo trabajamos</a></li>
+        <li><a class="link" href="/#trabajos">Trabajos</a></li>
+        <li><a class:list={['link', { current: path === '/nosotros' }]} href="/nosotros" aria-current={path === '/nosotros' ? 'page' : undefined}>Nosotros</a></li>
+      </ul>
+      <a class="btn cta" href="/contacto" aria-current={path === '/contacto' ? 'page' : undefined}>
+        Hablemos <Icon name="arrow" />
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--graphite) 82%, transparent);
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  .header.is-scrolled {
+    border-bottom-color: var(--line);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    height: var(--header-h);
+  }
+  .brand {
+    text-decoration: none;
+    border-radius: 10px;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+  }
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    min-height: 2.5rem;
+    padding: 0.4rem 0.8rem;
+    border: 0;
+    border-radius: 999px;
+    background: none;
+    color: var(--fg-2);
+    font-size: 0.94rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      color 0.2s,
+      background-color 0.2s;
+  }
+  .link:hover,
+  .link[aria-expanded='true'] {
+    color: var(--fg);
+    background: color-mix(in srgb, var(--fg) 7%, transparent);
+  }
+  .link.current {
+    color: var(--fg);
+  }
+  .chev {
+    width: 0.95rem;
+    height: 0.95rem;
+    transition: transform 0.25s var(--ease);
+  }
+  [aria-expanded='true'] > .chev {
+    transform: rotate(180deg);
+  }
+  .cta {
+    min-height: 2.6rem;
+    padding: 0.5rem 1.1rem;
+    font-size: 0.92rem;
+  }
+
+  /* Submenú de soluciones */
+  .has-sub {
+    position: relative;
+  }
+  .sub {
+    position: absolute;
+    top: calc(100% + 0.6rem);
+    left: -0.5rem;
+    width: 26rem;
+    padding: 0.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line-strong);
+    background: var(--graphite-2);
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition:
+      opacity 0.2s,
+      transform 0.25s var(--ease),
+      visibility 0s 0.25s;
+  }
+  .sub.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition:
+      opacity 0.2s,
+      transform 0.25s var(--ease);
+  }
+  .sub a {
+    display: grid;
+    grid-template-columns: 2.2rem 1fr;
+    gap: 0.75rem;
+    padding: 0.85rem 0.9rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+  .sub a:hover,
+  .sub a[aria-current='page'] {
+    background: color-mix(in srgb, var(--fg) 6%, transparent);
+  }
+  .sub-i {
+    font-size: 0.75rem;
+    color: var(--blue-soft);
+    padding-top: 0.15rem;
+  }
+  .sub strong {
+    display: block;
+    font-weight: 550;
+    font-size: 0.95rem;
+  }
+  .sub small {
+    display: block;
+    margin-top: 0.2rem;
+    color: var(--fg-3);
+    font-size: 0.84rem;
+    line-height: 1.45;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  @media (max-width: 960px) {
+    .menu-toggle {
+      display: inline-grid;
+      place-items: center;
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+      border: 1px solid var(--line-strong);
+      background: transparent;
+      cursor: pointer;
+    }
+    .menu-toggle svg {
+      width: 1.3rem;
+      height: 1.3rem;
+      grid-area: 1 / 1;
+    }
+    .menu-toggle :global(.i-close),
+    .menu-toggle[aria-expanded='true'] :global(.i-open) {
+      display: none;
+    }
+    .menu-toggle[aria-expanded='true'] :global(.i-close) {
+      display: block;
+    }
+    .nav {
+      position: fixed;
+      inset: var(--header-h) 0 0 0;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 1.5rem var(--gutter) 2rem;
+      background: var(--graphite);
+      overflow-y: auto;
+      visibility: hidden;
+      opacity: 0;
+      transition:
+        opacity 0.25s,
+        visibility 0s 0.25s;
+    }
+    .nav.is-open {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 0.25s;
+    }
+    .links {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+    .links > li {
+      border-bottom: 1px solid var(--line);
+    }
+    .link {
+      width: 100%;
+      justify-content: space-between;
+      min-height: 3.5rem;
+      padding-inline: 0;
+      font-size: 1.25rem;
+      color: var(--fg);
+      border-radius: 0;
+    }
+    .link:hover,
+    .link[aria-expanded='true'] {
+      background: none;
+    }
+    .sub {
+      position: static;
+      width: auto;
+      padding: 0 0 0.75rem;
+      border: 0;
+      background: none;
+      box-shadow: none;
+      display: none;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+    }
+    .sub.is-open {
+      display: block;
+    }
+    .sub a {
+      padding-inline: 0;
+    }
+    .cta {
+      min-height: 3.25rem;
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]')!;
+  const toggle = header.querySelector<HTMLButtonElement>('[data-menu-toggle]')!;
+  const nav = header.querySelector<HTMLElement>('[data-nav]')!;
+  const subToggle = header.querySelector<HTMLButtonElement>('[data-sub-toggle]')!;
+  const sub = header.querySelector<HTMLElement>('[data-sub]')!;
+
+  const onScroll = () => header.classList.toggle('is-scrolled', scrollY > 8);
+  onScroll();
+  addEventListener('scroll', onScroll, { passive: true });
+
+  const setMenu = (open: boolean) => {
+    toggle.setAttribute('aria-expanded', String(open));
+    nav.classList.toggle('is-open', open);
+    document.documentElement.style.overflow = open ? 'hidden' : '';
+  };
+  const setSub = (open: boolean) => {
+    subToggle.setAttribute('aria-expanded', String(open));
+    sub.classList.toggle('is-open', open);
+  };
+
+  toggle.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
+  subToggle.addEventListener('click', () => setSub(subToggle.getAttribute('aria-expanded') !== 'true'));
+
+  // Cerrar al navegar, con Escape o al hacer clic fuera
+  nav.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a')) {
+      setMenu(false);
+      setSub(false);
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if (sub.classList.contains('is-open')) {
+      setSub(false);
+      subToggle.focus();
+    } else if (nav.classList.contains('is-open')) {
+      setMenu(false);
+      toggle.focus();
+    }
+  });
+  document.addEventListener('click', (e) => {
+    if (!(e.target as HTMLElement).closest('.has-sub')) setSub(false);
+  });
+  // En escritorio, el submenú se cierra al salir el foco del grupo
+  header.querySelector('.has-sub')!.addEventListener('focusout', (e) => {
+    const next = (e as FocusEvent).relatedTarget as Node | null;
+    if (next && !header.querySelector('.has-sub')!.contains(next) && matchMedia('(min-width: 961px)').matches) setSub(false);
+  });
+  matchMedia('(min-width: 961px)').addEventListener('change', () => setMenu(false));
+</script>
