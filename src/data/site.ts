@@ -10,7 +10,7 @@ export const site = {
   short: 'Enlace',
   /** Dominio sugerido (libre según DNS al 17/11/2026; registrar en NIC Argentina). */
   futureDomain: 'enlace.ar',
-  url: 'https://am-soluciones-web.netlify.app',
+  url: 'https://enlace-ar.netlify.app',
   tagline: 'Tecnología con propósito',
   description:
     'Desarrollo web, inteligencia artificial y automatización para empresas, pymes y profesionales. Primero entendemos tu negocio; después elegimos la tecnología.',

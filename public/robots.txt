@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://am-soluciones-web.netlify.app/sitemap-index.xml
+Sitemap: https://enlace-ar.netlify.app/sitemap-index.xml

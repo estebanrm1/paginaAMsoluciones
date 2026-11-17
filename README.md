@@ -5,7 +5,7 @@ Desarrollo web, inteligencia artificial y automatización e integraciones.
 Concepto: **Tecnología con propósito**.
 
 - **Identidad:** logo oficial en `src/assets/brand/source/enlace-ar-logo.png`. Colores: azul marino `#01102A` y degradé `#0092FC` → `#0043FD`.
-- **Producción actual:** https://am-soluciones-web.netlify.app
+- **Producción actual:** https://enlace-ar.netlify.app (antes am-soluciones-web.netlify.app)
 - **Dominio sugerido:** `enlace.ar` (libre según DNS al 17/11/2026, sin registrar todavía)
 
 ## Stack
