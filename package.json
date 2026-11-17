@@ -9,6 +9,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "assets:shots": "node scripts/shots.mjs",
+    "assets:brand": "node scripts/brand.mjs",
     "assets:og": "node scripts/og.mjs",
     "qa": "node scripts/qa.mjs"
   },

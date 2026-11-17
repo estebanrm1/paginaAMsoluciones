@@ -42,6 +42,10 @@
   to = "/nosotros"
   status = 301
 [[redirects]]
+  from = "/favicon.ico"
+  to = "/favicon-48.png"
+  status = 200
+[[redirects]]
   from = "/A.M.jpg"
   to = "/og.png"
   status = 301

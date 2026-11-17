@@ -9,7 +9,7 @@ const isSolutions = path.startsWith('/soluciones');
 
 <header class="header tone-dark" data-header>
   <div class="wrap bar">
-    <a href="/" class="brand" aria-label="Enlace AR, ir al inicio"><Logo /></a>
+    <a href="/" class="brand" aria-label="Enlace AR, ir al inicio"><Logo height={30} alt="" eager /></a>
 
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
       <Icon name="menu" class="i-open" /><Icon name="close" class="i-close" />
@@ -79,8 +79,18 @@ const isSolutions = path.startsWith('/soluciones');
     height: var(--header-h);
   }
   .brand {
+    display: block;
+    flex: none;
     text-decoration: none;
-    border-radius: 10px;
+    border-radius: 6px;
+  }
+  .brand :global(img) {
+    height: 30px;
+  }
+  @media (max-width: 400px) {
+    .brand :global(img) {
+      height: 25px;
+    }
   }
   .nav {
     display: flex;

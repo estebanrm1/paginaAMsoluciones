@@ -4,6 +4,7 @@ Sitio de **Enlace AR** (antes *A.M Soluciones Web*): soluciones tecnológicas pa
 Desarrollo web, inteligencia artificial y automatización e integraciones.
 Concepto: **Tecnología con propósito**.
 
+- **Identidad:** logo oficial en `src/assets/brand/source/enlace-ar-logo.png`. Colores: azul marino `#01102A` y degradé `#0092FC` → `#0043FD`.
 - **Producción actual:** https://am-soluciones-web.netlify.app
 - **Dominio sugerido:** `enlace.ar` (libre según DNS al 17/11/2026, sin registrar todavía)
 
@@ -21,6 +22,7 @@ Concepto: **Tecnología con propósito**.
 
 ```
 src/
+  assets/brand/         ← logo oficial (source/) y piezas derivadas: color e invertida, lockup y símbolo
   data/site.ts          ← TODO el contenido: copy, soluciones, FAQ, equipo, contacto
   styles/global.css     ← design system: tokens, tonos de sección, botones, utilidades
   layouts/Base.astro    ← <head> con SEO, Open Graph, JSON-LD; header, footer y scripts globales
@@ -31,7 +33,8 @@ src/
     nosotros.astro · contacto.astro · gracias.astro · 404.astro
 scripts/
   qa.mjs     ← QA end-to-end (rutas × 4 anchos, axe, formulario, navegación, anclas, enlaces, SEO)
-  og.mjs     ← genera public/og.png y public/apple-touch-icon.png
+  brand.mjs  ← genera las piezas de marca y los iconos (favicon, apple-touch-icon, logo.png) desde el logo oficial
+  og.mjs     ← genera public/og.png
   shots.mjs  ← vuelve a capturar los proyectos de muestra
 ```
 
@@ -44,6 +47,7 @@ npm install
 npm run dev          # desarrollo en http://localhost:4321
 npm run build        # build de producción en dist/
 npm run qa           # QA completa sobre el build (requiere Chrome instalado)
+npm run assets:brand # regenerar logo color/invertido e iconos (si cambia el logo oficial)
 npm run assets:og    # regenerar la imagen social
 npm run assets:shots # regenerar las capturas de los proyectos de muestra
 ```

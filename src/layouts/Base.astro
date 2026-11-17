@@ -24,7 +24,7 @@ const org = {
   slogan: site.tagline,
   description: site.description,
   url: site.url,
-  logo: `${site.url}/favicon.svg`,
+  logo: `${site.url}/logo.png`,
   image: og,
   telephone: site.phoneE164,
   address: { '@type': 'PostalAddress', addressRegion: 'Tucumán', addressCountry: 'AR' },
@@ -45,8 +45,10 @@ const ld = { '@context': 'https://schema.org', '@graph': [org, { '@type': 'WebSi
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex, follow" />}
-    <meta name="theme-color" content="#0e1217" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#0a0f19" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48" />
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 

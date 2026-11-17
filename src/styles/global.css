@@ -9,21 +9,25 @@
 
 :root {
   /* Paleta base */
-  --graphite: #0e1217;
-  --graphite-2: #141a21;
-  --slate: #222a35;
-  --slate-2: #2b3441;
+  /* Oscuros con la inclinación del azul marino del logo (#01102A) */
+  --graphite: #0a0f19;
+  --graphite-2: #0f1624;
+  --slate: #1b2433;
+  --slate-2: #253044;
   --paper: #f5f6f7;
   --white: #ffffff;
   --mist: #e6e9ee;
-  --ink: #11151b;
+  --ink: #0b1322;
   --ink-2: #444d59;
   --ink-3: #5c6673;
   --silver: #aab5c5;
   --silver-2: #8c98a9;
-  --blue: #477ff5; /* acento de marca: líneas, nodos, detalles */
-  --blue-strong: #2f62db; /* botones y texto azul sobre fondo claro (AA) */
-  --blue-soft: #8db0ff; /* texto azul sobre fondo oscuro (AA) */
+  /* Azules de la marca Enlace AR (degradé del logo: #0092FC → #0043FD) */
+  --blue: #1f6bff; /* acento: líneas, nodos, detalles */
+  --blue-strong: #0043fd; /* botones y texto azul sobre fondo claro (AA: 6:1) */
+  --blue-soft: #7aa9ff; /* texto azul sobre fondo oscuro (AA) */
+  --cyan: #0092fc;
+  --brand-gradient: linear-gradient(120deg, var(--cyan), var(--blue-strong));
   --signal: #3ecf8e;
 
   /* Tipografía */
@@ -302,7 +306,7 @@ main > section:not(:first-child),
   transition: transform 0.3s var(--ease);
 }
 .btn:hover {
-  --_bg: #2655c4;
+  --_bg: #0036d1;
   box-shadow: 0 10px 30px -12px color-mix(in srgb, var(--blue) 70%, transparent);
 }
 .btn:hover svg.i-arrow {

@@ -351,7 +351,7 @@ try {
       ? ok(`${waLinks.length} enlaces de WhatsApp con mensaje prellenado`)
       : fail('enlaces de WhatsApp inválidos');
 
-    for (const path of ['/robots.txt', '/sitemap-index.xml', '/sitemap-0.xml', '/og.png', '/favicon.svg', '/apple-touch-icon.png', '/no-existe']) {
+    for (const path of ['/robots.txt', '/sitemap-index.xml', '/sitemap-0.xml', '/og.png', '/favicon-32.png', '/favicon-48.png', '/icon-192.png', '/logo.png', '/apple-touch-icon.png', '/no-existe']) {
       const r = await fetch(BASE + path);
       const expected = path === '/no-existe' ? 404 : 200;
       r.status === expected ? ok(`${r.status} ${path}`) : fail(`${r.status} ${path} (esperado ${expected})`);
