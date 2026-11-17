@@ -2,8 +2,9 @@
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
 import { solutions } from '../data/site';
+import { cleanPath } from '../lib/path';
 
-const path = Astro.url.pathname.replace(/\.html$/, '');
+const path = cleanPath(Astro.url.pathname);
 const isSolutions = path.startsWith('/soluciones');
 ---
 

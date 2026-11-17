@@ -315,6 +315,7 @@ try {
       if (descs.has(seo.desc)) issues.push('description duplicada');
       if (!seo.robots.includes('noindex') && (seo.desc.length < 70 || seo.desc.length > 170)) issues.push(`description ${seo.desc.length} car.`);
       if (!seo.canonical) issues.push('sin canonical');
+      else if (route !== '/404' && new URL(seo.canonical).pathname !== route) issues.push(`canonical ${new URL(seo.canonical).pathname} ≠ ${route}`);
       if (seo.h1 !== 1) issues.push(`${seo.h1} h1`);
       if (skips) issues.push(`saltos de encabezado ${seo.headings.join('')}`);
       if (!seo.ld?.includes('ProfessionalService')) issues.push('sin JSON-LD de la organización');
