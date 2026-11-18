@@ -372,6 +372,7 @@ export const team: TeamMember[] = [
     links: [
       { label: 'LinkedIn', href: 'https://www.linkedin.com/in/gabriel-aron-arias/' },
       { label: 'GitHub', href: 'https://github.com/Aron9377' },
+      { label: 'Portfolio', href: 'https://gabrielaronarias.com/' },
     ],
   },
 ];
