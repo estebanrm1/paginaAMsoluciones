@@ -32,6 +32,7 @@ const year = new Date().getFullYear();
           <p class="col-h">Contacto</p>
           <ul role="list">
             <li><a href="/contacto">Formulario de contacto</a></li>
+            <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
             <li>
               <a href={waLink()} target="_blank" rel="noopener noreferrer">
                 WhatsApp<span class="sr-only"> (abre en una pestaña nueva)</span>
@@ -42,18 +43,22 @@ const year = new Date().getFullYear();
                 Instagram<span class="sr-only"> (abre en una pestaña nueva)</span>
               </a>
             </li>
-            <li>
-              <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
-                LinkedIn<span class="sr-only"> (abre en una pestaña nueva)</span>
-              </a>
-            </li>
+            {
+              site.linkedin && (
+                <li>
+                  <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
+                    LinkedIn<span class="sr-only"> (abre en una pestaña nueva)</span>
+                  </a>
+                </li>
+              )
+            }
           </ul>
         </div>
       </nav>
     </div>
 
     <div class="bottom">
-      <p>© {year} {site.name} · {site.location}</p>
+      <p>© {year} {site.name} · {site.location} · <a class="legal" href="/privacidad">Política de privacidad</a></p>
       <a class="up" href="#top">Volver arriba <Icon name="arrow" /></a>
     </div>
   </div>
@@ -114,6 +119,12 @@ const year = new Date().getFullYear();
     border-top: 1px solid var(--line);
     font-size: 0.86rem;
     color: var(--fg-3);
+  }
+  .legal {
+    color: var(--fg-2);
+  }
+  .legal:hover {
+    color: var(--fg);
   }
   .up {
     display: inline-flex;

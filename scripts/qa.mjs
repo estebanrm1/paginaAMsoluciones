@@ -13,7 +13,7 @@ const BASE = `http://localhost:${PORT}`;
 const OUT = 'qa-output';
 mkdirSync(OUT, { recursive: true });
 
-const ROUTES = ['/', '/soluciones/desarrollo-web', '/soluciones/inteligencia-artificial', '/soluciones/automatizacion-e-integraciones', '/nosotros', '/contacto', '/gracias', '/404'];
+const ROUTES = ['/', '/soluciones/desarrollo-web', '/soluciones/inteligencia-artificial', '/soluciones/automatizacion-e-integraciones', '/nosotros', '/contacto', '/privacidad', '/gracias', '/404'];
 const VIEWPORTS = [
   { name: 'desktop', width: 1440, height: 900 },
   { name: 'laptop', width: 1280, height: 760 },
@@ -328,7 +328,7 @@ try {
 
     for (const href of all) {
       const u = new URL(href);
-      if (u.hostname === 'wa.me') continue;
+      if (u.hostname === 'wa.me' || u.protocol === 'mailto:') continue;
       if (u.origin === BASE) {
         const r = await fetch(u.origin + u.pathname);
         if (r.status !== 200) fail(`enlace interno roto ${u.pathname} (${r.status})`);
@@ -351,6 +351,25 @@ try {
     waLinks.every((l) => new URL(l).pathname === '/543813198483' && new URL(l).searchParams.get('text'))
       ? ok(`${waLinks.length} enlaces de WhatsApp con mensaje prellenado`)
       : fail('enlaces de WhatsApp inválidos');
+
+    // Marca: sin cuentas viejas, email visible, LinkedIn oculto si no hay URL, privacidad enlazada
+    const old = [...all].filter((l) => /amsoluciones|am-soluciones/i.test(l));
+    old.length ? fail(`enlaces a cuentas viejas: ${old.join(', ')}`) : ok('sin enlaces a las cuentas de AM Soluciones');
+    [...all].some((l) => l.includes('linkedin.com/company')) ? fail('LinkedIn de empresa visible sin URL nueva') : ok('LinkedIn de empresa oculto hasta tener la URL nueva');
+    [...all].some((l) => l.includes('instagram.com/enlaceartuc')) ? ok('Instagram apunta a @enlaceartuc') : fail('falta Instagram @enlaceartuc');
+    {
+      const p3 = await ctx.newPage();
+      await p3.goto(BASE + '/contacto', { waitUntil: 'networkidle' });
+      const m = await p3.evaluate(() => ({
+        aside: !!document.querySelector('.aside a[href="mailto:enlaceartuc@gmail.com"]'),
+        footer: !!document.querySelector('footer a[href="mailto:enlaceartuc@gmail.com"]'),
+        priv: !!document.querySelector('.privacy a[href="/privacidad"]'),
+        footPriv: !!document.querySelector('footer a[href="/privacidad"]'),
+      }));
+      m.aside && m.footer ? ok('email enlaceartuc@gmail.com en /contacto y en el pie (mailto)') : fail(`email visible: ${JSON.stringify(m)}`);
+      m.priv && m.footPriv ? ok('política de privacidad enlazada desde el formulario y el pie') : fail(`privacidad enlazada: ${JSON.stringify(m)}`);
+      await p3.close();
+    }
 
     for (const path of ['/robots.txt', '/sitemap-index.xml', '/sitemap-0.xml', '/og.png', '/favicon-32.png', '/favicon-48.png', '/icon-192.png', '/logo.png', '/apple-touch-icon.png', '/no-existe']) {
       const r = await fetch(BASE + path);

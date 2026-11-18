@@ -1,0 +1,125 @@
+---
+// Política de privacidad (borrador sobre la Ley 25.326). Conviene que la revise un abogado.
+import Base from '../layouts/Base.astro';
+import { site, waLink } from '../data/site';
+
+const updated = '18 de noviembre de 2026';
+const holders = 'Esteban Molina y Gabriel Aron Arias';
+---
+
+<Base
+  title="Política de privacidad"
+  description="Qué datos recolecta Enlace AR, para qué los usa y cómo ejercer tus derechos de acceso, rectificación y supresión según la Ley 25.326."
+>
+  <section class="hero tone-dark" aria-labelledby="priv-title">
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="wrap rel">
+      <p class="kicker">Legal</p>
+      <h1 id="priv-title" class="h1">Política de privacidad</h1>
+      <p class="lede">Última actualización: {updated}</p>
+    </div>
+  </section>
+
+  <section class="section tone-light" aria-label="Texto de la política">
+    <div class="wrap">
+      <div class="prose">
+        <p>
+          En {site.name} ({holders}, {site.location}) cuidamos los datos que nos compartís. Esta política explica qué datos recolectamos, para qué
+          los usamos y cuáles son tus derechos.
+        </p>
+
+        <h2>Qué datos recolectamos</h2>
+        <p>
+          Cuando completás el formulario de contacto: nombre y apellido, email, teléfono o WhatsApp (opcional), empresa o proyecto (opcional), el
+          perfil de la consulta y lo que nos contás de tu situación. Si nos escribís por WhatsApp, email o redes, los datos que nos envíes por ese
+          medio. Si el sitio usa analítica: datos de navegación anónimos o agregados (páginas visitadas, origen de la visita, dispositivo).
+        </p>
+
+        <h2>Para qué los usamos</h2>
+        <p>
+          Solo para responder tu consulta, coordinar una conversación y, si lo pedís, enviarte una propuesta. No vendemos ni cedemos tus datos a
+          terceros. Solo los compartimos con los proveedores que necesitamos para operar (por ejemplo, el servicio de hosting y de formularios), y
+          únicamente para ese fin.
+        </p>
+
+        <h2>Cuánto tiempo los guardamos</h2>
+        <p>
+          Mientras dure la conversación comercial o la relación de trabajo, y luego el tiempo necesario para cumplir obligaciones legales. Podés
+          pedirnos que los borremos antes.
+        </p>
+
+        <h2>Tus derechos</h2>
+        <p>
+          Podés acceder a tus datos, rectificarlos, actualizarlos o pedir que los eliminemos escribiendo a
+          <a href={`mailto:${site.email}`}>{site.email}</a>. Respondemos dentro de los plazos de la Ley 25.326: 10 días corridos para el acceso y 5
+          días hábiles para la rectificación o supresión.
+        </p>
+        <p class="aaip">
+          La AGENCIA DE ACCESO A LA INFORMACIÓN PÚBLICA, en su carácter de Órgano de Control de la Ley N° 25.326, tiene la atribución de atender las
+          denuncias y reclamos que interpongan quienes resulten afectados en sus derechos por incumplimiento de las normas vigentes en materia de
+          protección de datos personales.
+        </p>
+
+        <h2>Datos en proyectos con IA</h2>
+        <p>
+          Cuando trabajamos con información de clientes en soluciones de inteligencia artificial, la tratamos según lo acordado en cada proyecto,
+          con supervisión humana y sin usarla para fines distintos de los pactados.
+        </p>
+
+        <h2>Cambios</h2>
+        <p>Si modificamos esta política, publicamos la versión actualizada en esta página.</p>
+
+        <h2>Contacto</h2>
+        <p>
+          <a href={`mailto:${site.email}`}>{site.email}</a> · WhatsApp
+          <a href={waLink()} target="_blank" rel="noopener noreferrer">{site.phoneDisplay}<span class="sr-only"> (abre en una pestaña nueva)</span></a>
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(3rem, 2rem + 4vw, 5.5rem);
+  }
+  .rel {
+    position: relative;
+  }
+  .h1 {
+    font-size: var(--step-5);
+    margin-top: 1.2rem;
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+  }
+  .prose {
+    max-width: 44rem;
+    color: var(--fg-2);
+    font-size: 1.04rem;
+    line-height: 1.7;
+  }
+  .prose h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 0.6rem;
+    font-size: var(--step-1);
+    letter-spacing: -0.02em;
+    color: var(--fg);
+  }
+  .prose p + p {
+    margin-top: 1rem;
+  }
+  .prose a {
+    color: var(--accent-text);
+    font-weight: 550;
+    overflow-wrap: anywhere;
+  }
+  .aaip {
+    padding: 1rem 1.2rem;
+    border-left: 2px solid var(--blue);
+    background: var(--surface);
+    border-radius: 0 12px 12px 0;
+    font-size: 0.95rem;
+  }
+</style>

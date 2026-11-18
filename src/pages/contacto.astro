@@ -112,7 +112,7 @@ import { site, needs, waLink } from '../data/site';
               <span data-submit-label>Enviar consulta</span>
               <Icon name="arrow" />
             </button>
-            <p class="privacy">Usamos tus datos solo para responder esta consulta.</p>
+            <p class="privacy">Usamos tus datos solo para responder esta consulta. <a href="/privacidad">Política de privacidad</a></p>
           </div>
         </form>
 
@@ -149,19 +149,29 @@ import { site, needs, waLink } from '../data/site';
 
         <ul class="ch" role="list">
           <li>
+            <a href={`mailto:${site.email}`}>
+              <Icon name="mail" />
+              <span><strong>Email</strong><small>{site.email}</small></span>
+            </a>
+          </li>
+          <li>
             <a href={site.instagram} target="_blank" rel="noopener noreferrer">
               <Icon name="instagram" />
               <span><strong>Instagram</strong><small>{site.instagramHandle || 'Novedades y contacto directo'}</small></span>
               <span class="sr-only"> (abre en una pestaña nueva)</span>
             </a>
           </li>
-          <li>
-            <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
-              <Icon name="linkedin" />
-              <span><strong>LinkedIn</strong><small>Página de la empresa</small></span>
-              <span class="sr-only"> (abre en una pestaña nueva)</span>
-            </a>
-          </li>
+          {
+            site.linkedin && (
+              <li>
+                <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
+                  <Icon name="linkedin" />
+                  <span><strong>LinkedIn</strong><small>Página de la empresa</small></span>
+                  <span class="sr-only"> (abre en una pestaña nueva)</span>
+                </a>
+              </li>
+            )
+          }
         </ul>
 
         <div class="next">
@@ -396,6 +406,10 @@ import { site, needs, waLink } from '../data/site';
   .privacy {
     color: var(--fg-3);
     font-size: 0.86rem;
+  }
+  .privacy a {
+    color: var(--accent-text);
+    font-weight: 550;
   }
   [data-submit][aria-busy='true'] {
     opacity: 0.7;

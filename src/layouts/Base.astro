@@ -29,9 +29,13 @@ const org = {
   logo: `${site.url}/logo.png`,
   image: og,
   telephone: site.phoneE164,
+  email: site.email,
   address: { '@type': 'PostalAddress', addressRegion: 'Tucumán', addressCountry: 'AR' },
-  areaServed: { '@type': 'Country', name: 'Argentina' },
-  sameAs: [site.instagram, site.linkedin],
+  areaServed: [
+    { '@type': 'AdministrativeArea', name: 'Tucumán, Argentina' },
+    { '@type': 'Country', name: 'Argentina' },
+  ],
+  sameAs: [site.instagram, site.linkedin].filter(Boolean),
   founder: team.map((m) => ({ '@type': 'Person', name: m.name, jobTitle: m.role })),
   knowsAbout: ['Desarrollo web', 'Inteligencia artificial', 'Automatización de procesos', 'Integración de sistemas', 'Consultoría tecnológica'],
 };

@@ -15,11 +15,11 @@ export const site = {
   whatsapp: 'https://wa.me/543813198483',
   phoneDisplay: '+54 381 319-8483',
   phoneE164: '+543813198483',
-  // Cuentas sociales: cuando se renombren a Enlace AR, actualizar URL y usuario acá.
-  // Mientras instagramHandle esté vacío, la web muestra un texto genérico en lugar del usuario.
-  instagram: 'https://www.instagram.com/amsolucionesweb/',
-  instagramHandle: '',
-  linkedin: 'https://www.linkedin.com/company/am-soluciones-w',
+  email: 'enlaceartuc@gmail.com',
+  instagram: 'https://www.instagram.com/enlaceartuc/',
+  instagramHandle: '@enlaceartuc',
+  /** URL de la página de LinkedIn de Enlace AR. Vacío = no se muestra en ningún lado. */
+  linkedin: '',
   whatsappMessage: 'Hola Enlace, quiero contarles qué necesito mejorar en mi negocio.',
 };
 
