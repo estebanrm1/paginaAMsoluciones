@@ -6,7 +6,8 @@ export const site = {
   short: 'Enlace',
   /** Dominio sugerido (libre según DNS al 17/11/2026; registrar en NIC Argentina). */
   futureDomain: 'enlace.ar',
-  url: 'https://enlace-ar.netlify.app',
+  /** URL pública: se define en un solo lugar, `site` de astro.config.mjs. */
+  url: (import.meta.env.SITE as string).replace(/\/$/, ''),
   tagline: 'Tecnología con propósito',
   description:
     'Desarrollo web, inteligencia artificial y automatización para empresas, pymes y profesionales. Primero entendemos tu negocio; después elegimos la tecnología.',

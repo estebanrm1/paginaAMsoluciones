@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://enlace-ar.netlify.app/sitemap-index.xml

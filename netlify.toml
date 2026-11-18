@@ -50,3 +50,17 @@
   from = "/A.M.jpg"
   to = "/og.png"
   status = 301
+
+# Nombre convencional del sitemap → índice generado por Astro
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/sitemap-index.xml"
+  status = 200
+
+# Al conectar el dominio propio, descomentar (y reemplazar enlace.ar si corresponde) para
+# redirigir con 301 todo el tráfico del subdominio de Netlify al dominio nuevo:
+# [[redirects]]
+#   from = "https://enlace-ar.netlify.app/*"
+#   to = "https://enlace.ar/:splat"
+#   status = 301
+#   force = true
