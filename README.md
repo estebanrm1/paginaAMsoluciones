@@ -4,7 +4,7 @@ Sitio de **Enlace AR**: soluciones tecnológicas para negocios.
 Desarrollo web, inteligencia artificial y automatización e integraciones.
 Concepto: **Tecnología con propósito**.
 
-- **Identidad:** logo oficial en `src/assets/brand/source/enlace-ar-logo.png`. Colores: azul marino `#01102A` y degradé `#0092FC` → `#0043FD`.
+- **Identidad:** logo vectorial oficial en `src/assets/brand/source/vector/` (del paquete `Enlace-Ar-logo-vector.zip`). Colores: azul marino `#01102A` y degradé `#0092FC` → `#0043FD`.
 - **Producción actual:** https://enlace-ar.netlify.app
 - **Dominio sugerido:** `enlace.ar` (libre según DNS al 17/11/2026, sin registrar todavía)
 
@@ -22,7 +22,7 @@ Concepto: **Tecnología con propósito**.
 
 ```
 src/
-  assets/brand/         ← logo oficial (source/) y piezas derivadas: color e invertida, lockup y símbolo
+  assets/brand/         ← SVG oficiales (source/vector) y versiones recortadas que usa el sitio (horizontal color y negativo, isotipo)
   data/site.ts          ← TODO el contenido: copy, soluciones, FAQ, equipo, contacto
   styles/global.css     ← design system: tokens, tonos de sección, botones, utilidades
   layouts/Base.astro    ← <head> con SEO, Open Graph, JSON-LD; header, footer y scripts globales
@@ -33,7 +33,7 @@ src/
     nosotros.astro · contacto.astro · gracias.astro · 404.astro
 scripts/
   qa.mjs     ← QA end-to-end (rutas × 4 anchos, axe, formulario, navegación, anclas, enlaces, SEO)
-  brand.mjs  ← genera las piezas de marca y los iconos (favicon, apple-touch-icon, logo.png) desde el logo oficial
+  brand.mjs  ← recorta los SVG oficiales y genera los iconos (favicon 32/48, icon 192, apple-touch 180, logo.png 512) desde el isotipo
   og.mjs     ← genera public/og.png
 ```
 
@@ -46,7 +46,7 @@ npm install
 npm run dev          # desarrollo en http://localhost:4321
 npm run build        # build de producción en dist/
 npm run qa           # QA completa sobre el build (requiere Chrome instalado)
-npm run assets:brand # regenerar logo color/invertido e iconos (si cambia el logo oficial)
+npm run assets:brand # regenerar logos SVG recortados e iconos (si cambia el paquete vectorial)
 npm run assets:og    # regenerar la imagen social
 ```
 

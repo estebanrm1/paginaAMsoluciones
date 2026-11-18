@@ -7,7 +7,7 @@ import { chromePath } from './chrome.mjs';
 const font = (p) => 'data:font/woff2;base64,' + readFileSync(p).toString('base64');
 const sans = font('node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2');
 const mono = font('node_modules/@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2');
-const lockup = 'data:image/png;base64,' + readFileSync('src/assets/brand/lockup-reversed.png').toString('base64');
+const lockup = 'data:image/svg+xml;base64,' + readFileSync('src/assets/brand/logo-horizontal-negativo.svg').toString('base64');
 
 const browser = await chromium.launch({ executablePath: chromePath });
 try {
