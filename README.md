@@ -1,11 +1,11 @@
 # Enlace AR · Sitio web
 
-Sitio de **Enlace AR** (antes *A.M Soluciones Web*): soluciones tecnológicas para negocios.
+Sitio de **Enlace AR**: soluciones tecnológicas para negocios.
 Desarrollo web, inteligencia artificial y automatización e integraciones.
 Concepto: **Tecnología con propósito**.
 
 - **Identidad:** logo oficial en `src/assets/brand/source/enlace-ar-logo.png`. Colores: azul marino `#01102A` y degradé `#0092FC` → `#0043FD`.
-- **Producción actual:** https://enlace-ar.netlify.app (antes am-soluciones-web.netlify.app)
+- **Producción actual:** https://enlace-ar.netlify.app
 - **Dominio sugerido:** `enlace.ar` (libre según DNS al 17/11/2026, sin registrar todavía)
 
 ## Stack
@@ -86,10 +86,10 @@ El plan gratuito de Netlify incluye 100 envíos por mes.
 
 ## Pendientes del negocio (no técnicos)
 
-- **Registrar el dominio `enlace.ar`** en NIC Argentina y **verificar la marca en INPI** antes de invertir en ella. Ya existe "AM Soluciones Web" en Santa Fe, con el mismo rubro.
-- **Renombrar las cuentas de Instagram (`@amsolucionesweb`) y de LinkedIn** para alinearlas con la nueva marca, y actualizar los enlaces en `site.ts`.
+- **Registrar el dominio `enlace.ar`** en NIC Argentina y **verificar la marca en INPI**.
+- **Renombrar las cuentas de Instagram y LinkedIn** a Enlace AR y actualizar `instagram`, `instagramHandle` y `linkedin` en `src/data/site.ts`.
 - **Si conectan el dominio propio,** actualizar `site` en `astro.config.mjs`, `site.url` en `src/data/site.ts` y `public/robots.txt`.
 
 ## Historial
 
-El sitio anterior (React + Bootstrap) quedó preservado en la rama `esteban` y en el tag `legacy-react-2024`.
+El sitio anterior a la marca Enlace AR (React + Bootstrap) quedó preservado en la rama `esteban` y en el tag `legacy-react-2024`. Las URLs de ese sitio redirigen a las nuevas (ver `netlify.toml`).
