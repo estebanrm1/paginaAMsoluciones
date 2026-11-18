@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { site, team } from '../data/site';
+import { site, team, analytics } from '../data/site';
 import { cleanPath } from '../lib/path';
 
 interface Props {
@@ -83,7 +83,26 @@ const ld = { '@context': 'https://schema.org', '@graph': [org, { '@type': 'WebSi
     </main>
     <Footer />
 
+    {
+      analytics.ga4Id && (
+        <div class="consent tone-dark" data-consent role="region" aria-label="Aviso de cookies" hidden>
+          <p>
+            Usamos cookies de analítica para entender qué contenido es útil. <a href="/privacidad">Política de privacidad</a>
+          </p>
+          <div class="consent-actions">
+            <button class="btn btn--ghost" type="button" data-consent-choice="denied">Rechazar</button>
+            <button class="btn" type="button" data-consent-choice="granted">Aceptar</button>
+          </div>
+        </div>
+      )
+    }
+    <span hidden data-analytics data-ga4={analytics.ga4Id} data-plausible={analytics.plausibleDomain}></span>
+
     <script>
+      import { initAnalytics } from '../scripts/analytics';
+      const cfg = document.querySelector<HTMLElement>('[data-analytics]')!.dataset;
+      initAnalytics({ ga4Id: cfg.ga4 || '', plausibleDomain: cfg.plausible || '' });
+
       // Navegación a anclas compatible con content-visibility: renderiza todo y recién ahí desplaza.
       const root = document.documentElement;
       const targetOf = (hash: string) => (hash.length > 1 ? document.getElementById(decodeURIComponent(hash.slice(1))) : null);
@@ -148,5 +167,33 @@ const ld = { '@context': 'https://schema.org', '@graph': [org, { '@type': 'WebSi
 <style>
   main:focus {
     outline: none;
+  }
+  .consent {
+    position: fixed;
+    inset: auto 1rem 1rem 1rem;
+    z-index: 60;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 1.5rem;
+    max-width: 46rem;
+    margin-inline: auto;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line-strong);
+    box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.6);
+    font-size: 0.92rem;
+  }
+  .consent a {
+    color: var(--accent-text);
+  }
+  .consent-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .consent .btn {
+    min-height: 2.6rem;
+    padding: 0.45rem 1rem;
   }
 </style>

@@ -34,6 +34,12 @@ import { site, needs, waLink } from '../data/site';
           aria-describedby="form-req"
         >
           <input type="hidden" name="form-name" value="contacto" />
+          <!-- Origen de la visita (UTM), completado por JS: queda guardado con cada consulta en Netlify -->
+          <input type="hidden" name="utm_source" data-utm="utm_source" />
+          <input type="hidden" name="utm_medium" data-utm="utm_medium" />
+          <input type="hidden" name="utm_campaign" data-utm="utm_campaign" />
+          <input type="hidden" name="utm_term" data-utm="utm_term" />
+          <input type="hidden" name="utm_content" data-utm="utm_content" />
           <p class="hp" aria-hidden="true">
             <label>No completar este campo <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
           </p>
@@ -561,6 +567,7 @@ import { site, needs, waLink } from '../data/site';
 
 <script>
   import { needs, site } from '../data/site';
+  import { track, getUtm } from '../scripts/analytics';
   const WA = site.whatsapp;
 
   const form = document.querySelector<HTMLFormElement>('[data-form]')!;
@@ -570,6 +577,10 @@ import { site, needs, waLink } from '../data/site';
   const okBox = document.querySelector<HTMLElement>('[data-result-ok]')!;
   const failBox = document.querySelector<HTMLElement>('[data-result-fail]')!;
   const waFallback = failBox.querySelector<HTMLAnchorElement>('[data-wa-fallback]')!;
+
+  // UTM de la visita (guardadas al llegar desde redes, aunque se haya navegado por otras páginas)
+  const utm = getUtm();
+  form.querySelectorAll<HTMLInputElement>('[data-utm]').forEach((i) => (i.value = utm[i.dataset.utm as keyof typeof utm] || ''));
 
   // Preselección desde enlaces contextuales (?perfil=empresa, ?necesidad=ia)
   const qs = new URLSearchParams(location.search);
@@ -674,6 +685,7 @@ import { site, needs, waLink } from '../data/site';
       if (!res.ok) throw new Error(String(res.status));
       form.hidden = true;
       okBox.hidden = false;
+      track('generate_lead', { perfil: String(data.get('perfil') || ''), ...getUtm() });
       okBox.focus();
       form.reset();
     } catch {

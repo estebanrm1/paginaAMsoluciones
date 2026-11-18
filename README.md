@@ -69,6 +69,24 @@ Cómo funciona:
 
 El plan gratuito de Netlify incluye 100 envíos por mes.
 
+## Medición (analítica, eventos y UTM)
+
+La medición se activa con **variables de entorno en Netlify** (*Project configuration → Environment variables*) y un deploy nuevo. No hace falta tocar código.
+
+| Variable | Proveedor | Cookies |
+| --- | --- | --- |
+| `PUBLIC_PLAUSIBLE_DOMAIN` (ej. `enlace-ar.netlify.app`) | Plausible (requiere cuenta) | No: sin aviso de consentimiento |
+| `PUBLIC_GA4_ID` (ej. `G-XXXXXXX`) | Google Analytics 4 | Sí: muestra un aviso y GA4 se carga solo si la persona acepta |
+
+Sin ninguna de las dos, no se carga ningún script de terceros. Los eventos igual se registran en `window.dataLayer`.
+
+**Eventos** (`src/scripts/analytics.ts`):
+- `generate_lead`: envío exitoso del formulario. Parámetros: `perfil` (`empresa` o `profesional`) y las UTM.
+- `click_whatsapp`: clic en cualquier enlace a wa.me. Parámetro: `ubicacion` (página · sección, header o footer).
+- `click_cta`: clic en «Contanos qué necesitás mejorar», «Quiero optimizar mi empresa» y «Quiero potenciar mi proyecto». Para medir otro botón, agregale `data-cta="Nombre"`.
+
+**UTM:** se guardan al llegar (por ejemplo, desde un enlace de Instagram con `?utm_source=instagram&utm_medium=social`) y se conservan durante toda la visita. Se envían con el formulario (campos `utm_*`), así cada consulta en Netlify muestra su origen.
+
 ## Calidad verificada
 
 - **Lighthouse (móvil):** rendimiento 99–100, accesibilidad 100, buenas prácticas 100, SEO 100. TBT 0 ms, CLS < 0,02.

@@ -27,7 +27,7 @@ const faqSchema = {
           manuales, información ordenada y una presencia digital que genere confianza.
         </p>
         <div class="hero-actions">
-          <a class="btn" href="/contacto">Contanos qué necesitás mejorar <Icon name="arrow" /></a>
+          <a class="btn" href="/contacto" data-cta="Contanos qué necesitás mejorar">Contanos qué necesitás mejorar <Icon name="arrow" /></a>
           <a class="btn btn--ghost" href="#metodo">Ver cómo trabajamos</a>
         </div>
         <p class="hero-note">Hablás directamente con quienes diseñan y construyen tu solución.</p>
@@ -261,7 +261,7 @@ const faqSchema = {
                   <li>{p}</li>
                 ))}
               </ul>
-              <a class="btn aud-btn" href={`/contacto?perfil=${a.id}`}>
+              <a class="btn aud-btn" href={`/contacto?perfil=${a.id}`} data-cta={a.cta}>
                 {a.cta} <Icon name="arrow" />
               </a>
             </article>

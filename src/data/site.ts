@@ -23,6 +23,12 @@ export const site = {
   whatsappMessage: 'Hola Enlace, quiero contarles qué necesito mejorar en mi negocio.',
 };
 
+/** Medición: se activa con variables de entorno de Netlify, sin tocar código. Vacías = sin analítica de terceros. */
+export const analytics = {
+  ga4Id: (import.meta.env.PUBLIC_GA4_ID as string | undefined) ?? '',
+  plausibleDomain: (import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN as string | undefined) ?? '',
+};
+
 export const waLink = (text: string = site.whatsappMessage) => `${site.whatsapp}?text=${encodeURIComponent(text)}`;
 
 /** Situaciones reales que vive un negocio, contadas en su idioma (sin tecnicismos). */

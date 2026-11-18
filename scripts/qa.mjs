@@ -266,6 +266,68 @@ try {
     await ctx.close();
   }
 
+  // ---- Medición ----
+  console.log('\n▶ medición (analítica y UTM)');
+  {
+    const ctx = await newContext({ viewport: { width: 1280, height: 900 } });
+    const page = await ctx.newPage();
+    const external = [];
+    page.on('request', (r) => {
+      const h = new URL(r.url()).hostname;
+      if (!['localhost', '127.0.0.1', 'wa.me'].includes(h)) external.push(h);
+    });
+    const events = () => page.evaluate(() => (window.dataLayer || []).filter((e) => e && e.event));
+    // Evita navegar al hacer clic: el rastreo escucha en document (burbujeo), esto corre antes en captura
+    const stopNav = () => page.evaluate(() => window.addEventListener('click', (e) => e.preventDefault(), true));
+
+    // 1) UTM al llegar desde redes, se conservan al navegar
+    await page.goto(BASE + '/?utm_source=instagram&utm_medium=social&utm_campaign=lanzamiento', { waitUntil: 'networkidle' });
+    (await page.isVisible('[data-consent]').catch(() => false)) ? fail('aviso de cookies visible sin GA4 configurado') : ok('sin GA4 configurado no hay aviso de cookies');
+
+    // 2) CTAs y WhatsApp
+    await stopNav();
+    await page.click('.hero [data-cta]');
+    for (const sel of ['a[data-cta="Quiero optimizar mi empresa"]', 'a[data-cta="Quiero potenciar mi proyecto"]']) await page.locator(sel).click();
+    await page.locator('section.cta a[href*="wa.me"]').click();
+    let ev = await events();
+    const ctas = ev.filter((e) => e.event === 'click_cta').map((e) => e.cta);
+    ['Contanos qué necesitás mejorar', 'Quiero optimizar mi empresa', 'Quiero potenciar mi proyecto'].every((c) => ctas.includes(c))
+      ? ok(`click_cta en los 3 botones (${ctas.join(' | ')})`)
+      : fail(`click_cta: ${JSON.stringify(ctas)}`);
+    const wa = ev.find((e) => e.event === 'click_whatsapp');
+    wa?.ubicacion ? ok(`click_whatsapp con ubicación «${wa.ubicacion}»`) : fail('click_whatsapp sin ubicación');
+
+    // 3) Navegar a otra página y luego a /contacto: el formulario lleva las UTM
+    await page.goto(BASE + '/nosotros', { waitUntil: 'networkidle' });
+    await page.goto(BASE + '/contacto', { waitUntil: 'networkidle' });
+    const utm = await page.evaluate(() => Object.fromEntries([...document.querySelectorAll('[data-utm]')].map((i) => [i.name, i.value])));
+    utm.utm_source === 'instagram' && utm.utm_medium === 'social' && utm.utm_campaign === 'lanzamiento'
+      ? ok('UTM conservadas hasta el formulario de /contacto')
+      : fail(`UTM en el formulario: ${JSON.stringify(utm)}`);
+
+    // 4) generate_lead al enviar con éxito, con perfil
+    let posted = null;
+    await page.route(`${BASE}/`, (route) => {
+      if (route.request().method() !== 'POST') return route.continue();
+      posted = new URLSearchParams(route.request().postData() || '');
+      return route.fulfill({ status: 200, body: 'ok' });
+    });
+    await page.check('input[name=perfil][value=profesional]');
+    await page.check('input[name=necesidad][value=presencia-web]');
+    await page.fill('#f-nombre', 'Lucía Gómez');
+    await page.fill('#f-email', 'lucia@ejemplo.com');
+    await page.fill('#f-mensaje', 'Quiero un sitio para mi estudio y automatizar los turnos.');
+    await page.click('[data-submit]');
+    await page.waitForSelector('[data-result-ok]:not([hidden])');
+    posted?.get('utm_source') === 'instagram' ? ok('la consulta enviada incluye utm_source=instagram') : fail(`UTM en el envío: ${posted}`);
+    ev = await events();
+    const lead = ev.find((e) => e.event === 'generate_lead');
+    lead?.perfil === 'profesional' ? ok(`generate_lead con perfil=${lead.perfil} y utm_source=${lead.utm_source}`) : fail(`generate_lead: ${JSON.stringify(lead)}`);
+
+    external.length ? fail(`peticiones a terceros sin analítica configurada: ${[...new Set(external)].join(', ')}`) : ok('sin peticiones a terceros (sin cookies ni scripts externos)');
+    await ctx.close();
+  }
+
   // ---- FAQ ----
   console.log('\n▶ FAQ');
   {
