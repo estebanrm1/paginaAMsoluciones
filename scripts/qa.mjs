@@ -414,10 +414,11 @@ try {
       ? ok(`${waLinks.length} enlaces de WhatsApp con mensaje prellenado`)
       : fail('enlaces de WhatsApp inválidos');
 
-    // Marca: sin cuentas viejas, email visible, LinkedIn oculto si no hay URL, privacidad enlazada
+    // Marca: sin cuentas viejas, email visible, LinkedIn de empresa, privacidad enlazada
     const old = [...all].filter((l) => /amsoluciones|am-soluciones/i.test(l));
     old.length ? fail(`enlaces a cuentas viejas: ${old.join(', ')}`) : ok('sin enlaces a las cuentas de AM Soluciones');
-    [...all].some((l) => /linkedin\.com\/(company|in\/enlace-ar)/.test(l)) ? fail('LinkedIn de Enlace AR visible sin página de empresa') : ok('LinkedIn de Enlace AR oculto hasta tener la página de empresa');
+    [...all].some((l) => l.includes('linkedin.com/company/enlace-ar')) ? ok('LinkedIn apunta a /company/enlace-ar') : fail('falta LinkedIn de empresa de Enlace AR');
+    [...all].some((l) => l.includes('linkedin.com/in/enlace-ar')) ? fail('aparece el perfil personal /in/enlace-ar') : ok('sin el perfil personal /in/enlace-ar');
     [...all].some((l) => l.includes('instagram.com/enlaceartuc')) ? ok('Instagram apunta a @enlaceartuc') : fail('falta Instagram @enlaceartuc');
     {
       const p3 = await ctx.newPage();
