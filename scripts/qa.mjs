@@ -419,7 +419,7 @@ try {
     old.length ? fail(`enlaces a cuentas viejas: ${old.join(', ')}`) : ok('sin enlaces a las cuentas de AM Soluciones');
     [...all].some((l) => l.includes('linkedin.com/company/enlace-ar')) ? ok('LinkedIn apunta a /company/enlace-ar') : fail('falta LinkedIn de empresa de Enlace AR');
     [...all].some((l) => l.includes('linkedin.com/in/enlace-ar')) ? fail('aparece el perfil personal /in/enlace-ar') : ok('sin el perfil personal /in/enlace-ar');
-    [...all].some((l) => l.includes('instagram.com/enlaceartuc')) ? ok('Instagram apunta a @enlaceartuc') : fail('falta Instagram @enlaceartuc');
+    [...all].some((l) => l.includes('instagram.com/enlacear26')) ? ok('Instagram apunta a @enlacear26') : fail('falta Instagram @enlacear26');
     {
       const p3 = await ctx.newPage();
       await p3.goto(BASE + '/contacto', { waitUntil: 'networkidle' });

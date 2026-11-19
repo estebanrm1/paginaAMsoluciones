@@ -17,8 +17,8 @@ export const site = {
   phoneDisplay: '+54 381 319-8483',
   phoneE164: '+543813198483',
   email: 'enlaceartuc@gmail.com',
-  instagram: 'https://www.instagram.com/enlaceartuc/',
-  instagramHandle: '@enlaceartuc',
+  instagram: 'https://www.instagram.com/enlacear26/',
+  instagramHandle: '@enlacear26',
   /** URL de la página de LinkedIn de Enlace AR. Vacío = no se muestra en ningún lado. */
   linkedin: 'https://www.linkedin.com/company/enlace-ar',
   whatsappMessage: 'Hola Enlace, quiero contarles qué necesito mejorar en mi negocio.',
