@@ -20,7 +20,7 @@ export const site = {
   instagram: 'https://www.instagram.com/enlaceartuc/',
   instagramHandle: '@enlaceartuc',
   /** URL de la página de LinkedIn de Enlace AR. Vacío = no se muestra en ningún lado. */
-  linkedin: 'https://www.linkedin.com/in/enlace-ar/',
+  linkedin: '',
   whatsappMessage: 'Hola Enlace, quiero contarles qué necesito mejorar en mi negocio.',
 };
 
